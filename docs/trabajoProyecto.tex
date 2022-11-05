@@ -1,61 +1,68 @@
-% !TeX spellcheck = es_AR
 \documentclass[12pt,a4paper]{book}
 \special{papersize=210mm,297mm}
-\renewcommand{\appendixname}{Anexo}
-\renewcommand{\bibname}{Bibliografía}
-\renewcommand{\chaptername}{Capítulo}
-\renewcommand{\contentsname}{Contenido}
-\renewcommand{\indexname}{Índice}
-\renewcommand{\listfigurename}{Lista de Figuras}
-\renewcommand{\listtablename}{Lista de Tablas}
-\renewcommand{\partname}{Parte}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
 \usepackage{ragged2e}
+\usepackage{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[acronym]{glossaries}
 \title{Trabajo Final}
 \author{Antoniak, Rodrigo Lionel}
 \date{2022}
+\hypersetup{
+    bookmarksopen=true,
+    pdftitle={Trabajo Final},
+    pdfpagemode=UseThumbs,
+}
+\urlstyle{same}
+\graphicspath{ {./images/} }
+\makenoidxglossaries
+\renewcommand{\glsnamefont}[1]{\makefirstuc{#1}}
+\include{./include/glosario}
 \begin{document}
 	\frontmatter
+	\pagenumbering{gobble}
 	\include{./include/caratula}
-	\clearpage
+	\cleardoublepage
+	\pagestyle{plain}
+	\pagenumbering{Roman}
+	\setcounter{page}{3}
 	\tableofcontents
 	\listoffigures
 	\listoftables
+	\cleardoublepage
 	\mainmatter
+	\pagestyle{headings}
+	\pagenumbering{arabic}
+	\setcounter{page}{13}
 	\part{Introducción}
+	\include{./include/intro}
 	\part{Planificación}
 	\chapter[Entrevistas]{Planificación de entrevistas}
+	\include{./include/plan/entrevistas}
 	\chapter[Actividades]{Planificación de actividades}
+  \include{./include/plan/actividades}
 	\chapter[Factibilidad]{Estudio de Factibilidad}
-	\section[Información]{Información del Proyecto}
-	\section[Resumen]{Resumen Ejecutivo}
-	\section[Antecedentes]{Antecedentes del Proyecto}
-	\section[Contexto]{El Proyecto y su Contexto}
-	\section[Alcance]{Alcance del Estudio de Factibilidad}
-	\section{Factibilidad Técnica}
-	\section{Factibilidad Económica}
-	\section{Factibilidad Legal}
-	\section{Factibilidad de Recursos}
-	\section{Factibilidad de Mercado}
-	\section{Factibilidad Operacional}
-	\clearpage
-	\section{Factibilidad de Tiempo}
-	\section{Recomendaciones}
+  \include{./include/plan/factibilidad}
 	\part{Relevamiento}
 	\chapter[Recolección]{Recolección de Información}
-	\section{Primera Entrevista}
-	\section{Segunda Entrevista}
-	\section{Anexos}
+	\include{./include/relevamiento/recoleccion}
 	\chapter[Informe]{Informe de Relevamiento}
-	\section{Primera Entrevista}
-	\section{Segunda Entrevista}
+	\include{./include/relevamiento/informe}
 	\chapter[Conclusión]{Conclusión de Relevamiento}
+	\include{./include/relevamiento/conclusion}
 	\part{Requisitos}
 	\chapter[Escenario]{Descripción del Escenario}
+	\include{./include/requisitos/escenario}
 	\chapter[Objetivos]{Objetivos del Sistema}
+	\include{./include/requisitos/objetivos}
 	\chapter{Requisitos Funcionales}
+	\include{./include/requisitos/rf}
 	\chapter{Requisitos No Funcionales}
+	\include{./include/requisitos/rnf}
 	\part{Análisis}
 	\chapter{Diagrama de Casos de Uso}
 	\chapter{Casos de Uso Extendido}
@@ -71,7 +78,11 @@
 	\appendix
 	\part{Anexos}
 	\chapter[Encuestas]{Encuestas Diseñadas}
+	\include{./include/anexos/encuestas}
 	\chapter[Glosario]{Glosario de Términos}
+  \printnoidxglossary[type=\acronymtype,title=Siglas,nonumberlist]
+  \printnoidxglossary[title=Definiciones,nonumberlist]
 	\chapter{Otros}
 	\backmatter
+	\chapter{Agradecimientos}
 \end{document}

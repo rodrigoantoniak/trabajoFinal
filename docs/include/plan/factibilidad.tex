@@ -1,0 +1,474 @@
+\section[Información]{Información del Proyecto}
+\normalsize{ \indent
+Sobre el proyecto se obtiene la siguiente información:
+}
+\begin{tabbing}
+  \hspace{1cm}\= \textbf{Nombre}\qquad \qquad \qquad
+  \quad \quad \= SAES(Sistema de Administración para
+  \\[5pt] \> \> \qquad \quad Escuelas Secundarias) \\[5pt] \>
+  \textbf{Tipo} \> Con cliente final\\[5pt] \>
+  \textbf{Fecha de preparación} \>
+  9 de septiembre de 2022\\[5pt] \>
+  \textbf{Cliente} \> Personal del \acrlong{ilc}
+  \\[5pt] \> \textbf{Patrocinador} \> \acrlong{ilc}
+  \\[5pt] \> \textbf{Líder} \> Rodrigo Lionel Antoniak
+\end{tabbing}
+\section[Resumen]{Resumen Ejecutivo}
+\normalsize{ \indent
+Para este proyecto, se pretende desarrollar un
+software donde haya una base de datos para almacenar
+legajos, horarios, calificaciones y asistencias;
+donde tenga un dominio en un sitio web, para así
+poder portar el manejo de perfiles en distintas
+partes. No ha de tener muchas dificultades respecto
+a la competencia, ya que conserva su simplicidad en
+el formato que se presenta.
+}
+\newline
+\normalsize{ \indent
+Sus puntos principales son el cumplimiento a las
+necesidades del colegio, con un formato que favorece
+al uso de recursos humanos que ya se poseen y poco
+entrenamiento; teniendo que invertir principalmente en
+la programación y la base de datos. La tarea que abarque
+la totalidad del precio de la solución es la instalación
+de software, debido a que se utiliza la licencia GPL v2.
+}
+\newline
+\normalsize{ \indent
+Como el diseño es bastante personalizado por el
+\acrlong{ilc}, se pretende que el proyecto se realice una
+única vez; sin llevarlo a la reventa del programa, o al
+menos no es el propósito. Cabe destacar que cada escuela
+puede solicitar requisitos distintos, por lo que la
+variedad de soluciones es alta para realizar una de
+propósito general.
+}
+\newline
+\normalsize{ \indent
+Visto y considerando que existe información suficiente
+sobre el contexto, podrá llevarse a cabo este proyecto
+(o al menos en el alcance pretendido actualmente);
+después, será necesario continuar con las buenas prácticas
+para completar todo el sistema e integrarlo como espera
+el colegio secundario.
+}
+\section[Antecedentes]{Antecedentes del Proyecto}
+\normalsize{ \indent
+Primero, los factores que justifican la realización del
+proyecto son la ausencia de digitalización de documentos,
+el medio de manejo actual de información (a través de Excel)
+y el fracaso de personal informático (contratado por freelance)
+para realizar correctamente un proyecto funcional efectivo.
+De ahí, el estudio de factibilidad es impulsado por las posibles
+opciones que existan, la abertura del cliente a distintas
+propuestas y la necesidad de decidir si comprar o desarrollar
+software.
+}
+\section[Contexto]{El Proyecto y su Contexto}
+\normalsize{ \indent
+Una escuela de nivel medio desea digitalizar la generación
+de formularios y completado de legajo. Los docentes y alumnos
+pueden completar los datos de sus legajos desde una plataforma,
+donde se conservará la información en una base de datos; así
+posteriormente se genera el documento y es firmado
+presencialmente. El único documento excepcional de esto es la
+ficha médica, la cual se ofrece el modelo y se trae el papel
+completado por el médico.
+}
+\newline
+\normalsize{ \indent
+El acceso a los datos de los legajos será compartido,
+aunque estará limitado a aquellos que tengan el rango
+suficiente para acceder a la información. Los legajos
+podrán observarse desde el perfil del alumno o docente,
+o en una tabla que junte a los cursantes o los profesores.
+Los docentes pueden clasificarse por el tipo de salario
+(por hora, cargo, o ambos), mientras que los alumnos se
+pueden clasificar por curso/año/división.
+}
+\newline
+\normalsize{ \indent
+Entre otros, debe disponerse de un control de horarios;
+propuesto para que la Rectora pueda asignar los docentes
+correspondientes a cada rol y el sistema ajuste los
+horarios del mismo. Cuando se necesite cambiar los
+horarios, el sistema debe controlar que se cumplan todas
+las condiciones para la operación. A su vez, la opción de
+un docente suplente (dado por la licencia del titular) es
+fundamental en el sistema; igualmente que el cambio de
+docentes en medio del año.
+}
+\newline
+\normalsize{ \indent
+Además, debe permitir registrar asistencias con los
+alumnos y docentes de forma directa; así, se libera
+al preceptor para que se encargue de otros trabajos.
+Cada presente abarcará la condición de un alumno
+con las horas contínuas de una materia determinada,
+implicando que tras el cambio de materia o la descontinuidad
+de una misma materia debe contabilizarse como una asistencia
+aparte.
+}
+\newline
+\normalsize{ \indent
+Por otro lado, es necesario almacenar las calificaciones
+entre docentes y alumnos; tanto las que reciben estos
+últimos por su desenvolvimiento en el cursado, como del
+profesor por la calidad de enseñanza que otorga. El primer
+tipo de calificación requiere que sea trimestral, en donde
+cada materia de ese lapso debe tener 3 calificaciones cada
+uno. Mientras que las devoluciones de alumnos a docentes
+se realiza anónimamente de forma aleatoria.
+}
+\newline
+\normalsize{ \indent
+El sistema debe poder generar notificaciones para
+informar sobre el estado de cada uno de los estados del
+sistema, independientemente del perfil que se involucre.
+El motivo del aviso sobre documentación puede ser la falta
+de los mismos para completar el legajo o que se notifique
+de estar al día, a su vez que puede destacar algún tipo de
+error en los datos ingresados en un formulario en específico.
+Adicionalmente, los docentes recibirán un correo a través del
+dominio del colegio.
+}
+\newline
+\normalsize{ \indent
+En adición, existen otros formularios que pueden
+generar los miembros por temas distintos al legajo;
+entonces se necesitará un canal distinto de gestión
+para esos documentos. Incluso, se deberán incluir
+documentos históricos; teniendo en cuenta papeles
+anteriores a la creación del sistema, siguiendo un
+orden lógico de ubicación (sea por fecha, alumno,
+curso, etcétera).
+}
+\newline
+\normalsize{ \indent
+Por último, debe haber un apartado donde se administren
+los exalumnos; teniendo sus nombres, datos de graduación
+(año/título) y contacto. Idealmente, cada uno de los
+egresados podría cambiar datos de su contacto; así el
+colegio puede conservar contacto con ellos. Si bien,
+puede evaluarse un sistema de mensajería por el software;
+el colegio insiste en tener medios alternativos, con
+motivos propios del ente.
+}
+\newline
+\normalsize{ \indent
+Respecto al contexto, se puede mencionar que el autor
+de este trabajo final ha cursado su nivel medio en este
+colegio; lo cual, facilita la comunicación con los
+miembros del establecimiento. Tomando en cuenta el
+diálogo en la entrevista, puede afirmarse que hubo
+acuerdo en la visión de cada miembro de Coordinación
+Escolar entrevistado.
+}
+\section[Alcance]{Alcance del Estudio de Factibilidad}
+\normalsize{ \indent
+El alcance pretendido para este estudio es el conocimiento
+de los pasos a seguir para poder gestionar legajos,
+horarios, calificaciones y asistencias. Principalmente,
+se analizarán distintas opciones por los costos de
+almacenamiento y dinero para elegir; considerando que debe
+cumplirse la condición de poder usar el personal ya
+contratado del colegio con la posible solución.
+}
+\section{Factibilidad Técnica}
+\normalsize{ \indent
+En la búsqueda de las distintas soluciones,
+se han encontrado distintas herramientas que
+parecen ser candidatas a ser parte del software
+final. Para la investigación inicial, se enfocó
+en encontrar soluciones destinadas a escuelas;
+donde se incluya el manejo de legajos y horarios
+docentes. Además, se recuerda que el colegio ya
+posee el software de Acadeu; tras el suceso de que
+el software no satisface las necesidades del
+\acrlong{ilc}, se debe módulos de calificaciones y
+asistencia. Gestionar tareas para alumnos debe 
+revisarse para un proyecto a futuro, considerando
+que la vuelta a la normalidad (frente a la situación
+del COVID-19) permite la entrega presencial de
+tareas y se insiste en conservar este método.
+}
+\newline
+\normalsize{ \indent
+Con todos los filtros establecidos, se destaca un
+proyecto de código abierto (bajo licencia pública de
+GNU); se llama Proyecto ALBA, aunque ya fue abandonado.
+Consiste en la gestión de unidades educacionales, junto
+con sus alumnos y docentes; destacándose que existen
+módulos para gestionar legajos y horarios docentes. El
+asunto es que no parece ser muy conocido y no tuvo mucha
+atención, ya que todos los problemas reportados no fueron
+respondidos (y quedaron abiertos). Incluso, su página web
+principal ya no existe; empero su enlace por GitHub sigue
+siendo accesible (como archivado), el cual es el siguiente:
+\url{https://github.com/proyectoalba/alba}.
+}
+\newline
+\normalsize{ \indent
+Por lo tanto, se observa que no hay una opción íntegra
+que cumpla con lo pretendido en el alcance del proyecto;
+así que se ha buscado las funcionalidades por separado, en
+caso que existiera una herramienta disponible. Si bien, para
+la administración de horas docentes se encuentran herramientas
+con propósitos laborales generales; no hay alguna que se centre
+solamente en gestionar horarios, es decir que trae muchas otras
+funcionalidades no deseadas. Se puede nombrar de ejemplo a
+PlanningPME
+(\url{https://www.planningpme.es/software-planning.htm})
+y Sesame (\url{https://www.sesametime.com/}). Para la
+gestión de legajos, asistencia y calificaciones; se considera
+que la funcionalidad es suficientemente genérica como para
+poder generar el código sencillamente y que se enfoque en
+solucionar específicamente lo deseado.
+}
+\section{Factibilidad Económica}
+\normalsize{ \indent
+Este factor puede resultar esencial hasta cierto punto,
+pero hay consideraciones a tomar que bajan la importancia
+de este factor:
+}
+\begin{itemize}
+  \item Este proyecto no se pretende volver a usar, ya que
+  el colegio nos ha elegido en criterio a la relación de 
+  alumno (por el autor de este documento); mas falta decir
+  que deja de ser un proyecto cuando se vuelve a realizar.
+  Otros colegios pretenderían buscar otras características,
+  por lo que sería un proyecto aparte.
+  \item El \acrlong{ilc} tiene predisposición a pagar precios
+  elevados, siempre y cuando se cumpla con la funcionalidad
+  buscada. Además, tiene conocimientos sobre los precios
+  reales de software (ya se comentó antes que intentaron
+  tener este proyecto resuelto antes con otras personas, pero
+  estos últimos no estuvieron a la altura de las
+  circunstancias).
+  \item Dado que el personal se pretende conservar y que no
+  se necesitará mucho entrenamiento, gracias a que se sigue
+  el formato que ellos desean con los procedimientos
+  adecuados para \Gls{coordesc}; los únicos elementos
+  a cobrar son la base de datos, el dominio y la programación.
+\end{itemize}
+\ \newline
+\normalsize{ \indent
+Dado que no se conoce la programación requerida, resulta
+imposible estimar en este tiempo el costo en sí; sin embargo,
+no resulta tan relevante frente a otros proyectos con
+competencia y recursos financieros muy limitados.
+}
+\section{Factibilidad Legal}
+\normalsize{ \indent
+Tomando en cuenta que se pretende hacer uso de una base de
+datos para almacenar los datos sobre los docentes (contando
+sólo esta etapa), debe considerarse el manejo de los datos
+personales; cuya protección está normalizada en la ley 25326,
+que se encuentra en el siguiente enlace:
+\url{http://servicios.infoleg.gob.ar/infolegInternet/anexos/60000-64999/64790/norma.htm}.
+}
+\newline
+\normalsize{ \indent
+De ahí, hay que tener énfasis en el artículo 10; en
+consecuencia, el secreto profesional de los datos personales
+es obligatorio (incluso después de terminar la solución
+completa).
+}
+\section{Factibilidad de Recursos}
+\normalsize{ \indent
+Desde el inicio del proyecto, se tuvo la visión de un relevo
+de métodos para realizar operaciones; y no de agregar más
+trabajo para hacer, por lo que se aplicó esfuerzo en
+limitarse con los recursos ya existentes del colegio.
+Gracias a que el personal de \Gls{coordesc} ya realiza
+todas las tareas pretendidas con este sistema, aunque con
+una forma poco efectiva; no se necesitará agregar personal
+para este sistema, ni se afecta a ninguna operación (por lo
+que no hay dependencias ni procedimientos necesarios para
+describir).
+}
+\newline
+\normalsize{ \indent
+Apartando los recursos humanos ya presentes, es necesario
+tener una base de datos para el almacenamiento de datos
+sobre legajos y horarios (inclusive también para la
+incorporación de los elementos pertenecientes a las
+siguientes etapas). Para este proyecto, tanto en el
+alcance actual como en su totalidad, es ideal realizar
+con un dominio web; por motivos de portabilidad para los
+docentes y alumnos, cuando quieran actualizar su perfil.
+En caso de elegir un diseño de página web, puede
+aprovecharse el dominio ya existente del colegio; el cual
+es \url{https://www.ilc.edu.ar/}.
+}
+\section{Factibilidad de Mercado}
+\normalsize{ \indent
+Como se ha visto en la factibilidad técnica, existen
+varias opciones en el mercado que se acercan a algunas
+de las necesidades. Para la gestión de una escuela, hay
+muchas opciones que se hallan buscando en Internet; sin
+embargo, poseen características que resultan ser
+complicadas de implementar en muchos colegios. Por
+ejemplo, el seguimiento de asistencia, tomando en cuenta
+que el colegio cuenta con una residencia para internados;
+en especial, por tener una ubicación biométrica o GPS.
+}
+\newline
+\normalsize{ \indent
+Por otro lado, hay aplicaciones que se destinan a la
+gestión de horarios; la cual administra hasta las
+vacaciones que poseen cada uno de los trabajadores. El
+problema es que no gestiona los legajos docentes, así
+que lamentablemente no se tiene suficiente
+especialización en estas alternativas. En fin, esta
+solución a desarrollar va a resultar como una oferta
+única en el mercado; aunque se pretende que el
+\acrshort{ilc} utilice, sin buscar que otros colegios
+puedan pedir tal oferta.
+}
+\newline
+\normalsize{ \indent
+Para resumir, este software está pretendido para que
+los colegios puedan gestionar la administración pedagógica;
+sin tener herramientas complejas de implementar en
+regiones no pertenecientes al primer mundo. En principio,
+el primer cliente (el colegio secundario que solicitó
+nuestra solución) elige nuestro sistema porque va a cumplir
+correctamente la función solicitada; sin incorporar
+herramientas innecesarias para esta escuela, como otras
+ofertas.
+}
+\newline
+\normalsize{ \indent
+En otras palabras, la persona que escribe este documento
+tendrá una solución que está entremedio de dos tipos de
+competencias. Por un lado, están los programadores a nivel
+local; quienes no resultan ser suficientemente competentes
+para cumplir lo que busca el colegio, según testimonio del
+personal del establecimiento. El otro sector es el conjunto
+de organizaciones que ofrece demasiadas herramientas para
+colegios de regiones lejanas a ciudades como Córdoba.
+Ofrece una oportunidad donde se tienen las características
+programadas correctamente y mantiene la simplicidad del
+mismo, siendo el enfoque de esta solución.
+}
+\section{Factibilidad Operacional}
+\normalsize{ \indent
+Dentro de las operaciones que se cumplen, se gestiona
+la base de datos con los legajos y horarios. Para los
+legajos, se completa el legajo de los docentes por dos
+formas; dependiendo de quién haga la carga de los archivos
+digitales, sean las imágenes o la declaración jurada
+firmada. Una persona puede ser el mismo docente,
+rellenando un formulario con información que se
+complementa con los cargos asignados, los títulos
+superiores y la información básica de perfil; para así
+tener el modelo de declaración jurada digital que se
+podrá imprimir y firmar para guardarse en la base de
+datos. La otra opción es el personal de \Gls{coordesc},
+donde éste deberá realizar la carga de la información
+del formulario mencionado anteriormente; considerando
+que el docente prefiere completar la declaración jurada
+a mano.
+}
+\newline
+\normalsize{ \indent
+Todo lo explicado con respecto a la declaración jurada
+se aplica igualmente con las imágenes, distinguiéndose
+la verificación de imagen; en el caso que el docente
+suba la imagen por su decisión, ya que no hay seguridad
+de que la imagen corresponda al documento solicitado
+(incluso, puede tratarse de una confusión de documentación;
+donde un docente sube un documento en el lugar que
+corresponde a otro).
+}
+\newline
+\normalsize{ \indent
+Todo lo explicado con respecto a la declaración jurada
+se aplica igualmente con las imágenes, distinguiéndose
+la verificación de imagen; en el caso que el docente
+suba la imagen por su decisión, ya que no hay seguridad
+de que la imagen corresponda al documento solicitado
+(incluso, puede tratarse de una confusión de documentación;
+donde un docente sube un documento en el lugar que
+corresponde a otro).
+}
+\newline
+\normalsize{ \indent
+Para los horarios, la Rectora es quien asigna los
+docentes que se encargan de los distintos puestos
+disponibles; subdividiéndose en horas jornales y cargo,
+donde un docente puede tener ambos. Así también, la
+Rectora hace los \glspl{reldoc}; sea por una suplencia o
+por un reemplazo de titular. De ahí, \Gls{coordesc} se
+encarga de ajustar los horarios según las condiciones
+necesarias para ello; tanto el ajuste inicial de cada
+año como los cambios de horario interanuales.
+}
+\newline
+\normalsize{ \indent
+Al elegir un docente para cierto horario, la Rectora
+tiene todos los permisos para hacer la operación y no
+necesita guiarse de ninguna condición. Por el contrario,
+para los horarios existe un conjunto de necesidades a
+cumplir para los cambios:
+}
+\begin{itemize}
+  \item Un horario a cambiar de un docente no puede
+  sobreponerse a otro del mismo profesional, ya sea en
+  el mismo colegio o externamente (dato conocido en la
+  declaración jurada).
+  \item Para una clase que no corresponda a \Gls{modulo}
+  (práctica), no se puede tener más de tres horas
+  consecutivas de cátedra.
+  \item Las horas de \Gls{modulo} deben ser 7:30 a 12:00,
+  9:00 a 12:00 (en ambos casos, con un recreo de 10:00
+  a 10:30 y sin actividades después del mediodía), o
+  14:00 a 16:30 (sin actividades en adelante).
+  \item Los docentes no pueden trabajar más de 42 horas.
+  Para los que trabajan fuera del colegio (quienes sólo
+  tengan horas jornales), se considera el horario externo.
+  \item Las horas correspondientes a un curso no se pueden
+  interponer. Por lo tanto, siempre que se cambien horarios;
+  resulta en una rotación, donde los horarios involucrados
+  pueden ser variables (al menos son dos).
+\end{itemize}
+\ \newline
+\normalsize{ \indent
+Adicionalmente, los \Glspl{modulo} no pueden cambiarse de
+horario dentro del año.
+}
+\section{Factibilidad de Tiempo}
+\normalsize{ \indent
+Considerando que la competencia no cubre las necesidades de
+la escuela específicamente, no hay un riesgo aparente del
+tiempo frente a otros que puedan hacer la misma tarea en
+menor tiempo; porque no se halló a alguien con esos rasgos.
+Sin embargo, no hay que olvidarse que uno se compromete con
+la entrega del software; por lo tanto, se debe seguir los
+tiempos previamente tratados con quien nos vaya a comprar el
+sistema.
+}
+\section{Recomendaciones}
+\normalsize{ \indent
+Cuando se siga con otros objetivos generales que no se abarcan
+en el alcance de ahora, es recomendable conservar las prácticas
+actuales; así en el futuro se podrá apuntar al éxito de este
+proyecto, el cual ya contempla un gran potencial.
+}
+\newline
+\normalsize{ \indent
+Ya que no hay muchas opciones en el mercado que cumplan las
+funciones del alcance de forma simplificada, se consiguen los
+motivos para llevar adelante el software pretendido. Además,
+el acuerdo entre los desarrolladores y el cliente de la forma
+final otorga confianza que es una buena idea para seguir.
+}
+\newline
+\normalsize{ \indent
+Para finalizar, es muy factible ejecutar el proyecto en
+cuestión (al menos, hasta el alcance en esta primera etapa) y
+debe continuarse con los procedimientos correspondientes; para
+así lograr los objetivos de la solución que se creará.
+}
