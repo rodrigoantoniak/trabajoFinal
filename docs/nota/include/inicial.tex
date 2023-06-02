@@ -1,0 +1,676 @@
+\addcontentsline{toc}{section}{Planteo
+	del problema
+}
+\section*{Planteo del problema}
+\normalsize{ \indent
+En la actualidad, la Universidad Nacional de Misiones
+gestiona las \'ordenes de servicio a trav\'es de
+documentos generados en un programa ofim\'atico;
+sin haber otro tipo de informatizaci\'on sobre
+el proceso. Al no tener un sistema implantado para
+este prop\'osito, se carece de control sobre las
+distintas etapas en que la realizaci\'on de un
+servicio se encuentra.
+}
+\newline
+\normalsize{ \indent
+Adicionalmente, el tiempo que transcurre ente cada
+uno de los pasos a seguir en el procedimiento de un
+servicio es amplio; considerando las formas en que
+las solicitudes de servicio llegan, sea por los
+docentes que obtienen las solicitudes de servicios
+o por el acercamiento presencial del solicitante.
+}
+\addcontentsline{toc}{section}{Introducci\'on
+	y Objetivos
+}
+\section*{Introducci\'on y Objetivos}
+\normalsize{ \indent
+Las \'ordenes de servicio son solicitudes que
+hacen distintas organizaciones a la Universidad
+Nacional de Misiones, buscando resolver sus
+necesidades a trav\'es de los recursos
+universitarios. En la b\'usqueda de formalizar
+el circuito que involucra al servicio, se
+realizar\'a un sistema inform\'atico con los
+siguientes objetivos:
+}
+\begin{itemize}
+	\item Disponer de una plantilla de orden
+	de servicio parametrizada, para generar
+	el documento de forma consistente.
+	\item Otorgar un v\'ia m\'as formal y
+	r\'apida para acordar los t\'erminos
+	en que se regir\'a un servicio.
+	\item Controlar la validez de las firmas
+	en los documentos firmados para las
+	\'ordenes de servicio.
+	\item Definir condiciones en donde se
+	cierre una orden de servicio o su
+	solicitud.
+	\item Vincular cada uno de los
+	comprobantes con la etapa en la que se
+	encuentra un servicio.
+\end{itemize}
+\addcontentsline{toc}{section}{Alcance y
+	Limitaciones
+}
+\section*{Alcance y Limitaciones}
+\normalsize{ \indent
+Para el producto software a desarrollar, se va
+a considerar:
+}
+\begin{itemize}
+	\item Generaci\'on de la orden de servicio.
+	\item Registro de los costos invlucrados en
+	el servicio.
+	\item Negociaci\'on de los recursos,
+	compromisos y retribuciones de un servicio.
+	\item Firma de las \'ordenes de servicio.
+	\item Anexo de factura y recibo
+	correspondiente por orden de servicio.
+\end{itemize}
+\ \newline
+\normalsize{ \indent
+Las cuestiones que no ser\'an abarcadas en, al
+menos, una versi\'on inicial son:
+}
+\begin{itemize}
+	\item La solicitud de los pagos a las
+	distintas partes de los Prestadores de
+	Servicio.
+	\item Revisi\'on de ART de los trabajadores
+	de planta o con relaci\'on de dependencia,
+	y seguros de monotributistas o becarios.
+\end{itemize}
+\ \newline
+\normalsize{ \indent
+Las limitaciones definitivas del sistema (es
+decir, que nunca ser\'an parte de este software)
+son:
+}
+\begin{itemize}
+	\item La facturaci\'on de la orden de
+	servicio, que ya se realiza por un sistema
+	de AFIP.
+	\item Medios de cobro a trav\'es del sistema
+	(tales como MercadoPago u otros medios de
+	transferencia) para las \'ordenes de servicio.
+	\item Medios de pago para retribuir a los
+	miembros que prestaron su servicio.
+\end{itemize}
+\addcontentsline{toc}{section}{Especificaci\'on
+	de M\'odulos
+}
+\section*{Especificaci\'on de M\'odulos}
+\addcontentsline{toc}{subsection}{Funcionales}
+\subsection*{Especificaciones Funcionales}
+\begin{itemize}
+	\item \'Ordenes de servicio
+	\item Presupuestos
+	\item Cobros
+	\item Formularios
+	\item Avisos peri\'odicos
+	\item Notificaciones
+	\item Estad\'istica
+	\item Ajuste de par\'ametros
+\end{itemize}
+\addcontentsline{toc}{subsection}{No Funcionales}
+\subsection*{Especificaciones No Funcionales}
+\begin{itemize}
+	\item Auditor\'ia
+	\item Seguridad
+	\item Gesti\'on de roles:
+	\begin{itemize}
+		\item Administrador
+		\item Representante T\'ecnico
+		\item Comitente
+		\item Secretario
+		\item Ayudante
+		\item Tesorero
+	\end{itemize}
+\end{itemize}
+\addcontentsline{toc}{section}{Descripci\'on
+	de los M\'odulos
+}
+\section*{Descripci\'on de los M\'odulos}
+\begin{itemize}
+	\item \textbf{\'Ordenes de servicio:}
+	almacena informaci\'on sobre las \'ordenes
+	de servicio, incluyendo las firmas del mismo.
+	Su salida genera informes sobre el estado de
+	cada orden de servicio.
+	\item \textbf{Presupuestos:} guarda los
+	montos de cada recurso involucrado para un
+	servicio, justificando el precio de la
+	retribuci\'on econ\'omica.
+	\item \textbf{Cobros:} mantiene un seguimiento
+	de las retribuciones econ\'omicas de los
+	comitentes, desde el monto inicial establecido
+	hasta cubrir su totalidad.
+	\item \textbf{Formularios:} ofrece interfaces
+	para poder completar los	datos que pertenecen
+	a la orden de servicio, as\'i puede generarse
+	tal documento con los datos completados.
+	\item \textbf{Avisos peri\'odicos:} env\'ia
+	correos electr\'onicos a los usuarios sobre
+	distintos estados en que se encuentra el
+	sistema.
+	\item \textbf{Notificaciones:} conserva los
+	m\'etodos utilizados para avisar a los
+	distintos usuarios del sistema sobre las
+	situaciones que pueden ocurrir, dentro del
+	ecosistema del software.
+	\item \textbf{Estad\'istica:} se dedica a los
+	c\'alculos estad\'isticos sobre la completitud
+	de los legajos y la carga horaria de los
+	docentes. Su salida genera los informes
+	estad\'isticos solicitados.
+	\item \textbf{Ajuste de par\'ametros:} guarda
+	cada uno de los par\'ametros ajustables que
+	involucran otros m\'odulos. Como salida, se
+	devuelve el conjunto de variables globales y
+	parametrizables dentro del software.
+	\item \textbf{Auditor\'ia:} registra cada una
+	de las acciones que se realizan dentro del
+	sistema, para controlar los sucesos que vayan
+	ocurriendo a lo largo del uso del mismo.
+	\item \textbf{Seguridad:} asegura que el
+	ingreso de cualquier usuario que intente
+	acceder al sistema sea v\'alido, as\'i como
+	limitar el contenido disponible para cada rol.
+\end{itemize}
+\newpage
+\subsection*{Gesti\'on de roles}
+\begin{itemize}
+	\item \textbf{Administrador:} parametriza los
+	valores necesarios para que el sistema pueda
+	funcionar con flexibilidad, pero sin perder
+	las caracter\'isticas deseadas; se trata de
+	las operaciones ABM y CRUD, de los
+	par\'ametros ajustables, etcétera.
+	\item \textbf{Representante T\'ecnico:} tiene
+	el poder de adjudicaci\'on a los servicios
+	que la universidad realice, sea elegido por
+	el Comitente o se apunte al servicio en
+	particular; asigna los recursos del servicio,
+	y propone los Compromisos y Retribuciones
+	de cada servicio que se halle a cargo. Tambi\'en
+	es una de las partes que firma una orden de
+	servicio.
+	\item \textbf{Comitente:} solicita \'ordenes
+	de servicio a la universidad, pudiendo elegir
+	el Representante T\'ecnico (en caso de desear
+	uno en particular); as\'i como decide qu\'e
+	acci\'on tomar ante la propuesta de Compromisos
+	y Retribuciones de un servicio, sea renegociar,
+	aceptar o rechazar la propuesta. Tambi\'en es
+	una de las partes que firma una orden de
+	servicio.
+	\item \textbf{Secretario:} revisa cada una de
+	las \'ordenes de servicio y otorga su firma
+	final en el documento, pudiendo subirse en
+	el sistema. Tambi\'en se encarga de tomar
+	decisiones en casos de conflicto por los
+	servicios o sus solicitudes.
+	\item \textbf{Ayudante:} se encarga de subir
+	las \'ordenes de servicio que hayan sido
+	firmadas manuscritamente y las facturas que
+	corresponden por servicio.
+	\item \textbf{Tesorero:} anexa el recibo
+	correspondiente a un servicio cobrado.
+\end{itemize}
+\newpage
+\addcontentsline{toc}{section}{Procesos
+	automatizados
+}
+\section*{Procesos automatizados}
+\begin{center}
+\begin{longtable}{
+	| p{3.25cm} | p{5.25cm} | p{7.4cm} |
+}
+	\hline
+	\rowcolor{gray}
+	\multicolumn{1}{|p{3.25cm}|}{
+		\centering
+		\textbf{Denominaci\'on}
+	} &
+	\multicolumn{1}{p{5.25cm}|}{
+		\centering
+		\textbf{M\'odulos que intervienen}
+	} &
+	\multicolumn{1}{p{7.4cm}|}{
+		\centering
+		\textbf{Descripci\'on del proceso}
+	} \\
+	\hline
+	\endhead
+	\multicolumn{1}{|p{3.25cm}|}{
+		\raggedleft
+		Firma digital
+	} &
+	\multirowcell{1}{
+		\Centerstack{
+			\'Ordenes de Servicio \\
+			Formularios \\
+			Avisos peri\'odicos \\
+			Notificaciones \\
+			Representante T\'ecnico \\
+			Comitente \\
+			Secretario
+		}
+	} &
+	\multicolumn{1}{p{7.4cm}|}{
+		El sistema administrar\'a la firma
+		de \'ordenes de servicios de forma
+		digital, cuando el Comitente marque
+		que puede firmar documentos
+		digitalmente. Este m\'odulo se
+		ejecutar\'a cuando se acepte las
+		condiciones propuestas por el
+		Representante T\'ecnico. Se espera
+		que firme el Comitente primero,
+		despu\'es el Responsable T\'ecnico
+		y por \'ultimo la persona encargada
+		de la Secretar\'ia de Extensi\'on.
+	} \\
+	\hline
+	\multicolumn{1}{|p{3.25cm}|}{
+		\raggedleft
+		Verificaci\'on autom\'atica de
+		\'ordenes de servicio firmadas
+		de forma manuscrita
+	} &
+	\multirowcell{1}{
+		\Centerstack{
+			\'Ordenes de Servicio \\
+			Formularios \\
+			Avisos peri\'odicos \\
+			Notificaciones \\
+			Representante T\'ecnico \\
+			Comitente \\
+			Secretario
+		}
+	} &
+	\multicolumn{1}{p{7.4cm}|}{
+		El sistema controlar\'a el documento
+		que se suba como orden de servicio,
+		cuando el Comitente marque que no
+		puede firmar documentos digitalmente.
+		Este m\'odulo se ejecutar\'a cuando
+		se firme la orden de servicio en papel.
+		Se espera que verifique a qu\'e orden
+		de servicio pertenece el documento
+		subido, la coincidencia de su contenido
+		con el formulario rellenado anteriormente
+		y la existencia de las 3 firmas en
+		el papel.
+	} \\
+	\hline
+	\multicolumn{1}{|p{3.25cm}|}{
+		\raggedleft
+		Gestor autom\'atico de servicios
+	} &
+	\multirowcell{1}{
+		\Centerstack{
+			\'Ordenes de Servicio \\
+			Presupuestos \\
+			Formularios \\
+			Avisos peri\'odicos \\
+			Notificaciones \\
+			Representante T\'ecnico \\
+			Comitente \\
+			Secretario
+		}
+	} &
+	\multicolumn{1}{p{7.4cm}|}{
+		El sistema controlar\'a el flujo
+		de operaci\'on de un servicio,
+		realizando acciones autom\'aticamente
+		al tener las condiciones adecuadas.
+		Este m\'odulo abarcar\'a desde la
+		solicitud de servicio hasta la firma de
+		su orden (o la cancelaci\'on de alguno
+		de los mencionados anteriormente). Se
+		espera que anuncie las acciones a realizar
+		hacia el actor que corresponda, anule
+		una solicitud u orden de servicio tras
+		no cumplir el flujo configurado, permita
+		redefinir una proposici\'on de
+		Compromisos y Retribuciones al paso de
+		cierto tiempo y proporcione renegociaci\'on
+		a la solicitud de servicio.
+	} \\
+	\hline
+\end{longtable}
+\end{center}
+\newpage
+\addcontentsline{toc}{section}{Estimaci\'on de
+	tama\~no por m\'odulo
+}
+\section*{Estimaci\'on de tama\~no por m\'odulo}
+\begin{center}
+\begin{longtable}{
+	| p{7.95cm} | p{7.95cm} |
+}
+	\hline
+	\rowcolor{gray}
+	\multicolumn{1}{|p{7.95cm}|}{
+		\centering
+		\textbf{M\'odulo}
+	} &
+	\multicolumn{1}{p{7.95cm}|}{
+		\centering
+		\textbf{Porcentaje de Participaci\'on /
+			Producto
+		}
+	} \\
+	\hline
+	\endhead
+	\rowcolor{lightgray}
+	\textbf{Total} & 100\% \\
+	\hline
+	\endfoot
+	Firma digital & 20\% \\
+	\hline
+	Verificaci\'on autom\'atica de \'ordenes de
+	servicio firmadas de forma manuscrita & 20\% \\
+	\hline
+	Gestor autom\'atico de servicios & 15\% \\
+	\hline
+	\'Ordenes de servicio & 10\% \\
+	\hline
+	Presupuestos & 5\% \\
+	\hline
+	Cobros & 5\% \\
+	\hline
+	Formularios & 5\% \\
+	\hline
+	Avisos peri\'odicos & 5\% \\
+	\hline
+	Notificaciones & 5\% \\
+	\hline
+	Estad\'istica & 5\% \\
+	\hline
+	Gesti\'on de roles & 3\% \\
+	\hline
+	Ajuste de par\'ametros & 2\% \\
+	\hline
+\end{longtable}
+\end{center}
+\newpage
+\addcontentsline{toc}{section}{Entorno
+	tecnol\'ogico y metodol\'ogico
+}
+\section*{Entorno tecnol\'ogico y
+	metodol\'ogico
+}
+\begin{center}
+\begin{tabular}{ | e | p{10.3cm} | }
+	\hline
+	\textbf{Lenguajes de programaci\'on} &
+	Python - JavaScript \\
+	\hline
+	\textbf{Framework} & Django \\
+	\hline
+	\textbf{Arquitectura} &
+	Modelo - Plantilla - Vista \\
+	\hline
+	\textbf{Motor de Base de Datos} &
+	PostgreSQL \\
+	\hline
+	\textbf{Metodolog\'ia seleccionada} &
+	Proceso Unificado (UP) \\
+	\hline
+	\textbf{Tipo de proyecto} &
+	Con cliente final \\
+	\hline
+\end{tabular}
+\end{center}
+\newpage
+\addcontentsline{toc}{section}{Planificaci\'on
+	de actividades
+}
+\section*{Planificaci\'on de actividades}
+\begin{center}
+\begin{ganttchart}[
+	expand chart=\textwidth,
+	title/.append style={
+		draw=black,
+		fill=lightgray
+	},
+	group/.append style={
+		draw=black
+	},
+	hgrid,
+	vgrid={*{6}{draw=none},dotted},
+	y unit title=0.5cm,
+	y unit chart=0.5cm,
+	time slot format=little-endian,
+	calendar week text= {\tiny
+		{\currentweek}
+	},
+	title height=1,
+	progress label text={},
+	bar height=0.4
+]{15.05.2023}{17.12.2023}
+	\gantttitle[
+		title label node/.append style=
+			{left=0.1cm and 0.05cm}
+	]{A\~no}{0}
+	\gantttitlecalendar{year} \\
+	\gantttitle[
+		title label node/.append style=
+			{left=0.1cm and 0.05cm}
+	]{Mes}{0}
+	\gantttitlecalendar{month} \\
+	\gantttitle[
+		title label node/.append style=
+			{left=0.1cm and 0.05cm}
+	]{Semana}{0}
+	\gantttitlecalendar{week=20} \\
+	\ganttgroup[progress=0]
+			{Requerimientos}
+			{15.05.2023}{30.06.2023} \\
+	\ganttgroup[progress=0]
+			{An\'alisis}
+			{12.06.2023}{21.07.2023} \\
+	\ganttgroup[progress=0]
+			{Dise\~no}
+			{19.06.2023}{18.08.2023} \\
+	\ganttgroup[progress=0]
+			{Implementaci\'on}
+			{24.07.2023}{10.11.2023} \\
+	\ganttgroup[progress=0]
+			{Pruebas}
+			{07.08.2023}{24.11.2023} \\
+	\ganttgroup[progress=0]
+			{Implantaci\'on}
+			{13.11.2023}{24.11.2023} \\
+	\ganttgroup[progress=0]
+			{Capacitaci\'on}
+			{20.11.2023}{24.11.2023} \\
+	\ganttgroup[progress=0]
+			{Manuales}
+			{24.07.2023}{01.12.2023} \\
+	\ganttbar[progress=0]
+			{Planificaci\'on}
+			{15.05.2023}{26.05.2023} \\
+	\ganttbar[progress=0]
+			{Factibilidad}
+			{29.05.2023}{30.06.2023} \\
+	\ganttbar[progress=0]
+			{Relevamiento}
+			{05.06.2023}{16.06.2023} \\
+	\ganttbar[progress=0]
+			{Requisitos}
+			{12.06.2023}{23.06.2023} \\
+	\ganttbar[progress=0]
+			{Casos de uso}
+			{12.06.2023}{30.06.2023} \\
+	\ganttbar[progress=0]
+			{Modelo de dominio}
+			{19.06.2023}{07.07.2023} \\
+	\ganttbar[progress=0]
+			{Secuencias de sistema}
+			{26.06.2023}{14.07.2023} \\
+	\ganttbar[progress=0]
+			{Contratos}
+			{03.07.2023}{21.07.2023} \\
+	\ganttbar[progress=0]
+			{Casos de uso reales}
+			{19.06.2023}{07.07.2023} \\
+	\ganttbar[progress=0]
+			{Secuencias de dise\~no}
+			{26.06.2023}{14.07.2023} \\
+	\ganttbar[progress=0]
+			{Diagrama de clases}
+			{03.07.2023}{21.07.2023} \\
+	\ganttbar[progress=0]
+			{Dise\~no de entradas}
+			{10.07.2023}{28.07.2023} \\
+	\ganttbar[progress=0]
+			{Dise\~no de salidas}
+			{17.07.2023}{04.08.2023} \\
+	\ganttbar[progress=0]
+			{Dise\~no de interfaces}
+			{24.07.2023}{11.08.2023} \\
+	\ganttbar[progress=0]
+			{Dise\~no de base de datos}
+			{31.07.2023}{18.08.2023} \\
+	\ganttbar[progress=0]
+			{50\% de implementaci\'on}
+			{24.07.2023}{15.09.2023} \\
+	\ganttbar[progress=0]
+			{75\% de implementaci\'on}
+			{18.09.2023}{13.10.2023} \\
+	\ganttbar[progress=0]
+			{100\% de implementaci\'on}
+			{16.10.2023}{10.11.2023} \\
+	\ganttbar[progress=0]
+			{50\% de pruebas}
+			{07.08.2023}{29.09.2023} \\
+	\ganttbar[progress=0]
+			{75\% de pruebas}
+			{02.10.2023}{28.10.2023} \\
+	\ganttbar[progress=0]
+			{100\% de pruebas}
+			{31.10.2023}{24.11.2023} \\
+	\ganttbar[progress=0]
+			{Implantaci\'on}
+			{13.11.2023}{24.11.2023} \\
+	\ganttbar[progress=0]
+			{Capacitaci\'on}
+			{20.11.2023}{24.11.2023} \\
+	\ganttbar[progress=0]
+			{Manuales}
+			{24.07.2023}{01.12.2023} \\
+	\ganttbar[progress=0]
+			{Ambientaci\'on personal}
+			{20.11.2023}{01.12.2023} \\
+	\ganttbar[progress=0]
+			{Pr\'actica de exposici\'on}
+			{04.12.2023}{09.12.2023}
+\end{ganttchart}
+\end{center}
+\newpage
+\begin{center}
+\begin{longtable}{
+	| p{5.3cm} | p{5.3cm} | p{5.3cm} |
+}
+	\hline
+	\rowcolor{lightgray}
+	\multicolumn{1}{|p{5.3cm}|}{
+		\centering
+		\textbf{Actividad}
+	} &
+	\multicolumn{1}{p{5.3cm}|}{
+		\centering
+		\textbf{Fecha de inicio}
+	} &
+	\multicolumn{1}{p{5.3cm}|}{
+		\centering
+		\textbf{Fecha de finalizaci\'on}
+	} \\
+	\hline
+	\endhead
+ 	Planificaci\'on &
+ 	15/05/2023 & 26/05/2023 \\
+	\hline
+ 	Factibilidad &
+ 	29/05/2023 & 30/06/2023 \\
+	\hline
+ 	Relevamiento &
+ 	05/06/2023 & 16/06/2023 \\
+	\hline
+ 	Requisitos &
+ 	12/06/2023 & 23/06/2023 \\
+	\hline
+ 	Casos de uso &
+ 	12/06/2023 & 30/06/2023 \\
+	\hline
+ 	Modelo de dominio &
+ 	19/06/2023 & 07/07/2023 \\
+	\hline
+ 	Secuencias de sistema &
+ 	26/06/2023 & 14/07/2023 \\
+	\hline
+ 	Contratos &
+ 	03/07/2023 & 21/07/2023 \\
+	\hline
+ 	Casos de uso reales &
+ 	19/06/2023 & 07/07/2023 \\
+	\hline
+ 	Secuencias de dise\~no &
+ 	26/06/2023 & 14/07/2023 \\
+	\hline
+ 	Diagrama de clases &
+ 	03/07/2023 & 21/07/2023 \\
+	\hline
+ 	Dise\~no de entradas &
+ 	10/07/2023 & 28/07/2023 \\
+	\hline
+ 	Dise\~no de salidas &
+ 	17/07/2023 & 04/08/2023 \\
+	\hline
+ 	Dise\~no de interfaces &
+ 	24/07/2023 & 11/08/2023 \\
+	\hline
+ 	Dise\~no de base de datos &
+ 	31/07/2023 & 18/08/2023 \\
+	\hline
+ 	50\% de implementaci\'on &
+ 	24/07/2023 & 15/09/2023 \\
+	\hline
+ 	75\% de implementaci\'on &
+ 	18/09/2023 & 13/10/2023 \\
+	\hline
+ 	100\% de implementaci\'on &
+ 	16/10/2023 & 10/11/2023 \\
+	\hline
+ 	50\% de pruebas &
+ 	07/08/2023 & 29/09/2023 \\
+	\hline
+ 	75\% de pruebas &
+ 	02/10/2023 & 28/10/2023 \\
+	\hline
+ 	100\% de pruebas &
+ 	31/10/2023 & 24/11/2023 \\
+	\hline
+ 	Implantaci\'on &
+ 	13/11/2023 & 24/11/2023 \\
+	\hline
+ 	Capacitaci\'on &
+ 	20/11/2023 & 24/11/2023 \\
+	\hline
+ 	Manuales &
+ 	24/07/2023 & 01/12/2023 \\
+	\hline
+ 	Ambientaci\'on personal &
+ 	20/11/2023 & 01/12/2023 \\
+	\hline
+ 	Pr\'actica de exposici\'on &
+ 	04/12/2023 & 09/12/2023 \\
+	\hline
+\end{longtable}
+\end{center}

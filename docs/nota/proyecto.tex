@@ -1,0 +1,68 @@
+\documentclass[12pt,a4paper]{book}
+\special{papersize=210mm,297mm}
+\usepackage[
+	nomarginpar,
+	top=1in,
+	headheight=0.4in,
+	bottom=0.5in,
+	footskip=0.25in,
+	left=1in,
+	right=0.5in
+]{geometry}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[usestackEOL]{stackengine}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
+\usepackage{helvet}
+\usepackage{pgfgantt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\headrule}{}
+\selectfont
+\addto\captionsspanish{
+	\renewcommand{\contentsname}{Contenido}
+}
+\setlength{\arrayrulewidth}{0.5mm}
+\renewcommand{\arraystretch}{1.5}
+\newcolumntype{s}{>
+	{\columncolor{lightgray}} p{5cm}
+}
+\newcolumntype{e}{>
+	{\columncolor{lightgray}} p{5.6cm}
+}
+\graphicspath{ {./images/} }
+\begin{document}
+	\frontmatter
+	\pagenumbering{gobble}
+	\include{./include/nota}
+	\cleardoublepage
+	\mainmatter
+	\pagestyle{fancy}
+	\setcounter{page}{3}
+	\fancyhead{}
+	\fancyhead[LO,LE]{
+		Trabajo Final (ASC) - Proyecto de
+		Software (LSI) - FCEQyN - UNaM \\
+		G\'OS (Gestor de \'Ordenes de
+		Servicio - Antoniak, Rodrigo Lionel
+	}
+	\fancyfoot{}
+	\fancyfoot[RE,RO]{\thepage}
+	\addcontentsline{toc}{section}{Evaluaci\'on
+		de la propuesta
+	}
+	\include{./include/reservado}
+	\cleardoublepage
+	\addcontentsline{toc}{section}{Contenido}
+	\tableofcontents
+	\cleardoublepage
+	\include{./include/inicial}
+\end{document}
