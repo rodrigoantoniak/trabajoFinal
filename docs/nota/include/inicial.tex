@@ -149,7 +149,7 @@ son:
 	comitentes, desde el monto inicial establecido
 	hasta cubrir su totalidad.
 	\item \textbf{Formularios:} ofrece interfaces
-	para poder completar los	datos que pertenecen
+	para poder completar los datos que pertenecen
 	a la orden de servicio, as\'i puede generarse
 	tal documento con los datos completados.
 	\item \textbf{Avisos peri\'odicos:} env\'ia
@@ -163,9 +163,9 @@ son:
 	ecosistema del software.
 	\item \textbf{Estad\'istica:} se dedica a los
 	c\'alculos estad\'isticos sobre la completitud
-	de los legajos y la carga horaria de los
-	docentes. Su salida genera los informes
-	estad\'isticos solicitados.
+	de servicios, montos de servicios y servicios
+	por \'area laboral. Su salida genera los
+	informes estad\'isticos solicitados.
 	\item \textbf{Ajuste de par\'ametros:} guarda
 	cada uno de los par\'ametros ajustables que
 	involucran otros m\'odulos. Como salida, se
@@ -231,24 +231,14 @@ son:
 }
 	\hline
 	\rowcolor{gray}
-	\multicolumn{1}{|p{3.25cm}|}{
-		\centering
-		\textbf{Denominaci\'on}
-	} &
-	\multicolumn{1}{p{5.25cm}|}{
-		\centering
-		\textbf{M\'odulos que intervienen}
-	} &
-	\multicolumn{1}{p{7.4cm}|}{
-		\centering
-		\textbf{Descripci\'on del proceso}
-	} \\
+	\hfil \textbf{Denominaci\'on} &
+	\hfil \textbf{M\'odulos que intervienen}
+	&
+	\hfil \textbf{Descripci\'on del proceso}
+	\\
 	\hline
 	\endhead
-	\multicolumn{1}{|p{3.25cm}|}{
-		\raggedleft
-		Firma digital
-	} &
+	\raggedleft Firma digital &
 	\multirowcell{1}{
 		\Centerstack{
 			\'Ordenes de Servicio \\
@@ -260,27 +250,25 @@ son:
 			Secretario
 		}
 	} &
-	\multicolumn{1}{p{7.4cm}|}{
-		El sistema administrar\'a la firma
-		de \'ordenes de servicios de forma
-		digital, cuando el Comitente marque
-		que puede firmar documentos
-		digitalmente. Este m\'odulo se
-		ejecutar\'a cuando se acepte las
-		condiciones propuestas por el
-		Representante T\'ecnico. Se espera
-		que firme el Comitente primero,
-		despu\'es el Responsable T\'ecnico
-		y por \'ultimo la persona encargada
-		de la Secretar\'ia de Extensi\'on.
-	} \\
+	El sistema administrar\'a la firma
+	de \'ordenes de servicios de forma
+	digital, cuando el Comitente marque
+	que puede firmar documentos
+	digitalmente. Este m\'odulo se
+	ejecutar\'a cuando se acepte las
+	condiciones propuestas por el
+	Representante T\'ecnico. Se espera
+	que firme el Comitente primero,
+	despu\'es el Responsable T\'ecnico
+	y por \'ultimo la persona encargada
+	de la Secretar\'ia de Extensi\'on.
+	\\
 	\hline
-	\multicolumn{1}{|p{3.25cm}|}{
-		\raggedleft
-		Verificaci\'on autom\'atica de
-		\'ordenes de servicio firmadas
-		de forma manuscrita
-	} &
+	\raggedleft
+	Verificaci\'on autom\'atica de
+	\'ordenes de servicio firmadas
+	de forma manuscrita
+	&
 	\multirowcell{1}{
 		\Centerstack{
 			\'Ordenes de Servicio \\
@@ -292,25 +280,22 @@ son:
 			Secretario
 		}
 	} &
-	\multicolumn{1}{p{7.4cm}|}{
-		El sistema controlar\'a el documento
-		que se suba como orden de servicio,
-		cuando el Comitente marque que no
-		puede firmar documentos digitalmente.
-		Este m\'odulo se ejecutar\'a cuando
-		se firme la orden de servicio en papel.
-		Se espera que verifique a qu\'e orden
-		de servicio pertenece el documento
-		subido, la coincidencia de su contenido
-		con el formulario rellenado anteriormente
-		y la existencia de las 3 firmas en
-		el papel.
-	} \\
+	El sistema controlar\'a el documento
+	que se suba como orden de servicio,
+	cuando el Comitente marque que no
+	puede firmar documentos digitalmente.
+	Este m\'odulo se ejecutar\'a cuando
+	se firme la orden de servicio en papel.
+	Se espera que verifique a qu\'e orden
+	de servicio pertenece el documento
+	subido, la coincidencia de su contenido
+	con el formulario rellenado anteriormente
+	y la existencia de las 3 firmas en
+	el papel.
+	\\
 	\hline
-	\multicolumn{1}{|p{3.25cm}|}{
-		\raggedleft
-		Gestor autom\'atico de servicios
-	} &
+	\raggedleft Gestor autom\'atico de servicios
+	&
 	\multirowcell{1}{
 		\Centerstack{
 			\'Ordenes de Servicio \\
@@ -323,24 +308,23 @@ son:
 			Secretario
 		}
 	} &
-	\multicolumn{1}{p{7.4cm}|}{
-		El sistema controlar\'a el flujo
-		de operaci\'on de un servicio,
-		realizando acciones autom\'aticamente
-		al tener las condiciones adecuadas.
-		Este m\'odulo abarcar\'a desde la
-		solicitud de servicio hasta la firma de
-		su orden (o la cancelaci\'on de alguno
-		de los mencionados anteriormente). Se
-		espera que anuncie las acciones a realizar
-		hacia el actor que corresponda, anule
-		una solicitud u orden de servicio tras
-		no cumplir el flujo configurado, permita
-		redefinir una proposici\'on de
-		Compromisos y Retribuciones al paso de
-		cierto tiempo y proporcione renegociaci\'on
-		a la solicitud de servicio.
-	} \\
+	El sistema controlar\'a el flujo
+	de operaci\'on de un servicio,
+	realizando acciones autom\'aticamente
+	al tener las condiciones adecuadas.
+	Este m\'odulo abarcar\'a desde la
+	solicitud de servicio hasta la firma de
+	su orden (o la cancelaci\'on de alguno
+	de los mencionados anteriormente). Se
+	espera que anuncie las acciones a realizar
+	hacia el actor que corresponda, anule
+	una solicitud u orden de servicio tras
+	no cumplir el flujo configurado, permita
+	redefinir una proposici\'on de
+	Compromisos y Retribuciones al paso de
+	cierto tiempo y proporcione renegociaci\'on
+	a la solicitud de servicio.
+	\\
 	\hline
 \end{longtable}
 \end{center}
@@ -355,16 +339,13 @@ son:
 }
 	\hline
 	\rowcolor{gray}
-	\multicolumn{1}{|p{7.95cm}|}{
-		\centering
-		\textbf{M\'odulo}
-	} &
-	\multicolumn{1}{p{7.95cm}|}{
-		\centering
-		\textbf{Porcentaje de Participaci\'on /
-			Producto
-		}
-	} \\
+	\hfil \textbf{M\'odulo} &
+	\hfil
+	\textbf{
+		Porcentaje de Participaci\'on /
+		Producto
+	}
+	\\
 	\hline
 	\endhead
 	\rowcolor{lightgray}
@@ -580,18 +561,10 @@ son:
 }
 	\hline
 	\rowcolor{lightgray}
-	\multicolumn{1}{|p{5.3cm}|}{
-		\centering
-		\textbf{Actividad}
-	} &
-	\multicolumn{1}{p{5.3cm}|}{
-		\centering
-		\textbf{Fecha de inicio}
-	} &
-	\multicolumn{1}{p{5.3cm}|}{
-		\centering
-		\textbf{Fecha de finalizaci\'on}
-	} \\
+	\hfil \textbf{Actividad} &
+	\hfil \textbf{Fecha de inicio} &
+	\hfil \textbf{Fecha de finalizaci\'on}
+	\\
 	\hline
 	\endhead
  	Planificaci\'on &
