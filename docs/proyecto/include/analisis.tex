@@ -1,0 +1,1358 @@
+\section{Modelo Conceptual}
+\subsection[Conceptos id\'oneos]
+	{Lista de conceptos id\'oneos}
+\begin{itemize}
+	\item \hyperlink{permiso}{Permiso}
+	\item \hyperlink{grupo}{Grupo}
+	\item \hyperlink{usuario}{Usuario}
+	\item \hyperlink{secretario}{Secretario}
+	\item \hyperlink{comitente}{Comitente}
+	\item \hyperlink{responsabletecnico}{ResponsableTecnico}
+	\item \hyperlink{solicitudservicio}{SolicitudServicio}
+	\item \hyperlink{comitentesolicitud}{ComitenteSolicitud}
+	\item \hyperlink{responsablesolicitud}{ResponsableSolicitud}
+	\item \hyperlink{propuestacompromisos}{PropuestaCompromisos}
+	\item \hyperlink{ordenservicio}{OrdenServicio}
+	\item \hyperlink{firmaorden}{FirmaOrden}
+	\item \hyperlink{convenio}{Convenio}
+	\item \hyperlink{servicio}{Servicio}
+	\item \hyperlink{progreso}{Progreso}
+	\item \hyperlink{pago}{Pago}
+\end{itemize}
+\subsection[Descripci\'on]
+	{Descripci\'on de conceptos}
+\begin{center}
+\hypertarget{permiso}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Permiso \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Indicar las acciones permitidas por quienes
+	ocupen el sistema \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los permisos otorgados en el sistema \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{grupo}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Grupo \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Indicar el rol con el que puede interactuar
+	cada usuario en el sistema \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los grupos que se encuentran dentro del
+	sistema \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{usuario}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Usuario \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Permitir el acceso al sistema tras iniciar
+	sesi\'on \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los usuarios que interactuan con el
+	sistema \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{secretario}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Secretario \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Identificar a la persona encargada de la
+	Secretar\'ia de Extensi\'on y Vinculaci\'on
+	Tecnol\'ogica \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Las personas que se han encargado de la
+	Secretar\'ia de Extensi\'on y Vinculaci\'on
+	de la FCEQyN \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{comitente}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Comitente  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Identificar al Comitente de un servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los Comitentes de servicios \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{responsabletecnico}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	ResponsableTecnico  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Identificar un Responsable T\'ecnico
+	dentro de un servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los Responsables T\'ecnicos de
+	un servicio \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{solicitudservicio}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	SolicitudServicio  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Solicitar la realizaci\'on de un
+	servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todas las solicitudes de un
+	servicio \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{comitentesolicitud}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	ComitenteSolicitud  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Asociar un Comitente a una
+	solicitud de servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los Comitentes de un
+	servicio solicitado \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{responsablesolicitud}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	ResponsableSolicitud  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Adjudicar un Responsable T\'ecnico
+	a una solicitud de servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los posibles Responsables
+	T\'ecnicos de un servicio solicitado \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{propuestacompromisos}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	PropuestaCompromisos  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Proponer los compromisos a cumplir dentro
+	de un servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todas las propuestas de compromisos en un
+	servicio solicitado \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{ordenservicio}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	OrdenServicio  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Representar el acuerdo para la realizaci\'on
+	de un servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todas las \'ordenes de servicio en el
+	sistema \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{firmaorden}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	FirmaOrden  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Otorgar una firma digital a una orden
+	de servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todas las firmas digitales en una
+	orden de servicio \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{convenio}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Convenio  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Registrar las resoluciones del Consejo
+	Directivo para los servicios \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los convenios para servicios \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{servicio}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Servicio  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Representar un servicio que se lleva
+	a cabo \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los servicios en el sistema \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{progreso}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Progreso  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Marcar la completitud de un servicio \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todas las completitudes de un servicio \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{pago}{%
+\begin{tabular}{ | p{2.5cm} | p{13cm} | }
+	\hline
+	\cellcolor{lightgray}
+	\textbf{S\'imbolo} &
+	Pago  \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Intenci\'on} &
+	Registrar el pago de un servicio por
+	parte del Comitente \\
+	\hline
+	\cellcolor{lightgray}
+	\textbf{Extensi\'on} &
+	Todos los pagos de un servicio \\
+	\hline
+\end{tabular}} \\[1cm]
+\end{center}
+\clearpage
+\subsection[Relaciones]
+	{Relaciones entre conceptos}
+\begin{center}
+\begin{longtable}{ | p{6.5cm} | p{9cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{Categor\'ia} &
+	\hfil \textbf{Asociaciones} \\ 
+	\hline
+	\endhead
+	\caption[]{Asociaciones entre conceptos}
+	\endfoot
+	\captionlistentry{Asociaciones entre conceptos}
+	\vspace{-0.5cm}
+	\textit{A es una parte f\'isica de B} &
+	\parbox[t]{9cm}{%
+		ResponsableTecnico-ResponsableSolicitud\\
+		Comitente-ComitenteSolicitud \\
+	} \\
+	\hline
+	\textit{A es una parte l\'ogica de B} &
+	\parbox[t]{9cm}{%
+		SolicitudServicio-OrdenServicio \\
+		SolicitudServicio-Convenio \\
+		OrdenServicio-Servicio \\
+		Convenio-Servicio \\
+	} \\
+	\hline
+	\textit{A est\'a contenido l\'ogicamente en B} &
+	\parbox[t]{9cm}{%
+		Permiso-Usuario \\
+		Permiso-Grupo \\
+		Pago-Servicio \\
+		Progreso-Servicio \\
+	} \\
+	\hline
+	\textit{A es una descripci\'on de B} &
+	\parbox[t]{9cm}{%
+		Grupo-Usuario \\
+		Comitente-Usuario \\
+		ResponsableTecnico-Usuario \\
+		Secretario-Usuario \\
+		PropuestaCompromisos-SolicitudServicio \\
+	} \\
+	\hline
+	\textit{%
+		A es una l\'inea de transacci\'on
+		o informe de B
+	} &
+	\parbox[t]{9cm}{%
+		OrdenServicio-FirmaOrden \\
+	} \\
+	\hline
+	\textit{%
+		A se
+		conoce/registra/recoge/informa/captura
+		en B
+	} &
+	\parbox[t]{9cm}{%
+		FirmaOrden-OrdenServicio \\
+	} \\
+	\hline
+	\textit{A es miembro de B} &
+	\parbox[t]{9cm}{%
+		Usuario-Grupo \\
+		Usuario-Comitente \\
+		Usuario-ResponsableTecnico \\
+		Usuario-Secretario \\
+		ResponsableSolicitud-SolicitudServicio \\
+		ComitenteSolicitud-SolicitudServicio \\
+	} \\
+	\hline
+	\textit{A es una subunidad organizada de B} &
+	\parbox[t]{9cm}{%
+		ResponsableSolicitud-ResponsableTecnico \\
+		ComitenteSolicitud-Comitente \\
+	} \\
+	\hline
+	\textit{A utiliza o gestiona B} &
+	\parbox[t]{9cm}{%
+		Usuario-Permiso \\
+		Grupo-Permiso \\
+		SolicitudServicio-PropuestaCompromisos \\
+		Usuario-FirmaOrden \\
+	} \\
+	\hline
+	\textit{A est\'a relacionado con una transacci\'on B} &
+	\parbox[t]{9cm}{%
+		Servicio-Pago \\
+		Servicio-Progreso \\
+	} \\
+	\hline
+	\textit{A es propiedad de B} &
+	\parbox[t]{9cm}{%
+		ResponsableSolicitud-SolicitudServicio \\
+		ComitenteSolicitud-SolicitudServicio \\
+		FirmaOrden-Usuario \\
+	} \\
+	\hline
+	\textit{A es un evento relacionado con B} &
+	\parbox[t]{9cm}{%
+		OrdenServicio-SolicitudServicio \\
+		Convenio-SolicitudServicio \\
+		Servicio-OrdenServicio \\
+		Servicio-Convenio \\
+	} \\
+	\hline
+\end{longtable}
+\end{center}
+\subsection[Atributos]
+	{Descripci\'on de atributos}
+\begin{center}
+\begin{longtable}{ | p{6cm} | p{9.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{Concepto}} &
+	\hfil \textbf{\textit{Atributos}} \\ 
+	\hline
+	\endhead
+	\caption[]{Atributos de conceptos}
+	\endfoot
+	\captionlistentry{Atributos de conceptos}
+	\vspace{-0.5cm}
+	\hyperlink{permiso}{\textbf{Permiso}} &
+	\parbox[t]{9.5cm}{
+		\textit{nombre\_permiso:}
+		nombre descriptivo de permiso \\
+		\textit{codigo\_permiso:}
+		c\'odigo identificatorio de permiso \\
+	} \\
+	\hline
+	\hyperlink{grupo}{\textbf{Grupo}} &
+	\parbox[t]{9.5cm}{
+		\textit{nombre\_grupo:}
+		nombre de grupo \\
+	} \\
+	\hline
+	\hyperlink{usuario}{\textbf{Usuario}} &
+	\parbox[t]{9.5cm}{
+		\textit{contrasenia:}
+		contraseña para inicio de sesi\'on
+		del usuario \\
+		\textit{ultimo\_inicio\_sesion:}
+		tiempo m\'as reciente en que el
+		usuario inici\'o sesi\'on \\
+		\textit{es\_superusuario:}
+		tiempo m\'as reciente en que el
+		usuario inici\'o sesi\'on \\
+		\textit{nombre\_usuario:}
+		nombre del usuario dentro del
+		sistema \\
+		\textit{nombre\_pila:}
+		nombre de pila de la persona
+		utilizando el usuario \\
+		\textit{apellido:}
+		apellido del usuario \\
+		\textit{correo\_electronico:}
+		correo electr\'onico de la
+		Secretaria \\
+		\textit{es\_staff:}
+		si el usuario tiene permisos
+		de staff (auditor o administrador) \\
+		\textit{esta\_activo:}
+		si el usuario puede iniciar sesi\'on \\
+		\textit{fecha\_registro:}
+		tiempo en que se ha registrado
+		al sistema \\
+	} \\
+	\hline
+	\hyperlink{secretario}{\textbf{Secretario}} &
+	\parbox[t]{9.5cm}{
+		\textit{firma\_digital\_secretario:}
+		si el Secretario tiene firma
+		digital \\
+		\textit{habilitado\_secretario:}
+		si el usuario est\'a habilitado como
+		Secretario \\
+	} \\
+	\hline
+	\hyperlink{comitente}{\textbf{Comitente}} &
+	\parbox[t]{9.5cm}{
+		\vspace{-0.35cm}
+		\hypertarget{C05A01}{}
+		\textit{cuil\_comitente:}
+		CUIL del Comitente
+		\hypertarget{C05A02}{} \\
+		\textit{firma\_digital\_comitente:}
+		si el Comitente tiene firma digital
+		\hypertarget{C05A03}{} \\
+		\textit{habilitado\_comitente:}
+		si el Comitente est\'a habilitado
+		como Comitente bajo su identidad
+		de persona f\'isica
+		\hypertarget{C05A04}{} \\
+		\textit{razones\_sociales\_comitente:}
+		raz\'on social de cada organizaci\'on
+		a la que pertenece el Comitente
+		\hypertarget{C05A05}{} \\
+		\textit{cuit\_organizaciones\_comitente:}
+		CUIT de cada organizaci\'on
+		a la que pertenece el Comitente
+		\hypertarget{C05A06}{} \\
+		\textit{puestos\_organizaciones\_comitente:}
+		puestos que tiene el Comitente en
+		cada organizaci\'on
+		\hypertarget{C05A07}{} \\
+		\textit{habilitado\_organizaciones\_comitente:}
+		si el Comitente est\'a habilitado a ese
+		rol bajo el nombre de cada organizaci\'on
+		\\
+	} \\
+	\hline
+	\hyperlink{responsabletecnico}{\textbf{ResponsableTecnico}} &
+	\parbox[t]{9.5cm}{
+		\vspace{-0.35cm}
+		\hypertarget{C06A01}{}
+		\textit{cuil\_responsable:}
+		CUIL del Responsable T\'ecnico
+		\hypertarget{C06A02}{} \\
+		\textit{firma\_digital\_responsable:}
+		si el Responsable T\'ecnico tiene firma digital
+		\hypertarget{C06A03}{} \\
+		\textit{habilitado\_responsable:}
+		si el Responsable T\'ecnico est\'a habilitado
+		como Comitente bajo su identidad
+		de persona f\'isica
+		\hypertarget{C06A04}{} \\
+		\textit{razones\_sociales\_responsable:}
+		raz\'on social de cada organizaci\'on
+		a la que pertenece el Responsable T\'ecnico
+		\hypertarget{C06A05}{} \\
+		\textit{cuit\_organizaciones\_responsable:}
+		CUIT de cada organizaci\'on
+		a la que pertenece el Responsable T\'ecnico
+		\hypertarget{C06A06}{} \\
+		\textit{puestos\_organizaciones\_responsable:}
+		puestos que tiene el Responsable T\'ecnico en
+		cada organizaci\'on
+		\hypertarget{C06A07}{} \\
+		\textit{habilitado\_organizaciones\_responsable:}
+		si el Responsable T\'ecnico est\'a habilitado a ese
+		rol bajo el nombre de cada organizaci\'on
+		\\
+	} \\
+	\hline
+	\hyperlink{solicitudservicio}{\textbf{SolicitudServicio}} &
+	\parbox[t]{9.5cm}{
+		\vspace{-0.35cm}
+		\hypertarget{C07A01}{}
+		\textit{nombre\_solicitud:}
+		nombre de la solicitud de servicio
+		\hypertarget{C07A02}{} \\
+		\textit{descripcion\_solicitud:}
+		descripci\'on de la solicitud de
+		servicio
+		\hypertarget{C07A03}{} \\
+		\textit{tiempo\_solicitud:}
+		tiempo en que se realiz\'o la
+		solicitud de servicio
+		\hypertarget{C07A04}{} \\
+		\textit{cancelacion\_solicitud:}
+		tiempo en que se cancela una
+		solicitud de servicio (si fuera
+		el caso)
+		\hypertarget{C07A05}{} \\
+		\textit{solicitud\_suspendida:}
+		si una solicitud de servicio fue
+		suspendida \\
+	} \\
+	\hline
+	\hyperlink{comitentesolicitud}{\textbf{ComitenteSolicitud}} &
+	\parbox[t]{9.5cm}{
+		\vspace{-0.35cm}
+		\hypertarget{C08A01}{}
+		\textit{razon\_social\_comitente:}
+		raz\'on social de cada organizaci\'on
+		a la que pertenece el Comitente
+		\hypertarget{C08A02}{} \\
+		\textit{cuit\_organizacion\_comitente:}
+		CUIT de cada organizaci\'on
+		a la que pertenece el Comitente
+		\hypertarget{C08A03}{} \\
+		\textit{puesto\_organizacion\_comitente:}
+		puesto en la organizaci\'on
+		que representa el Comitente
+		\hypertarget{C08A04}{} \\
+		\textit{tiempo\_decision:}
+		tiempo en que el Comitente eligi\'o
+		si ejercer tal rol o no en una
+		solicitud
+		\hypertarget{C08A05}{} \\
+		\textit{aceptacion:}
+		si el Comitente ha aceptado ser
+		parte en una solicitud
+		\\
+	} \\
+	\hline
+	\hyperlink{responsablesolicitud}{\textbf{ResponsableSolicitud}} &
+	\parbox[t]{9.5cm}{
+		\vspace{-0.35cm}
+		\hypertarget{C09A01}{}
+		\textit{razon\_social\_responsable:}
+		raz\'on social de la organizaci\'on
+		que representa el Responsable T\'ecnico
+		\hypertarget{C09A02}{} \\
+		\textit{cuit\_organizacion\_responsable:}
+		CUIT  de la organizaci\'on
+		que representa el Responsable T\'ecnico
+		\hypertarget{C09A03}{} \\
+		\textit{puesto\_organizacion\_responsable:}
+		puesto en la organizaci\'on
+		que representa el Responsable T\'ecnico
+		\hypertarget{C09A04}{} \\
+		\textit{tiempo\_decision\_responsable:}
+		tiempo en que el Comitente eligi\'o
+		al Responsable T\'ecnico para un
+		servicio solicitado
+		\hypertarget{C09A05}{} \\
+		\textit{aceptacion\_responsable:}
+		si el Responsable T\'ecnico acept\'o
+		ser parte en una solicitud
+		\hypertarget{C09A06}{} \\
+		\textit{tiempo\_decision\_comitente:}
+		tiempo en que el Responsable T\'ecnico
+		est\'a adjudicado como tal en un
+		servicio solicitado
+		\hypertarget{C09A07}{} \\
+		\textit{aceptacion\_comitente:}
+		si el Responsable T\'ecnico ha sido
+		aceptado por un Comitente en una
+		solicitud
+		\\
+	} \\
+	\hline
+	\hyperlink{propuestacompromisos}{\textbf{PropuestaCompromisos}} &
+	\parbox[t]{9.5cm}{
+		\vspace{-0.35cm}
+		\hypertarget{C10A01}{}
+		\textit{descripciones\_compromisos\_comitente:}
+		descripciones de cada Compromiso del Comitente
+		\hypertarget{C10A02}{} \\
+		\textit{descripciones\_compromisos\_unidad\_ejecutora:}
+		descripciones de cada Compromiso de la
+		Unidad Ejecutora
+		\hypertarget{C10A03}{} \\
+		\textit{montos\_retribuciones\_economicas:}
+		montos de cada Retribuci\'on Econ\'omica
+		\hypertarget{C10A04}{} \\
+		\textit{descripciones\_retribuciones\_economicas:}
+		descripciones de cada Retribuci\'on Econ\'omica \\
+	} \\
+	\hline
+	\hyperlink{ordenservicio}{\textbf{OrdenServicio}} &
+	\parbox[t]{9.5cm}{
+		\textit{numero\_orden\_servicio:}
+		n\'umero de orden de servicio \\
+		\textit{orden\_original:}
+		orden de servicio con todas las firmas
+		incluidas \\
+		\textit{orden\_firmada:}
+		orden de servicio con todas las firmas
+		incluidas \\
+		\textit{tiempo\_orden:}
+		tiempo de creaci\'on de orden de
+		servicio \\
+		\textit{cancelacion\_orden:}
+		tiempo de cancelaci\'on de orden de
+		servicio (si fuera el caso) \\
+		\textit{orden\_suspendida:}
+		si una orden de servicio fue suspendida \\
+	} \\
+	\hline
+	\hyperlink{firmaorden}{\textbf{FirmaOrden}} &
+	\parbox[t]{9.5cm}{
+		\textit{archivo\_firma\_orden:}
+		tiempo en que la orden de servicio
+		ha sido firmada por el comitente \\
+		\textit{tiempo\_firma\_orden:}
+		tiempo en que la orden de servicio
+		ha sido firmada por el comitente \\
+	} \\
+	\hline
+	\hyperlink{convenio}{\textbf{Convenio}} &
+	\parbox[t]{9.5cm}{
+		\textit{archivo\_convenio:}
+		archivo de resoluci\'on firmada \\
+		\textit{tiempo\_creacion\_convenio:}
+		tiempo de creaci\'on de convenio \\
+		\textit{tiempo\_subida\_convenio:}
+		tiempo de creaci\'on de convenio \\
+		\textit{cancelacion\_convenio:}
+		tiempo de cancelaci\'on de convenio
+		(si fuera el caso) \\
+		\textit{convenio\_suspendido:}
+		si un convenio fue suspendida \\
+	} \\
+	\hline
+	\hyperlink{servicio}{\textbf{Servicio}} &
+	\parbox[t]{9.5cm}{
+		\textit{tiempo\_servicio:}
+		tiempo en que la orden de servicio
+		tiene todas las firmas necesarias \\
+		\textit{cancelacion\_servicio:}
+		tiempo en que se cancela un servicio
+		(si fuera el caso) \\
+		\textit{causa\_cancelacion\_servicio:}
+		causa de la cancelaci\'on de un
+		servicio (si fuera el caso) \\
+	} \\
+	\hline
+	\hyperlink{progreso}{\textbf{Progreso}} &
+	\parbox[t]{9.5cm}{
+		\textit{porcentaje\_completitud:}
+		porcentaje de completitud de
+		servicio \\
+		\textit{descripcion\_completitud:}
+		descripci\'on de completitud de
+		servicio \\
+	} \\
+	\hline
+	\hyperlink{pago}{\textbf{Pago}} &
+	\parbox[t]{9.5cm}{
+		\textit{monto\_pago\_servicio:}
+		monto de pago por servicio \\
+		\textit{tiempo\_pago\_servicio:}
+		tiempo de pago por servicio \\
+	} \\
+	\hline
+\end{longtable}
+\end{center}
+\subsection{Diagrama Conceptual}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=4.75cm,%
+			x=-1, y=0%
+		]{SolicitudServicio}{%
+			\hyperlink{C07A01}{nombre\_solicitud} \\%
+			\hyperlink{C07A02}{descripcion\_solicitud} \\%
+			\hyperlink{C07A03}{tiempo\_solicitud} \\%
+			\hyperlink{C07A04}{cancelacion\_solicitud} \\%
+			\hyperlink{C07A05}{solicitud\_suspendida}%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=7.5cm,%
+			x=0, y=16%
+		]{Comitente}{%
+			\hyperlink{C05A01}{cuil\_comitente} \\%
+			\hyperlink{C05A02}{firma\_digital\_comitente} \\%
+			\hyperlink{C05A03}{habilitado\_comitente} \\%
+			\hyperlink{C05A04}{razones\_sociales\_comitente} \\%
+			\hyperlink{C05A05}{cuit\_organizaciones\_comitente} \\%
+			\hyperlink{C05A06}{puestos\_organizaciones\_comitente} \\%
+			\hyperlink{C05A07}{habilitado\_organizaciones\_comitente}%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=7cm,%
+			x=0, y=8%
+		]{ComitenteSolicitud}{%
+			\hyperlink{C08A01}{razon\_social\_comitente} \\%
+			\hyperlink{C08A02}{cuit\_organizacion\_comitente} \\%
+			\hyperlink{C08A03}{puesto\_organizacion\_comitente} \\%
+			\hyperlink{C08A04}{tiempo\_decision} \\%
+			\hyperlink{C08A05}{aceptacion}%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=8cm,%
+			x=8.5, y=16%
+		]{ResponsableTecnico}{%
+			\hyperlink{C06A01}{cuil\_responsable} \\%
+			\hyperlink{C06A02}{firma\_digital\_responsable} \\%
+			\hyperlink{C06A03}{habilitado\_responsable} \\%
+			\hyperlink{C06A04}{razones\_sociales\_responsable} \\%
+			\hyperlink{C06A05}{cuit\_organizaciones\_responsable} \\%
+			\hyperlink{C06A06}{puestos\_organizaciones\_responsable} \\%
+			\hyperlink{C06A07}{habilitado\_organizaciones\_responsable}%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=7cm,%
+			x=9, y=8%
+		]{ResponsableSolicitud}{%
+			\hyperlink{C09A01}{razon\_social\_responsable} \\%
+			\hyperlink{C09A02}{cuit\_organizacion\_responsable} \\%
+			\hyperlink{C09A03}{puesto\_organizacion\_responsable} \\%
+			\hyperlink{C09A04}{tiempo\_decision\_responsable} \\%
+			\hyperlink{C09A05}{aceptacion\_responsable} \\%
+			\hyperlink{C09A06}{tiempo\_decision\_comitente} \\%
+			\hyperlink{C09A07}{aceptacion\_comitente}%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=9cm,%
+			x=8, y=-0.3%
+		]{PropuestaCompromisos}{%
+			\hyperlink{C10A01}{descripciones\_compromisos\_comitente} \\%
+			\hyperlink{C10A02}{descripciones\_compromisos\_unidad\_ejecutora} \\%
+			\hyperlink{C10A03}{montos\_retribuciones\_economicas} \\%
+			\hyperlink{C10A04}{descripciones\_retribuciones\_economicas}%
+		}{}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.1,%
+			mult2=0..*, pos2=0.8, align2= left,%
+			anchors= -90 and 90%
+		]{Comitente}{ComitenteSolicitud}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.2, align1= right,%
+			mult2=1..*, pos2=0.95, align2= left,%
+			anchors= 70 and -90%
+		]{SolicitudServicio}{ComitenteSolicitud}
+		\umlassoc[%
+			geometry=-|-, mult1=1, pos1=0.3, align1= right,%
+			mult2=0..*, pos2=2.3, align2= left,%
+			anchors= 40 and 180%
+		]{SolicitudServicio}{ResponsableSolicitud}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.2,%
+			mult2=0..*, pos2=0.65, align2= left,%
+			anchors= -81 and 90%
+		]{ResponsableTecnico}{ResponsableSolicitud}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.15,%
+			mult2=0..*, pos2=0.5, align2= left,%
+			anchors= -15 and -175%
+		]{SolicitudServicio}{PropuestaCompromisos}
+	\end{tikzpicture}
+	\end{center}
+	\caption{Modelo de Dominio para Subsistema
+	de Gesti\'on de Solicitudes}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=4.75cm,%
+			x=0, y=4%
+		]{SolicitudServicio}{%
+			\hyperlink{C07A01}{nombre\_solicitud} \\%
+			\hyperlink{C07A02}{descripcion\_solicitud} \\%
+			\hyperlink{C07A03}{tiempo\_solicitud} \\%
+			\hyperlink{C07A04}{cancelacion\_solicitud} \\%
+			\hyperlink{C07A05}{solicitud\_suspendida}%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=4.75cm,%
+			x=5.6, y=0%
+		]{OrdenServicio}{%
+			numero\_orden\_servicio \\%
+			orden\_original \\%
+			orden\_firmada \\%
+			tiempo\_orden \\%
+			cancelacion\_orden \\%
+			orden\_suspendida%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=4.75cm,%
+			x=0, y=-3%
+		]{Convenio}{%
+			archivo\_convenio \\%
+			tiempo\_creacion\_convenio \\%
+			tiempo\_subida\_convenio \\%
+			cancelacion\_convenio \\%
+			convenio\_suspendido%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=5cm,%
+			x=11.5, y=5%
+		]{FirmaOrden}{%
+			archivo\_firma\_orden \\%
+			tiempo\_firma\_orden \\%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=5cm,%
+			x=0, y=-9.5%
+		]{Servicio}{%
+			tiempo\_servicio \\%
+			cancelacion\_servicio \\%
+			causa\_cancelacion\_servicio%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=5cm,%
+			x=11.5, y=-5.5%
+		]{Progreso}{%
+			porcentaje\_progreso \\%
+			descripcion\_progreso%
+		}{}
+		\umlclass[%
+			rectangle split parts=2,%
+			text width=4.5cm,%
+			x=11.75, y=-9.6%
+		]{Pago}{%
+			monto\_pago\_servicio \\%
+			recibo\_pago\_servicio%
+		}{}
+		\umlassoc[%
+			geometry=-|, mult1=1, pos1=0.11,%
+			mult2=0..1, pos2=1.6, align2= left,%
+			anchors= 0 and 90%
+		]{SolicitudServicio}{OrdenServicio}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.1,%
+			mult2=0..1, pos2=0.75, align2= left,%
+			anchors= -90 and 90%
+		]{SolicitudServicio}{Convenio}
+		\umlassoc[%
+			geometry=-|, mult1=1, pos1=0.25, align1=right,%
+			mult2=0..*, pos2=2, align2= left,%
+			anchors= 30 and -90%
+		]{OrdenServicio}{FirmaOrden}
+		\umlassoc[%
+			geometry=|-, mult1=1, pos1=0.05,%
+			mult2=0..1, pos2=1.91, align2= left,%
+			anchors= -100 and 20%
+		]{OrdenServicio}{Servicio}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.1,%
+			mult2=0..1, pos2=0.75, align2= left,%
+			anchors= -90 and 90%
+		]{Convenio}{Servicio}
+		\umlassoc[%
+			geometry=-|-, mult1=1, pos1=0.25, align1=right,%
+			mult2=0..*, pos2=2.7, align2= left,%
+			anchors= 0 and 180%
+		]{Servicio}{Progreso}
+		\umlassoc[%
+			geometry=--, mult1=1, pos1=0.1,%
+			mult2=0..*, pos2=0.85, align2= left,%
+			anchors= -20 and -160%
+		]{Servicio}{Pago}
+	\end{tikzpicture}
+	\end{center}
+	\caption{Modelo de Dominio para Subsistemas
+	de Gesti\'on de \'Ordenes, Convenios y Servicios}
+\end{figure}
+\clearpage
+\section{Comportamiento del Sistema}
+\subsection[Diagramas de Secuencia]
+	{Diagramas de Secuencia de Sistema}
+\begin{figure}[h!]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlseqdiag}
+	\umlactor[class=Actor, x=-8.5, fill=white]{a}
+	\umldatabase[class=Sistema, fill=cyan!48]{s}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-01}{seleccionar\_solicitud(id\_solicitud)},%
+		type=synchron,%
+		return={solicitud\_servicio}%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-02}{proponer\_compromisos(solicitud\_servicio)},%
+		type=synchron,%
+		return={formulario\_compromisos\_comitente(compromisos\_comitente)}%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlfragment}[%
+		type=par, label=compromisos\_comitente,%
+		fill=violet!16, inner ysep=1%
+	]
+		\begin{umlcall}[%
+			op=\hyperlink{CTT-03}{continuar\_formulario(compromisos\_comitente)},%
+			type=synchron, dt=6%
+		]{a}{s}
+			\begin{umlfragment}[%
+				type=alt, label=campos\_invalidos,%
+				fill=yellow!32%
+			]
+				\begin{umlcall}[%
+					op=marcar\_errores(compromisos\_comitente),%
+					type=return%
+				]{s}{a}
+				\end{umlcall}
+			\end{umlfragment}
+			\begin{umlcall}[%
+				op={formulario\_compromisos\_ue(compromisos\_ue)},%
+				type=return, padding=-1%
+			]{s}{a}
+			\end{umlcall}
+		\end{umlcall}
+		\umlfpart[compromisos\_ue]
+		\begin{umlcall}[%
+			op=\hyperlink{CTT-04}{continuar\_formulario(compromisos\_ue)},%
+			type=synchron, dt=4%
+		]{a}{s}
+			\begin{umlfragment}[%
+				type=alt, label=campos\_invalidos,%
+				fill=yellow!32, inner ysep=1%
+			]
+				\begin{umlcall}[%
+					op=marcar\_errores(compromisos\_ue),%
+					type=return, dt=1%
+				]{s}{a}
+				\end{umlcall}
+			\end{umlfragment}
+			\begin{umlcall}[%
+				op={formulario\_retribuciones\_economicas(retribuciones\_economicas)},%
+				type=return, dt=1, padding=-1%
+			]{s}{a}
+			\end{umlcall}
+		\end{umlcall}
+		\umlfpart[retribuciones\_economicas]
+		\begin{umlcall}[%
+			op=\hyperlink{CTT-05}{finalizar\_formulario(retribuciones\_economicas)},%
+			type=synchron, dt=5%
+		]{a}{s}
+			\begin{umlfragment}[%
+				type=alt, label=campos\_invalidos,%
+				fill=yellow!32, inner ysep=1%
+			]
+				\begin{umlcall}[%
+					op=marcar\_errores(retribuciones\_economicas),%
+					type=return, dt=1%
+				]{s}{a}
+				\end{umlcall}
+			\end{umlfragment}
+			\begin{umlcall}[%
+				op={comunicar\_exito()},%
+				type=return, dt=1, padding=-1%
+			]{s}{a}
+			\end{umlcall}
+		\end{umlcall}
+	\end{umlfragment}
+	\end{umlseqdiag}
+	\end{tikzpicture}
+	\end{center}
+	\caption{Diagrama de Secuencia de Sistema
+	de CUE-02}
+\end{figure}
+\begin{figure}[h!]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlseqdiag}
+	\umlactor[class=Actor, x=-8.5, fill=white]{a}
+	\umldatabase[class=Sistema, fill=cyan!48]{s}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-06}{seleccionar\_orden(numero\_orden\_servicio)},%
+		type=synchron,%
+		return=orden\_servicio%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-07}{firmar\_orden(orden\_servicio)},%
+		type=synchron,%
+		return=formulario\_firmar\_orden(orden\_servicio)%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-08}{poner\_firma(orden\_servicio\,firma\_digital)},%
+		type=synchron%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlfragment}[%
+		type=alt, label=firma\_invalida,%
+		inner xsep=5, inner ysep=0.5, fill=yellow!32 %
+	]
+		\begin{umlcall}[%
+			op={firma\_invalida(orden\_servicio\,firma\_digital)},%
+			type=return%
+		]{s}{a}
+		\end{umlcall}
+		\umlfpart[default]
+		\begin{umlcall}[%
+			op=confirmar\_exito(),%
+			type=return%
+		]{s}{a}
+		\end{umlcall}
+	\end{umlfragment}
+	\end{umlseqdiag}
+	\end{tikzpicture}
+	\end{center}
+	\caption{Diagrama de Secuencia de Sistema
+	de CUE-04}
+\end{figure}
+\begin{figure}[h!]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlseqdiag}
+	\umlactor[class=Actor, x=-8.5, fill=white]{a}
+	\umldatabase[class=Sistema, fill=cyan!48]{s}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-06}{seleccionar\_orden(numero\_orden\_servicio)},%
+		type=synchron,%
+		return=orden\_servicio%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-09}{subir\_orden(orden\_servicio)},%
+		type=synchron,%
+		return=formulario\_subir\_orden(orden\_servicio)%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlcall}[%
+		op=\hyperlink{CTT-10}{cargar\_escaneo(orden\_servicio,documento\_escaneado)},%
+		type=synchron%
+	]{a}{s}
+	\end{umlcall}
+	\begin{umlfragment}[%
+		type=alt, label=orden\_inexistente,%
+		inner xsep=5, inner ysep=0.5, fill=yellow!32 %
+	]
+		\begin{umlcall}[%
+			op={orden\_inexistente(orden\_servicio,documento\_escaneado)},%
+			type=return%
+		]{s}{a}
+		\end{umlcall}
+		\umlfpart[orden\_diferente]
+		\begin{umlcall}[%
+			op={orden\_diferente(orden\_servicio,documento\_escaneado)},%
+			type=return%
+		]{s}{a}
+		\end{umlcall}
+		\umlfpart[faltan\_firmas]
+		\begin{umlcall}[%
+			op={faltan\_firmas(orden\_servicio,documento\_escaneado)},%
+			type=return%
+		]{s}{a}
+		\end{umlcall}
+		\umlfpart[default]
+		\begin{umlcall}[%
+			op=confirmar\_exito(),%
+			type=return%
+		]{s}{a}
+		\end{umlcall}
+	\end{umlfragment}
+	\end{umlseqdiag}
+	\end{tikzpicture}
+	\end{center}
+	\caption{Diagrama de Secuencia de Sistema
+	de CUE-03}
+\end{figure}
+\clearpage
+\subsection{Contratos}
+\begin{center}
+\hypertarget{CTT-01}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{seleccionar\_solicitud(id\_solicitud)} \\
+	\textbf{Responsabilidades} &
+	Seleccionar una solicitud de servicio por su
+	identificador \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-02}{CUE-02} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} & (ninguna) \\
+	\textbf{Salida} & solicitud\_servicio \\
+	\textbf{Precondiciones} & (ninguna) \\
+	\textbf{Poscondiciones} & (ninguna) \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-02}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{proponer\_compromisos(solicitud\_servicio)} \\
+	\textbf{Responsabilidades} &
+	Proponer compromisos para un servicio solicitado \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-02}{CUE-02} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} & (ninguna) \\
+	\textbf{Salida} &
+	asignar\_recursos(solicitud\_servicio) \\
+	\textbf{Precondiciones} &
+	seleccionar\_solicitud(id\_solicitud) \\
+	\textbf{Poscondiciones} & (ninguna) \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-03}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{continuar\_formulario(compromisos\_comitente)} \\
+	\textbf{Responsabilidades} &
+	Asignar los Compromisos de Comitente para un
+	servicio solicitado \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-02}{CUE-02} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} &
+	marcar\_errores(compromisos\_comitente) \\
+	\textbf{Salida} &
+	formulario\_compromisos\_ue(compromisos\_ue) \\
+	\textbf{Precondiciones} &
+	asignar\_recursos(solicitud\_servicio) \\
+	\textbf{Poscondiciones} & compromisos\_comitente \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-04}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{continuar\_formulario(compromisos\_ue)} \\
+	\textbf{Responsabilidades} &
+	Asignar Compromisos de la Unidad Ejecutora para
+	un servicio solicitado \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-02}{CUE-02} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} &
+	marcar\_errores(compromisos\_ue) \\
+	\textbf{Salida} &
+	formulario\_retribucion\_economica(retribucion\_economica) \\
+	\textbf{Precondiciones} &
+	continuar\_formulario(recursos\_humanos) \\
+	\textbf{Poscondiciones} & compromisos\_ue \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-05}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{finalizar\_formulario(retribucion\_economica)} \\
+	\textbf{Responsabilidades} &
+	Asignar Retribuci\'on Econ\'omica para un servicio
+	solicitado \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-02}{CUE-02} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} &
+	marcar\_errores(retribucion\_economica) \\
+	\textbf{Salida} & comunicar\_exito() \\
+	\textbf{Precondiciones} &
+	continuar\_formulario(compromisos\_ue) \\
+	\textbf{Poscondiciones} & retribucion\_economica \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-06}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{seleccionar\_orden(numero\_orden\_servicio)} \\
+	\textbf{Responsabilidades} &
+	Seleccionar una orden de servicio por su numero \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-04}{CUE-04} y
+	\hyperlink{CUE-05}{CUE-05} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} & (ninguna) \\
+	\textbf{Salida} & orden\_servicio \\
+	\textbf{Precondiciones} & (ninguna) \\
+	\textbf{Poscondiciones} & (ninguna) \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-07}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{firmar\_orden(orden\_servicio)} \\
+	\textbf{Responsabilidades} &
+	Firmar una orden de servicio digitalmente \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-04}{CUE-04} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} & (ninguna) \\
+	\textbf{Salida} &
+	formulario\_firmar\_orden(orden\_servicio) \\
+	\textbf{Precondiciones} &
+	seleccionar\_orden(numero\_orden\_servicio) \\
+	\textbf{Poscondiciones} & (ninguna) \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-08}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{poner\_firma(orden\_servicio, firma\_digital)} \\
+	\textbf{Responsabilidades} &
+	Poner una firma digital en una orden de servicio \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-04}{CUE-04} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} &
+	firma\_invalida(orden\_servicio, firma\_digital) \\
+	\textbf{Salida} & confirmar\_exito() \\
+	\textbf{Precondiciones} &
+	firmar\_orden(orden\_servicio) \\
+	\textbf{Poscondiciones} & orden\_servicio \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-09}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{subir\_orden()} \\
+	\textbf{Responsabilidades} &
+	Subir una orden de servicio firmada de forma
+	manuscrita \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-05}{CUE-05} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} & (ninguna) \\
+	\textbf{Salida} & formulario\_subir\_orden() \\
+	\textbf{Precondiciones} & (ninguna) \\
+	\textbf{Poscondiciones} & (ninguna) \\
+\end{tabular}} \\[1cm]
+\hypertarget{CTT-10}{%
+\begin{tabular}{%
+	>{\columncolor[gray]{0.8}}p{4cm}
+	>{\columncolor[gray]{0.8}}p{11.5cm}
+}
+	\textbf{Nombre} &
+	\textit{cargar\_escaneo(documento\_escaneado)} \\
+	\textbf{Responsabilidades} &
+	Cargar una orden de servicio firmada de forma
+	manuscrita, que fue escaneada \\
+	\textbf{Tipo} & Actor \\
+	\textbf{Referencias cruzadas} &
+	\hyperlink{CUE-05}{CUE-05} \\
+	\textbf{Notas} & (ninguna) \\
+	\textbf{Excepciones} &
+	orden\_inexistente(),
+	orden\_diferente(),
+	faltan\_firmas() \\
+	\textbf{Salida} & confirmar\_exito() \\
+	\textbf{Precondiciones} & subir\_orden() \\
+	\textbf{Poscondiciones} & documento\_escaneado \\
+\end{tabular}}
+\end{center}

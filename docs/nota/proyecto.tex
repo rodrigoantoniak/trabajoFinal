@@ -14,6 +14,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+\usepackage[hidelinks]{hyperref}
 \usepackage[table]{xcolor}
 \usepackage{longtable}
 \usepackage{multirow}
@@ -25,6 +26,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{helvet}
 \usepackage{pgfgantt}
+\setcounter{secnumdepth}{0}
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\headrule}{}
 \selectfont
@@ -39,9 +41,6 @@
 \newcolumntype{e}{>
 	{\columncolor{lightgray}} p{5.6cm}
 }
-\newcolumntype{a}{>
-	{\columncolor{lightgray}} p{8cm}
-}
 \graphicspath{ {./images/} }
 \begin{document}
 	\frontmatter
@@ -55,8 +54,9 @@
 	\fancyhead[LO,LE]{
 		Trabajo Final (ASC) - Proyecto de
 		Software (LSI) - FCEQyN - UNaM \\
-		ServOrGes (Gestor de \'Ordenes de
-		Servicio) - Antoniak, Rodrigo Lionel
+		GesServOrConv (Gestor de Servicios
+		por Orden o Convenio) - Antoniak,
+		Rodrigo Lionel
 	}
 	\fancyfoot{}
 	\fancyfoot[RE,RO]{\thepage}

@@ -1,0 +1,2545 @@
+\section{Presentaci\'on general}
+\normalsize{ \indent
+En la actualidad, la Universidad Nacional de Misiones
+gestiona los papeles de los servicios a trav\'es
+de documentos generados en un programa ofim\'atico;
+sin haber otro tipo de informatizaci\'on sobre
+el proceso. Al no tener un sistema implantado para
+este prop\'osito, se carece de control sobre las
+distintas etapas en que la realizaci\'on de un
+servicio se encuentra.
+}
+\newline
+\normalsize{ \indent
+Los servicios pueden clasificarse en aquellos
+generados por \'ordenes y por convenio.
+Las \'ordenes de servicio son documentos que
+constatan la vinculaci\'on entre Comitentes y
+Responsables T\'ecnicos, agregando que la persona
+a cargo de la Secretar\'ia de Extensi\'on y
+Vinculaci\'on Tecnol\'ogica est\'a en conocimiento
+de esto.
+}
+\newline
+\normalsize{ \indent
+Adicionalmente, el tiempo que transcurre ente cada
+uno de los pasos a seguir en el procedimiento de un
+servicio es amplio; considerando las formas en que
+las solicitudes de servicio llegan, sea por los
+docentes que obtienen las solicitudes de servicios
+o por el acercamiento presencial del solicitante.
+}
+\newline
+\normalsize{ \indent
+Para el producto software a desarrollar, se va
+a considerar:
+}
+\begin{itemize}
+	\item Seguimiento de los servicios por
+	convenio.
+	\item Generaci\'on de la orden de servicio.
+	\item Registro de los costos involucrados en
+	el servicio.
+	\item Negociaci\'on de los recursos,
+	compromisos y retribuciones de un servicio.
+	\item Firma de las \'ordenes de servicio.
+	\item Anexo de factura y recibo
+	correspondiente por orden de servicio.
+\end{itemize}
+\ \newline
+\normalsize{ \indent
+Las cuestiones que no ser\'an abarcadas en, al
+menos, una versi\'on inicial son:
+}
+\begin{itemize}
+	\item Revisi\'on de ART de los trabajadores
+	de planta o con relaci\'on de dependencia,
+	y seguros de monotributistas o becarios.
+\end{itemize}
+\ \newline
+\normalsize{ \indent
+Las limitaciones definitivas del sistema (es
+decir, que nunca ser\'an parte de este software)
+son:
+}
+\begin{itemize}
+	\item La facturaci\'on de la orden de
+	servicio, que ya se realiza por un sistema
+	de AFIP.
+	\item Medios de cobro a trav\'es del sistema
+	(tales como MercadoPago u otros medios de
+	transferencia) para las \'ordenes de servicio.
+	\item Medios de pago para retribuir a los
+	miembros que prestaron su servicio.
+\end{itemize}
+\section{Participantes del proyecto}
+\normalsize{ \indent
+El desarrollador a cargo de este proyecto es
+Rodrigo Lionel Antoniak, mientras que el cliente
+es la Universidad Nacional de Misiones.
+}
+\section{Objetivos del sistema}
+\begin{center}
+\begin{tabular}{ | p{4.5cm} | p{11cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{OBJ-01}} &
+	\hfil \textbf{Objetivo}  \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Disponer de una plantilla de orden
+	de servicio parametrizada, para generar
+	el documento de forma consistente. \\
+	\hline
+	\raggedleft \textit{Estabilidad} & Alta \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{4.5cm} | p{11cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{OBJ-02}} &
+	\hfil \textbf{Objetivo}  \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Otorgar un v\'ia m\'as formal y
+	r\'apida para acordar los t\'erminos
+	en que se regir\'a un servicio. \\
+	\hline
+	\raggedleft \textit{Estabilidad} & Alta \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{4.5cm} | p{11cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{OBJ-03}} &
+	\hfil \textbf{Objetivo}  \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Controlar la validez de las firmas
+	en los documentos firmados para las
+	\'ordenes de servicio. \\
+	\hline
+	\raggedleft \textit{Estabilidad} & Baja \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{4.5cm} | p{11cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{OBJ-04}} &
+	\hfil \textbf{Objetivo}  \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Definir condiciones en donde se
+	suspenda una orden de servicio o su
+	solicitud. \\
+	\hline
+	\raggedleft \textit{Estabilidad} & Alta \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{4.5cm} | p{11cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{OBJ-05}} &
+	\hfil \textbf{Objetivo}  \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Poseer los servicios realizados
+	por orden y por convenios en un solo
+	lugar. \\
+	\hline
+	\raggedleft \textit{Estabilidad} & Baja \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{4.5cm} | p{11cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{OBJ-06}} &
+	\hfil \textbf{Objetivo}  \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Vincular cada uno de los comprobantes
+	con la etapa en la que se encuentra
+	un servicio. \\
+	\hline
+	\raggedleft \textit{Estabilidad} & Baja \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular}
+\end{center}
+\section{Subsistemas del Proyecto}
+\subsection[Diagrama]{Diagrama de subsistemas}
+\begin{figure}[H]
+ 	\begin{center}
+	\begin{tikzpicture}
+		\begin{umlpackage}{GesServOrConv}
+			\umlemptypackage[x=0,y=0]
+				{Gesti\'on de Solicitudes}
+			\umlemptypackage[x=8,y=0]
+				{Gesti\'on de Servicios}
+			\umlemptypackage[x=0,y=-3]
+				{Gesti\'on de \'Ordenes}
+			\umlemptypackage[x=8,y=-3]
+				{Gesti\'on de Convenios}
+			\umlemptypackage[x=0,y=-6]
+				{Gesti\'on de Firmas}
+			\umlemptypackage[x=8,y=-6]
+				{Gesti\'on de Usuarios}
+			\umlemptypackage[x=4,y=-9]
+				{Gesti\'on de Administraci\'on}
+		\end{umlpackage}
+	\end{tikzpicture}
+	\end{center}
+	\caption{
+		Diagrama de subsistemas
+	}
+\end{figure}
+\subsection[Descripci\'on]
+	{Descripci\'on de subsistemas}
+\begin{itemize}
+	\item \textbf{Gesti\'on de Solicitudes:}
+	Administra todas las solicitudes de servicio,
+	en donde se realiza el acuerdo entre el
+	Representante T\'ecnico y el Comitente sobre
+	los t\'erminos a regir.
+	\item \textbf{Gesti\'on de \'Ordenes:}
+	Administra el proceso del servicio tras la
+	aprobaci\'on de la solicitud, abarcando la
+	firma de la orden de servicio.
+	\item \textbf{Gesti\'on de Convenios:}
+	Administra el proceso del servicio tras la
+	aprobaci\'on de la solicitud, abarcando la
+	resoluci\'on de los convenios.
+	\item \textbf{Gesti\'on de Servicios:}
+	Administra el proceso del servicio tras la
+	aprobaci\'on de la solicitud, desde la
+	validaci\'on de la orden de servicio hasta
+	el registro de cumplimiento de los t\'erminos
+	acordados.
+	\item \textbf{Gesti\'on de Firmas:}
+	Administra la validaci\'on de las firmas
+	que se encuentran en una orden de servicio,
+	tanto digitalmente como de forma manuscrita.
+	\item \textbf{Gesti\'on de Usuarios:}
+	Administra el acceso de cada usuario a las
+	distintas p\'aginas, junto con las
+	notificaciones y avisos peri\'odicos a los
+	usuarios.
+	\item \textbf{Gesti\'on de Administraci\'on:}
+	Administra el panel de control destinado al
+	administrador del sistema.
+\end{itemize}
+\section{Requisitos}
+\subsection[Funcionales]
+	{Requisitos Funcionales}
+\begin{enumerate}
+	\hypertarget{RF-01}{%
+	\item Los Comitentes podr\'an solicitar un
+	servicio para que realice la universidad.}
+	\hypertarget{RF-02}{%
+	\item Los Comitentes podr\'an relacionar a
+	otros en un servicio.}
+	\hypertarget{RF-03}{%
+	\item Los Comitentes podr\'an decidir si
+	permanecer vinculado a un servicio o no.}
+	\hypertarget{RF-04}{%
+	\item Los Comitentes podr\'an seleccionar
+	los Representantes T\'ecnicos.}
+	\hypertarget{RF-05}{%
+	\item Los Representantes T\'ecnicos podr\'an
+	decidir en qu\'e servicio tomar tal rol.}
+	\hypertarget{RF-06}{%
+	\item Los Representantes T\'ecnicos podr\'an
+	asignar recursos en un servicio que a\'un no
+	est\'a aprobado.}
+	\hypertarget{RF-07}{%
+	\item Los Representantes T\'ecnicos podr\'an
+	proponer los compromisos y retribuciones
+	para una solicitud de servicio.}
+	\hypertarget{RF-08}{%
+	\item Los Comitentes podr\'an decidir sobre
+	una propuesta hecha por el Representante
+	T\'ecnico de una solicitud de servicio.}
+	\hypertarget{RF-09}{%
+	\item Los Ayudantes de la Secretar\'ia de
+	Extensi\'on podr\'an generar la orden de
+	servicio ante una solicitud de la misma que
+	se haya acordado.}
+	\hypertarget{RF-10}{%
+	\item El Secretario de Extensi\'on podr\'a
+	cancelar la orden de servicio que a\'un no
+	haya sido completamente firmada.}
+	\hypertarget{RF-11}{%
+	\item El Secretario de Extensi\'on podr\'a
+	registrar la cancelaci\'on de un servicio
+	por convenio.}
+	\hypertarget{RF-12}{%
+	\item Los firmantes de una orden de servicio
+	podr\'an firmar el documento de forma
+	manuscrita o digital.}
+	\hypertarget{RF-13}{%
+	\item Los Ayudantes de la Secretar\'ia de
+	Extensi\'on podr\'an guardar una resoluci\'on
+	para un servicio por convenio.}
+	\hypertarget{RF-14}{%
+	\item Los ayudantes de la Secretar\'ia de
+	Extensi\'on podr\'an registrar los pagos del
+	Comitente sobre un servicio.}
+	\hypertarget{RF-15}{%
+	\item Los Representantes T\'ecnicos podr\'an
+	actualizar la completitud de los servicios
+	en que est\'en adjudicados.}
+	\hypertarget{RF-16}{%
+	\item Los Ayudantes podr\'an registrar
+	la cancelaci\'on de servicios que se 
+	encuentren en estado de progreso dentro
+	del sistema.}
+	\hypertarget{RF-17}{%
+	\item Los Representantes T\'ecnicos podr\'an
+	registrar los haberes que correspondan a
+	los miembros de la Unidad Ejecutora de un
+	servicio.}
+	\hypertarget{RF-18}{%
+	\item Los Tesoreros podr\'an registrar los
+	cobros de los miembros de la Unidad Ejecutora
+	en un servicio.}
+	\hypertarget{RF-19}{%
+	\item El sistema deber\'a cancelar los
+	tr\'amites que se hallen fuera del lapso
+	establecidos para ser completados.}
+	\hypertarget{RF-20}{%
+	\item El sistema deber\'a gestionar
+	los perfiles que se encuentren dentro del
+	sistema.}
+	\hypertarget{RF-21}{%
+	\item El Administrador podr\'a gestionar
+	copias de seguridad de la base de datos
+	del sistema.}
+	\hypertarget{RF-22}{%
+	\item El sistema deber\'a comunicar sobre los
+	distintos estados en que se encuentre a los
+	distintos usuarios que involucre.}
+\end{enumerate}
+\subsection[No Funcionales]
+	{Requisitos No Funcionales}
+\paragraph{Requisito del Producto}
+El sistema deber\'a auditar los distintos
+movimientos que se realicen dentro del software.
+\paragraph{Requisito Organizacional}
+Las \'ordenes de servicio deber\'an incluir las
+firmas de los Comitentes, los Representantes
+T\'ecnicos y el Secretario de Extensi\'on.
+\paragraph{Requisito Externo}
+El sistema deber\'a hallarse en conformidad a
+la Disposici\'on 2/2023 que public\'o la
+Subsecretar\'ia de Tecnolig\'ias de la
+Informaci\'on, dependiente de la Secretar\'ia de
+Innovaci\'on P\'ublica; y la ley nacional 25326
+de la norma 64790, proveniente del senado y la
+C\'amara de Diputados.
+\section{Casos de Uso}
+\subsection[Diagrama]{Diagramas de Casos de Uso}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=6, fill=cyan!48]
+	{Subsistema de Gesti\'on de Solicitudes}
+		\umlusecase[x=3.5]{%
+			\hyperlink{CUN-01}
+				{Registrar solicitud}
+		}
+		\umlusecase[x=4.5, y=-1.85, width=2.5cm]{%
+			\hyperlink{CUN-02}
+				{Aceptar cometimiento}
+		}
+		\umlusecase[x=4.5, y=-3.55, width=2.5cm]{%
+			\hyperlink{CUN-03}
+				{Rechazar cometimiento}
+		}
+		\umlusecase[x=4.5, y=-7, width=2.5cm]{%
+			\hyperlink{CUN-04}
+				{Elegir Responsables}
+		}
+		\umlusecase[x=4.75, y=-14.25]{
+			\hyperlink{CUN-05}
+				{Aceptar adjudicaci\'on}
+		}
+		\umlusecase[x=4.5, y=-15.5]{
+			\hyperlink{CUN-06}
+				{Rechazar adjudicaci\'on}
+		}
+		\umlusecase[x=4.5, y=-16.75]{
+			\hyperlink{CUN-07}
+				{Autoadjudicar solicitud}
+		}
+		\umlusecase[x=4.5, y=-5.25, width=2.8cm]{
+			\hyperlink{CUN-08}
+				{Rechazar Responsables}
+		}
+		\umlusecase[x=1, y=-8.5, width=2.8cm]{
+			\hyperlink{CUN-09}
+				{Aceptar Responsables}
+		}
+		\umlusecase[y=-17.5]{%
+			\hyperlink{CUN-10}
+				{Asignar regursos}
+		}
+		\umlusecase[x=5, y=-13]{%
+			\hyperlink{CUN-11}
+				{Proponer orden}
+		}
+		\umlusecase[x=1, y=-10.75]{%
+			\hyperlink{CUN-12}
+				{Aceptar solicitud}
+		}
+		\umlusecase[x=5, y=-10.25]{%
+			\hyperlink{CUN-13}
+				{Cancelar solicitud}
+		}
+		\umlusecase[y=-11.75]{%
+			\hyperlink{CUN-14}
+				{Renegociar solicitud}
+		}
+		\umlusecase[x=4.5, y=-18.25]{%
+			\hyperlink{CUN-15}
+				{Suspender solicitud}
+		}
+	\end{umlsystem}
+	\umlactor[y=-8.5]{Comitente}
+	\umlactor[y=-15.5]{Responsable T\'ecnico}
+	\umlassoc{Comitente}{usecase-1}
+	\umlassoc{Comitente}{usecase-2}
+	\umlassoc{Comitente}{usecase-3}
+	\umlassoc{Comitente}{usecase-4}
+	\umlassoc{Responsable T\'ecnico}{usecase-5}
+	\umlassoc{Responsable T\'ecnico}{usecase-6}
+	\umlassoc{Responsable T\'ecnico}{usecase-7}
+	\umlassoc{Comitente}{usecase-8}
+	\umlassoc{Comitente}{usecase-9}
+	\umlassoc{Responsable T\'ecnico}{usecase-10}
+	\umlassoc{Responsable T\'ecnico}{usecase-11}
+	\umlassoc{Comitente}{usecase-12}
+	\umlassoc{Comitente}{usecase-13}
+	\umlassoc{Comitente}{usecase-14}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de Solicitudes
+	}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=5, fill=cyan!48]
+	{Subsistema de Gesti\'on de \'Ordenes}
+		\umlusecase[y=-2.5]{%
+			\hyperlink{CUN-16}
+				{Generar orden}
+		}
+		\umlusecase{%
+			\hyperlink{CUN-17}
+				{Firmar orden}
+		}
+		\umlusecase[y=-1.25]{
+			\hyperlink{CUN-18}
+				{Cancelar orden}
+		}
+		\umlusecase[y=-3.75]{%
+			\hyperlink{CUN-19}
+				{Subir orden}
+		}
+		\umlusecase[y=-5]{%
+			\hyperlink{CUN-20}
+				{Suspender orden}
+		}
+	\end{umlsystem}
+	\umlactor[x=-1]{Comitente}
+	\umlactor[x=-1, y=-3]{Responsable T\'ecnico}
+	\umlactor[x=11, y=-1.25]{Secretario}
+	\umlactor[x=11, y=-3.75]{Ayudante}
+	\umlassoc{Ayudante}{usecase-16}
+	\umlassoc{Comitente}{usecase-17}
+	\umlassoc{Responsable T\'ecnico}{usecase-17}
+	\umlassoc{Secretario}{usecase-17}
+	\umlassoc{Secretario}{usecase-18}
+	\umlassoc{Ayudante}{usecase-19}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de \'Ordenes
+	}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=5, fill=cyan!48]
+	{Subsistema de Gesti\'on de Convenios}
+		\umlusecase{%
+			\hyperlink{CUN-21}
+				{Subir resoluci\'on}
+		}
+		\umlusecase[y=-2]{%
+			\hyperlink{CUN-22}
+				{Cancelar convenio}
+		}
+	\end{umlsystem}
+	\umlactor{Ayudante}
+	\umlactor[y=-2]{Secretario}
+	\umlassoc{Ayudante}{usecase-21}
+	\umlassoc{Secretario}{usecase-22}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de Convenios
+	}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=5, fill=cyan!48]
+	{Subsistema de Gesti\'on de Servicios}
+		\umlusecase[y=-2.5]{%
+			\hyperlink{CUN-23}
+				{Registrar pago}
+		}
+		\umlusecase{%
+			\hyperlink{CUN-24}
+				{Registrar completitud}
+		}
+		\umlusecase[y=-1.25]{%
+			\hyperlink{CUN-25}
+				{Cancelar servicio}
+		}
+	\end{umlsystem}
+	\umlactor[x=-1]{Responsable T\'ecnico}
+	\umlactor[x=10, y=-1.25]{Secretario}
+	\umlactor[x=-1, y=-2.5]{Ayudante}
+	\umlassoc{Ayudante}{usecase-23}
+	\umlassoc{Responsable T\'ecnico}{usecase-24}
+	\umlassoc{Secretario}{usecase-25}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de Servicios
+	}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=6, fill=cyan!48]
+	{Subsistema de Gesti\'on de Firmas}
+		\umlusecase{%
+			\hyperlink{CUN-26}
+				{Agregar firma}
+		}
+		\umlusecase[y=-1.5]{%
+			\hyperlink{CUN-27}
+				{Verificar orden}
+		}
+	\end{umlsystem}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de Firmas
+	}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=6, fill=cyan!48]
+	{Subsistema de Gesti\'on de Usuarios}
+		\umlusecase[x=1, width=1.5cm]{%
+			\hyperlink{CUN-28}
+				{Registrar usuario}
+		}
+		\umlusecase[y=-2.25]{%
+			\hyperlink{CUN-29}
+				{Registrar Comitente}
+		}
+		\umlusecase[y=-3.5]{%
+			\hyperlink{CUN-30}
+				{Registrar Responsable}
+		}
+		\umlusecase[x=3.5, y=-5.35, width=2cm]{%
+			\hyperlink{CUN-31}
+				{Aprobar Comitente}
+		}
+		\umlusecase[x=-0.25, y=-5, width=2.5cm]{%
+			\hyperlink{CUN-32}
+				{Aprobar Responsable}
+		}
+		\umlusecase[y=-6.5]{%
+			\hyperlink{CUN-33}
+				{Registrar Secretario}
+		}
+		\umlusecase[y=-7.75]{%
+			\hyperlink{CUN-34}
+				{Registrar Ayudante}
+		}
+		\umlusecase[y=-9]{%
+			\hyperlink{CUN-35}
+				{Invalidar Comitente}
+		}
+		\umlusecase[y=-10.25]{%
+			\hyperlink{CUN-36}
+				{Invalidar Responsable}
+		}
+		\umlusecase[x=1.5, y=-11.5]{%
+			\hyperlink{CUN-37}
+				{Invalidar Ayudante}
+		}
+		\umlusecase[x=1, y=-12.75]{%
+			\hyperlink{CUN-38}
+				{Realizar notificaci\'on}
+		}
+		\umlusecase[x=1, y=-14]{%
+			\hyperlink{CUN-39}
+				{Avisar peri\'odicamente}
+		}
+	\end{umlsystem}
+	\umlactor[x=13.5]{Secretario}
+	\umlactor[x=13.5, y=-4]{Ayudante}
+	\umlactor[x=13.5, y=-8]{Administrador}
+	\umlactor{Comitente}
+	\umlactor[y=-4]{Responsable T\'ecnico}
+	\umlassoc{Administrador}{usecase-28}
+	\umlassoc{Comitente}{usecase-28}
+	\umlassoc{Responsable T\'ecnico}{usecase-28}
+	\umlassoc{Secretario}{usecase-28}
+	\umlassoc{Ayudante}{usecase-28}
+	\umlassoc{Comitente}{usecase-29}
+	\umlassoc{Responsable T\'ecnico}{usecase-30}
+	\umlassoc{Administrador}{usecase-31}
+	\umlassoc{Administrador}{usecase-32}
+	\umlassoc{Administrador}{usecase-33}
+	\umlassoc{Administrador}{usecase-34}
+	\umlassoc{Administrador}{usecase-35}
+	\umlassoc{Administrador}{usecase-36}
+	\umlassoc{Administrador}{usecase-37}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de Usuarios
+	}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{umlsystem}[x=6, fill=cyan!48]
+	{Subsistema de Gesti\'on de Administraci\'on}
+		\umlusecase{%
+			\hyperlink{CUN-40}
+				{Realizar backup}
+		}
+		\umlusecase[y=-1.5]{%
+			\hyperlink{CUN-41}
+				{Recuperar backup}
+		}
+	\end{umlsystem}
+	\umlactor[y=-0.75]{Administrador}
+	\umlassoc{Administrador}{usecase-40}
+	\umlassoc{Administrador}{usecase-41}
+	\end{tikzpicture}
+	\end{center}
+	\caption{%
+		Diagrama de casos de uso para Subsistema
+		de Gesti\'on de Administraci\'on
+	}
+\end{figure}
+\subsection[Actores]
+	{Definici\'on de Actores}
+\begin{center}
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{ACT-01}} &
+	\hfil \textbf{Administrador} \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Parametriza los valores necesarios para que
+	el sistema pueda funcionar con flexibilidad,
+	pero sin perder las caracter\'isticas deseadas;
+	se trata de las operaciones ABM y CRUD, de los
+	par\'ametros ajustables, etc\'etera. \\
+	\hline
+	\raggedleft \textit{Comentarios} & El administrador
+	no necesariamente es el superusuario. \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{ACT-02}} &
+	\hfil \textbf{Representante T\'ecnico} \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Tiene el poder de adjudicaci\'on a los servicios
+	que la universidad realice, sea elegido por
+	el Comitente o se apunte al servicio en
+	particular; asigna los recursos del servicio,
+	y propone los Compromisos y Retribuciones
+	de cada servicio que se halle a cargo. Tambi\'en
+	es una de las partes que firma una orden de
+	servicio. \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{ACT-03}} &
+	\hfil \textbf{Comitente} \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Solicita \'ordenes de servicio a la universidad,
+	pudiendo elegir los Representantes T\'ecnicos
+	(en caso de desear alguno/s en particular); as\'i
+	como decide qu\'e acci\'on tomar ante la propuesta
+	de Compromisos y Retribuciones de un servicio, sea
+	renegociar, aceptar o rechazar la propuesta.
+	Tambi\'en es una de las partes que firma una orden
+	de servicio. \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{ACT-04}} &
+	\hfil \textbf{Secretario} \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Revisa cada una de las \'ordenes de servicio
+	y otorga su firma final en el documento,
+	o puede cancelar la orden de servicio. \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{ACT-05}} &
+	\hfil \textbf{Ayudante} \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Se encarga de subir las \'ordenes de servicio
+	que hayan sido firmadas manuscritamente y las
+	resoluciones de convenios, adem\'as de las
+	facturas que corresponden por servicio.
+	Tambi\'en se encarga de registrar las
+	cancelaciones de servicios que estaban en
+	progreso. \\
+	\hline
+	\raggedleft \textit{Comentarios} & Ninguno \\
+	\hline
+\end{tabular}
+\end{center}
+\subsection[Uso de Negocio]
+	{Descripci\'on de Casos de Uso}
+\begin{center}
+\hypertarget{CUN-01}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-01}} &
+	\hfil \textbf{Registrar solicitud} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Registrar la
+	solicitud de un servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una solicitud
+	de servicio ha sido agregada. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere solicitar un servicio,
+	por lo que debe dirigirse a la secci\'on de
+	solicitudes; as\'i puede moverse al apartado
+	para crear una solicitud nueva, donde se
+	adjunta el nombre para la solicitud y una
+	descripci\'on de la misma; junto con los
+	Comitentes asociados y categor\'ias
+	correspondientes a la solicitud. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-02}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-02}} &
+	\hfil \textbf{Aceptar cometimiento} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Aceptar la
+	relaci\'on como Comitente a una solicitud de
+	servicio que no gener\'o. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Un Comitente
+	tuvo que asignar al actor como Comitente
+	(\hyperlink{CUN-01}{CUN-01}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Hay un nuevo
+	Comitente confirmado para un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere aceptar cumplir tal rol en un servicio
+	solicitado que no lo ha generado, por lo que debe
+	seleccionar la solicitud de servicio; as\'i, acepta tener
+	el puesto correspondido. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-03}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-03}} &
+	\hfil \textbf{Rechazar cometimiento} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Rechazar la
+	relaci\'on como Comitente a una solicitud de
+	servicio que no gener\'o. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Un Comitente
+	tuvo que asignar al actor como Comitente
+	(\hyperlink{CUN-01}{CUN-01}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & El Comitente
+	queda desligado de un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere rechazar cumplir tal rol en un servicio
+	solicitado que no lo ha generado, por lo que debe
+	seleccionar la solicitud de servicio; as\'i, rechaza tener
+	el puesto correspondido. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-04}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-04}} &
+	\hfil \textbf{Elegir Responsables} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Seleccionar
+	los Responsables T\'ecnicos deseados por el
+	Comitente para un servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & La solicitud
+	de servicio debe existir para elegir los posibles
+	Responsables T\'ecnicos
+	(\hyperlink{CUN-01}{CUN-01}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una solicitud
+	tiene candidatos a ser Responsables T\'ecnicos. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere manifestar los Responsables
+	T\'ecnicos que desea para un servicio que \'el
+	solicit\'o, por lo que debe seleccionar la solicitud
+	que corresponde al servicio que se quiere destinar a
+	los posibles Responsables T\'ecnicos; de ah\'i,
+	apunta a las personas pretendidas para cubrir los
+	cargos, donde es posible seleccionar a una o varias
+	para el puesto. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-05}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-05}} &
+	\hfil \textbf{Aceptar adjudicaci\'on} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Aceptar la
+	adjudicaci\'on por un Comitente para ser Responsable
+	T\'ecnico de un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Un Comitente
+	tuvo que asignar al actor como Responsable T\'ecnico
+	(\hyperlink{CUN-04}{CUN-04}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Hay un nuevo
+	Responsable T\'ecnico adjudicado para un servicio
+	solicitado. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Responsable T\'tecnico quiere aceptar la adjudicaci\'on
+	de un Comitente a un servicio solicitado, por lo que debe
+	seleccionar la solicitud de servicio; as\'i, acepta tener
+	el rol correspondido. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-06}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-06}} &
+	\hfil \textbf{Rechazar adjudicaci\'on} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Rechazar la
+	adjudicaci\'on por un Comitente para ser Responsable
+	T\'ecnico de un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Un Comitente
+	tuvo que asignar al actor como Responsable T\'ecnico
+	(\hyperlink{CUN-04}{CUN-04}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & El Responsable
+	T\'ecnico queda desligado de un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Responsable T\'tecnico quiere rechazar la adjudicaci\'on
+	de un Comitente a un servicio solicitado, por lo que debe
+	seleccionar la solicitud de servicio; as\'i, rechaza tener
+	el rol dado. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-07}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-07}} &
+	\hfil \textbf{Autoadjudicar solicitud} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Apuntarse a realizar
+	un servicio que ha sido solicitado. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & La solicitud
+	de servicio debe existir para adjudicarse como posible
+	Responsable T\'ecnico (\hyperlink{CUN-01}{CUN-01}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una solicitud
+	tiene un nuevo candidato a ser Responsable T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Responsable T\'ecnico quiere apuntarse para realizar
+	un servicio solicitado, por lo que debe seleccionar la
+	solicitud que desea adjudicarse; de ah\'i, da a conocer
+	su voluntad a realizar la solicitud pendiente. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-08}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-08}} &
+	\hfil \textbf{Rechazar Responsables} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Rechazar los
+	Responsables T\'ecnicos que se encuentren adjudicados
+	a un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Debe haber
+	Responsables T\'ecnicos adjudicados a un servicio
+	solicitado (\hyperlink{CUN-07}{CUN-07}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Hay nuevas
+	personas que han sido exentas del cargo de
+	Responsable T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere rechazar a personas que est\'an
+	adjudicadas como Responsables T\'ecnicos, por lo que
+	debe seleccionar los posibles Responsables T\'ecnicos
+	en el servicio solicitado; as\'i, decide exentarlos
+	del cargo adjudicado. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-09}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-09}} &
+	\hfil \textbf{Aceptar Responsables} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Aceptar los
+	Responsables T\'ecnicos que se encuentren adjudicados
+	a un servicio solicitado. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Debe haber
+	Responsables T\'ecnicos adjudicados a un servicio
+	solicitado (\hyperlink{CUN-07}{CUN-07}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Hay nuevas
+	personas que han sido aceptadas al cargo de
+	Responsable T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere aceptar a personas que est\'an
+	adjudicadas como Responsables T\'ecnicos, por lo que
+	debe seleccionar los posibles Responsables T\'ecnicos
+	en el servicio solicitado; as\'i, decide aceptarlos
+	del cargo adjudicado. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-10}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-10}} &
+	\hfil \textbf{Asignar regursos} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Asignar cu\'ales son
+	los posibles recursos a utilizar en un servicio futuro. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & La solicitud
+	de servicio debe contar con, al menos, un Responsable
+	T\'ecnico (\hyperlink{CUN-05}{CUN-05} o 
+	\hyperlink{CUN-09}{CUN-09}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una solicitud
+	de servicio tiene los recursos necesarios registrados. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Responsable T\'ecnico quiere adjuntar los recursos
+	requeridos para un servicio solicitado, por lo que debe
+	seleccionar la solicitud a la que tenga los permisos
+	necesarios; entonces, agrega cada uno de los recursos
+	(sea material, econ\'omico y/o humano) que se pretende
+	involucrar. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-11}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-11}} &
+	\hfil \textbf{Proponer orden} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Proponer los
+	compromisos y retribuciones dentro de una solicitud
+	de servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & La solicitud
+	de servicio debe contar con los recursos asignados
+	(\hyperlink{CUN-10}{CUN-10}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Los recursos
+	asignados para un posible servicio a futuro est\'an
+	avalados por un Responsable T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Responsable T\'ecnico quiere manifestar su acuerdo
+	con los compromisos y retribuciones, por lo que debe
+	seleccionar la asignaci\'on de recursos a la que
+	desea acordar; entonces, da a conocer su voluntad
+	respecto a los t\'erminos y condiciones adjuntos a una
+	solicitud de servicio. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-12}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-12}} &
+	\hfil \textbf{Aceptar propuesta} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Aceptar los
+	compromisos y retribuciones para un servicio
+	solicitado. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Los t\'erminos
+	y condiciones del servicio deben haber sido
+	propuestos por los Responsables T\'ecnicos
+	(\hyperlink{CUN-11}{CUN-11}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & La solicitud
+	de un servicio ha sido aprobada por las partes
+	involucradas. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere manifestar su acuerdo con los
+	compromisos y retribuciones propuestos, por lo que debe
+	seleccionar los t\'erminos y condiciones del
+	servicio solicitado a los que desea acordar; entonces,
+	da a conocer su voluntad respecto a los compromisos
+	y retribuciones para un servicio. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-13}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-13}} &
+	\hfil \textbf{Cancelar solicitud} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Cancelar un servicio
+	solicitado ante disconformidad con los t\'erminos y
+	condiciones. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Los compromisos
+	y retribuciones del servicio deben haber sido
+	propuestos por los Responsables T\'ecnicos
+	(\hyperlink{CUN-11}{CUN-11}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & La solicitud
+	de un servicio ha sido cancelada por el Comitente. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere discontinuar la solicitud de un
+	servicio por disconformidad con los t\'erminos y
+	condiciones propuestos, por lo que debe seleccionar los
+	compromisos y retribuciones del servicio a cancelar;
+	entonces, la solicitud queda revocada. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-14}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-14}} &
+	\hfil \textbf{Renegociar solicitud} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & No aceptar un servicio
+	solicitado bajo los compromisos y retribuciones
+	propuestos, remarcando los cambios necesarios para su
+	aprobaci\'on a futuro. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Los t\'erminos
+	y condiciones del servicio deben haber sido
+	propuestos por los Responsables T\'ecnicos
+	(\hyperlink{CUN-11}{CUN-11}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & La propuesta
+	de compromisos y retribuciones es negada, anexando
+	las modificaciones requeridas para alguna pr\'oxima. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Comitente quiere manifestar su disconformidad con
+	los t\'erminos y condiciones propuestos a un servicio
+	solicitado, sugiriendo los cambios que se desean para
+	los compromisos y retribuciones a proponer posteriormente;
+	para ello, selecciona los t\'erminos y condiciones
+	a los que no concuerda. Posteriormente, da a conocer
+	su discrepancia con los compromisos y retribuciones en
+	cuesti\'on; por \'ultimo, agrega las modificaciones que
+	desea observar para la pr\'oxima propuesta de t\'erminos
+	y condiciones. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-15}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-15}} &
+	\hfil \textbf{Suspender solicitud} \\
+	\hline
+	\raggedleft \textit{Actores} & (ninguno) \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Cancelar un servicio
+	por inactividad. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Ha transcurrido
+	el tiempo m\'aximo estipulado para una acci\'on en
+	la adjudicaci\'on de Responsables T\'ecnicos
+	(\hyperlink{CUN-04}{CUN-04}, \hyperlink{CUN-05}{CUN-05}
+	\hyperlink{CUN-07}{CUN-07}, \hyperlink{CUN-08}{CUN-08},
+	\hyperlink{CUN-08}{CUN-08} o \hyperlink{CUN-09}{CUN-09})
+	o en el ajuste de recursos que pertenece a un servicio
+	solicitado (\hyperlink{CUN-10}{CUN-10},
+	\hyperlink{CUN-11}{CUN-11}, \hyperlink{CUN-12}{CUN-12},
+	\hyperlink{CUN-13}{CUN-13} o \hyperlink{CUN-14}{CUN-14}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & La solicitud
+	de un servicio ha sido cancelada autom\'aticamente. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Una solicitud de servicio se encuentra en una etapa de
+	su procedimiento por un tiempo que excede el m\'aximo
+	estipulado, por lo que debe cancelarse la misma; entonces,
+	se modifica el estado de la solicitud y se invalida. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-16}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-16}} &
+	\hfil \textbf{Generar orden} \\
+	\hline
+	\raggedleft \textit{Actores} & Ayudante \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Generar una orden
+	de servicio en formato impreso. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente y
+	los Responsables T\'ecnicos acordaron los Compromisos
+	y Retribuciones para un servicio solicitado
+	(\hyperlink{CUN-12}{CUN-12}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Ayudante decide generar una orden de servicio impresa,
+	por lo que debe dirigirse a la orden de servicio en
+	cuesti\'on; entonces, obtiene la orden de servicio en
+	forma impresa. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-17}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-17}} &
+	\hfil \textbf{Firmar orden} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente,
+	Responsable T\'ecnico y Secretario \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Firmar una orden
+	de servicio digitalmente. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente y
+	los Responsables T\'ecnicos acordaron los Compromisos
+	y Retribuciones para un servicio solicitado
+	(\hyperlink{CUN-12}{CUN-12}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una orden de
+	servicio cuenta con una nueva firma digital. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un actor decide firmar una orden de servicio digitalmente,
+	por lo que debe dirigirse a la orden de servicio en
+	cuesti\'on; entonces, coloca la firma en el documento
+	y se agrega al conjunto de firmas que ya tenga. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-18}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-18}} &
+	\hfil \textbf{Cancelar orden} \\
+	\hline
+	\raggedleft \textit{Actores} & Secretario \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Cancelar una orden
+	de servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente y
+	los Responsables T\'ecnicos acordaron los Compromisos
+	y Retribuciones para un servicio solicitado
+	(\hyperlink{CUN-12}{CUN-12}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una orden de
+	servicio queda cancelada. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Secretario decide cancelar una orden de servicio,
+	por lo que debe dirigirse a la orden de servicio en
+	cuesti\'on; entonces, hace efectiva la nulidad de
+	una orden de servicio. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-19}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-19}} &
+	\hfil \textbf{Subir orden} \\
+	\hline
+	\raggedleft \textit{Actores} & Ayudante \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Subir una orden
+	de servicio firmada de forma manuscrita. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente,
+	los Responsables T\'ecnicos y el Secretario firmaron
+	una orden de servicio impresa
+	(\hyperlink{CUN-16}{CUN-16}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una orden de
+	servicio firmada de forma manuscrita se encuentra
+	en el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Ayudante decide subir una orden de servicio impresa
+	que se encuentra con todas las firmas requeridas,
+	por lo que debe cargar el escaneo del papel en cuesti\'on;
+	entonces, se verifica la validez del documento y
+	se agrega al servicio que corresponda. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-20}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-20}} &
+	\hfil \textbf{Suspender orden} \\
+	\hline
+	\raggedleft \textit{Actores} & (ninguno) \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Cancelar una orden de
+	servicio por inactividad. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Ha transcurrido
+	el tiempo m\'aximo estipulado para una acci\'on en
+	la firma de una orden de servicio
+	(\hyperlink{CUN-17}{CUN-17} o
+	\hyperlink{CUN-19}{CUN-19}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & La orden de un
+	servicio ha sido cancelada autom\'aticamente. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Una orden de servicio se encuentra en una etapa de
+	su procedimiento por un tiempo que excede el m\'aximo
+	estipulado, por lo que debe cancelarse la misma; entonces,
+	se modifica el estado de la orden y se invalida. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-21}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-21}} &
+	\hfil \textbf{Subir resoluci\'on} \\
+	\hline
+	\raggedleft \textit{Actores} & Ayudante \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Registrar el
+	pago de un Comitente sobre un servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Consejo
+	Directivo firm\'o una resoluci\'on sobre el convenio
+	de un servicio. \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una nueva
+	resoluci\'on para un servicio se encuentra en el
+	sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Ayudante debe subir una resoluci\'on respecto al
+	convenio de un servicio, por lo que debe seleccionar
+	el servicio involucrado; entonces, carga la propia
+	resoluci\'on firmada y queda dentro del sistema. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-22}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-22}} &
+	\hfil \textbf{Cancelar convenio} \\
+	\hline
+	\raggedleft \textit{Actores} & Secretario \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Cancelar un
+	convenio para un servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente y
+	los Responsables T\'ecnicos acordaron los Compromisos
+	y Retribuciones para un servicio solicitado
+	(\hyperlink{CUN-12}{CUN-12}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un convenio de
+	servicio queda cancelado. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Secretario debe registrar la cancelaci\'on de un
+	convenio de servicio por parte del Consejo Directivo,
+	por lo que debe dirigirse al convenio de servicio en
+	cuesti\'on; entonces, hace efectiva la nulidad de
+	un convenio de servicio. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-23}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-23}} &
+	\hfil \textbf{Registrar pago} \\
+	\hline
+	\raggedleft \textit{Actores} & Ayudante \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Registrar el
+	pago de un Comitente sobre un servicio. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente,
+	los Responsables T\'ecnicos y el Secretario firmaron
+	una orden de servicio
+	(\hyperlink{CUN-17}{CUN-17} o
+	\hyperlink{CUN-19}{CUN-19}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un nuevo pago
+	sobre un servicio se encuentra en el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Ayudante debe registrar un pago realizado por un
+	Comitente respecto a un servicio, por lo que debe
+	seleccionar el servicio involucrado; entonces, carga
+	el monto pagado del servicio y el Comitente que
+	realiz\'o el pago. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-24}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-24}} &
+	\hfil \textbf{Registrar completitud} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Registrar la
+	completitud de un servicio en progreso. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente,
+	los Responsables T\'ecnicos y el Secretario firmaron
+	una orden de servicio
+	(\hyperlink{CUN-17}{CUN-17} o
+	\hyperlink{CUN-19}{CUN-19}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un nuevo
+	porcentaje de completitud se encuentra en el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	Un Responsable T\'ecnico decide registrar un progreso
+	realizado en un servicio, por lo que debe
+	seleccionar el servicio involucrado; entonces, carga
+	el porcentaje que se ha progresado y una descripci\'on
+	de los avances. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-24}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-24}} &
+	\hfil \textbf{Cancelar servicio} \\
+	\hline
+	\raggedleft \textit{Actores} & Secretario \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Cancelar un
+	servicio que se encontraba en progreso. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & El Comitente,
+	los Responsables T\'ecnicos y el Secretario firmaron
+	una orden de servicio
+	(\hyperlink{CUN-17}{CUN-17} o
+	\hyperlink{CUN-19}{CUN-19}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Hay un nuevo
+	servicio cancelado en el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Secretario debe cancelar un servicio en progreso,
+	por lo que debe seleccionar el servicio a cancelar;
+	entonces, ingresa la causa de la cancelaci\'on y
+	confirma su decisi\'on. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-26}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-26}} &
+	\hfil \textbf{Agregar firma} \\
+	\hline
+	\raggedleft \textit{Actores} & (ninguno) \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Agregar una firma
+	digital a un documento. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El sistema tiene la tarea de firmar un documento
+	digitalmente. Para ello, recibe el archivo en cuesti\'on,
+	la firma misma con su certificado digital y el lugar a
+	ubicar la firma; entonces, se obtiene el documento
+	firmado como salida. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-27}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-27}} &
+	\hfil \textbf{Verificar orden} \\
+	\hline
+	\raggedleft \textit{Actores} & (ninguno) \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Verificar una
+	orden de servicio firmada de forma manuscrita. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El sistema tiene la tarea de verificar una orden
+	de servicio que est\'a firmada a mano. Para ello,
+	recibe el escaneo del documento en cuesti\'on;
+	entonces, se encuentra la correspondencia al
+	servicio registrado en el sistema, se valida la
+	equivalencia de contenido de texto entre el
+	documento generado y el escaneado, y se comprueba
+	la existencia de firmas en los bloques que
+	corresponde. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-28}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-28}} &
+	\hfil \textbf{Registrar Usuario} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador,
+	Secretario, Ayudante, Representante T\'ecnico
+	y Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Registrar un
+	usuario dentro del sistema. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un usuario
+	se ha registrado. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El usuario quiere registrarse como tal dentro
+	del sistema. Para ello, se dirige a la p\'agina
+	de inicio de sistema; de ah\'i, ingresa los datos
+	necesarios de un usuario y se genera el nuevo
+	usuario. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-29}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-29}} &
+	\hfil \textbf{Registrar Comitente} \\
+	\hline
+	\raggedleft \textit{Actores} & Comitente \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Obtener los
+	datos necesarios para un nuevo Comitente. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Los datos de
+	un posible nuevo Comitente est\'an en el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El usuario quiere agregar los datos necesarios para
+	ser Comitente en el sistema. Para ello, se dirige a la
+	p\'agina para registrarse como Comitente; de ah\'i,
+	ingresa los datos necesarios de un Comitente y se
+	guardan los datos. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-30}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-30}} &
+	\hfil \textbf{Registrar Responsable} \\
+	\hline
+	\raggedleft \textit{Actores} & Responsable
+	T\'ecnico \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Obtener los
+	datos necesarios para un nuevo Responsable
+	T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Los datos de
+	un posible nuevo Responsable T\'ecnico est\'an en el
+	sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El usuario quiere agregar los datos necesarios para
+	ser Responsable T\'ecnico en el sistema. Para ello,
+	se dirige a la p\'agina para registrarse como
+	Responsable T\'ecnico; de ah\'i, ingresa los datos
+	necesarios de un Comitente y se guardan los datos. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-31}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-31}} &
+	\hfil \textbf{Aprobar Comitente} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Habilitar a
+	un usuario acceder como Comitente. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & El Comitente
+	puede acceder al sistema con tal perfil. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El administrador debe habilitar a un usuario para
+	ejercer el rol de Comitente dentro el sistema. Para
+	ello, se dirige al perfil que gener\'o el usuario en
+	cuesti\'on; as\'i, aprueba el uso del mismo. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-32}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-32}} &
+	\hfil \textbf{Aprobar Responsable} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Habilitar a
+	un usuario acceder como Responsable T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & El Responsable
+	T\'ecnico puede acceder al sistema con tal perfil. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El administrador debe habilitar a un usuario para
+	ejercer el rol de Responsable T\'ecnico dentro el
+	sistema. Para ello, se dirige al perfil que gener\'o
+	el usuario en cuesti\'on; as\'i, aprueba el uso del
+	mismo. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-33}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-33}} &
+	\hfil \textbf{Registrar Secretario} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Registrar a la
+	nueva persona encargada de la Secretar\'ia de
+	Extensi\'on y Vinculaci\'on Tecnol\'ogica. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Los datos de
+	un posible nuevo Comitente est\'an en el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El administrador debe agregar los datos necesarios para
+	ser Secretario en el sistema. Para ello, se dirige a la
+	p\'agina para registrar al nuevo Secretario; de ah\'i,
+	ingresa los datos necesarios de un Secretario y se
+	deshabilita al anterior. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-34}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-34}} &
+	\hfil \textbf{Registrar Ayudante} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Obtener los
+	datos necesarios para un nuevo Responsable
+	T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Los datos de
+	un posible nuevo Responsable T\'ecnico est\'an en el
+	sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El usuario quiere agregar los datos necesarios para
+	ser Responsable T\'ecnico en el sistema. Para ello,
+	se dirige a la p\'agina para registrarse como
+	Responsable T\'ecnico; de ah\'i, ingresa los datos
+	necesarios de un Comitente y se guardan los datos. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-35}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-35}} &
+	\hfil \textbf{Invalidar Comitente} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Invalidar el
+	inicio a un Comitente. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un Comitente
+	no puede ocupar tal perfil para utilizar el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Administrador remover el acceso de un usuario con
+	el perfil de Comitente, por lo que se dirige al
+	panel de administrador; de ah\'i, selecciona el
+	perfil a invalidar y se lleva a cabo tal acci\'on. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-36}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-36}} &
+	\hfil \textbf{Invalidar Responsable} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Invalidar el
+	inicio a un Responsable T\'ecnico. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un Responsable
+	T\'ecnici no puede ocupar tal perfil para utilizar el
+	sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Administrador remover el acceso de un usuario con
+	el perfil de Responsable T\'ecnico, por lo que se dirige
+	al panel de administrador; de ah\'i, selecciona el
+	perfil a invalidar y se lleva a cabo tal acci\'on. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-37}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-37}} &
+	\hfil \textbf{Invalidar Ayudante} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Invalidar el
+	inicio a un Ayudante. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Un Ayudante
+	no puede ocupar tal perfil para utilizar el sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Administrador remover el acceso de un usuario con
+	el perfil de Ayudante, por lo que se dirige al
+	panel de administrador; de ah\'i, selecciona el
+	perfil a invalidar y se lleva a cabo tal acci\'on. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-38}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-38}} &
+	\hfil \textbf{Realizar notificaci\'on} \\
+	\hline
+	\raggedleft \textit{Actores} & (ninguno) \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Notificar a un
+	usuario sobre cierto estado del sistema. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Haber
+	realizado una acci\'on en el sistema que deba
+	notificarse a alg\'un usuario. \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & El usuario
+	tiene una nueva notificaci\'on sobre el estado
+	del sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El sistema tiene que notificar a un usuario sobre
+	el estado del sistema, por lo que debe recibir
+	el evento que lo genera; de ah\'i, genera el
+	mensaje y un enlace hacia donde tomar acciones
+	ante lo ocurrido. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-39}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-39}} &
+	\hfil \textbf{Avisar peri\'odicamente} \\
+	\hline
+	\raggedleft \textit{Actores} & (ninguno) \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Avisar a un
+	usuario sobre cierto estado del sistema
+	peri\'odicamente por correo electr\'onico. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Haber
+	realizado una acci\'on en el sistema que deba
+	avisarse a alg\'un usuario. \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & El usuario
+	tiene un nuevo correo electr\'onico sobre el estado
+	del sistema. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El sistema tiene que avisar a un usuario sobre
+	el estado del sistema por correo electr\'onico,
+	por lo que debe recibir el evento que lo genera;
+	de ah\'i, genera el mensaje y un enlace hacia
+	donde tomar acciones ante lo ocurrido. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-40}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-40}} &
+	\hfil \textbf{Realizar backup} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Realizar una
+	copia de la base de datos del sistema. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & (ninguna) \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & Una copia de
+	seguridad de la base de datos existe. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Administrador quiere realizar una copia de la
+	base de datos del sistema, por lo que se dirige al
+	panel de administrador; de ah\'i, selecciona la
+	opci\'on para realizar la copia de seguridad y se
+	lleva a cabo tal acci\'on. \\
+	\hline
+\end{tabular}} \\[1cm]
+\hypertarget{CUN-41}{%
+\begin{tabular}{ | p{3cm} | p{12.5cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUN-41}} &
+	\hfil \textbf{Recuperar backup} \\
+	\hline
+	\raggedleft \textit{Actores} & Administrador \\
+	\hline
+	\raggedleft \textit{Prop\'osito} & Recuperar la
+	base de datos del sistema a partir de una copia de
+	seguridad. \\
+	\hline
+	\raggedleft \textit{Pre Condici\'on} & Haber
+	realizado una copia de seguridad de la base de datos
+	del sistema (\hyperlink{CUN-40}{CUN-40}). \\
+	\hline
+	\raggedleft \textit{Pos Condici\'on} & La base de
+	datos ha sido restaurada a una copia de seguridad. \\
+	\hline
+	\raggedleft \textit{Descripci\'on} &
+	El Administrador quiere recuperar la base de datos
+	del sistema con una copia de seguridad, por lo que
+	se dirige al panel de administrador; de ah\'i,
+	selecciona la opci\'on para recuperar la copia de
+	seguridad y se lleva a cabo tal acci\'on con el
+	archivo que se elija para ello. \\
+	\hline
+\end{tabular}}
+\end{center}
+\section{Rastreabilidad}
+\normalsize{ \indent
+A continuaci\'on, se mostrar\'a la relaci\'on entre
+cada requisito funcional y caso de uso; donde RF
+representa requisito funcional y CUN significa caso
+de uso de negocio.
+}
+{\setlength{\tabcolsep}{1mm}
+\begin{center}
+\begin{tiny}
+\begin{longtable}{|*{23}{c|}}
+	\hline
+	\diagbox[innerwidth=1.5cm]{CUN}{RF} &
+	\hyperlink{RF-01}{01} & \hyperlink{RF-02}{02} &
+	\hyperlink{RF-03}{03} & \hyperlink{RF-04}{04} &
+	\hyperlink{RF-05}{05} & \hyperlink{RF-06}{06} &
+	\hyperlink{RF-07}{07} & \hyperlink{RF-08}{08} &
+	\hyperlink{RF-09}{09} & \hyperlink{RF-10}{10} &
+	\hyperlink{RF-11}{11} & \hyperlink{RF-12}{12} &
+	\hyperlink{RF-13}{13} & \hyperlink{RF-14}{14} &
+	\hyperlink{RF-15}{15} & \hyperlink{RF-16}{16} &
+	\hyperlink{RF-17}{17} & \hyperlink{RF-18}{18} &
+	\hyperlink{RF-19}{19} & \hyperlink{RF-20}{20} &
+	\hyperlink{RF-21}{21} & \hyperlink{RF-22}{22} \\
+	\hline
+	\endhead
+	\caption[]{Matriz de rastreabilidad RF/CUN}
+	\endfoot
+	\captionlistentry{Matriz de rastreabilidad RF/CUN}
+	\hyperlink{CUN-01}{01} & x & x & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \ & \ & \\
+	\hline
+	\hyperlink{CUN-02}{02} & \ & \ & x & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-03}{03} & \ & \ & x & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-04}{04} & \ & \ & \ & x & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \ & \ & \\
+	\hline
+	\hyperlink{CUN-05}{05} & \ & \ & \ & \ & x & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-06}{06} & \ & \ & \ & \ & x & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-07}{07} & \ & \ & \ & \ & x & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-08}{08} & \ & \ & \ & x & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-09}{09} & \ & \ & \ & x & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-10}{10} & \ & \ & \ & \ & \ & x & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-11}{11} & \ & \ & \ & \ & \ & \ & x & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-12}{12} & \ & \ & \ & \ & \ & \ & \ & x &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-13}{13} & \ & \ & \ & \ & \ & \ & \ & x &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-14}{14} & \ & \ & \ & \ & \ & \ & \ & x &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-15}{15} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-16}{16} & \ & \ & \ & \ & \ & \ & \ & \ &
+	x & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-17}{17} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-18}{18} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-19}{19} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-20}{20} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-21}{21} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-22}{22} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-23}{23} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-24}{24} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-25}{25} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-26}{26} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-27}{27} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & x & \ & \ & \ & \ & \ & \ & \ & \ & \ \\
+	\hline
+	\hyperlink{CUN-28}{28} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ & \ \\
+	\hline
+	\hyperlink{CUN-29}{29} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ & \ \\
+	\hline
+	\hyperlink{CUN-30}{30} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ & \ \\
+	\hline
+	\hyperlink{CUN-38}{38} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x \\
+	\hline
+	\hyperlink{CUN-39}{39} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x \\
+	\hline
+	\hyperlink{CUN-40}{40} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ \\
+	\hline
+	\hyperlink{CUN-41}{41} & \ & \ & \ & \ & \ & \ & \ & \ &
+	\ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & \ & x & \ \\
+	\hline
+\end{longtable}
+\end{tiny}
+\end{center}
+}
+\clearpage
+\section{Casos de Uso Extendido}
+\begin{center}
+\hypertarget{CUE-01}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-01}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Registrar solicitud}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-01}{CUN-01}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.25cm}
+		\item El Comitente se dirige a la
+		secci\'on de solicitudes de servicios
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El Comitente se dirige a la
+		la secci\'on para agregar una nueva
+		solicitud
+		\vspace{0.75cm}
+		\addtocounter{enumi}{1}
+		\item El Comitente coloca el nombre y
+		categor\'ia de la solicitud, y confirma
+		la informaci\'on dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		solicitudes de servicios con la secci\'on
+		para agregar una nueva solicitud
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para generar una solicitud de servicio nueva
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El sistema guarda la nueva solicitud
+		de servicio dada y proporciona la confirmaci\'on
+		de la operaci\'on exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		Pasos 5 y 6: El Responsable T\'ecnico completa el
+		formulario de forma inadecuada. El sistema
+		indica el error cometido y permanece
+		en el mismo lugar.
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-02}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-02}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Elegir Responsables}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-04}{CUN-04}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.5cm}
+		\item El Comitente se dirige a la
+		secci\'on de solicitudes de servicios
+		\vspace{1.5cm}
+		\addtocounter{enumi}{1}
+		\item El Comitente se dirige a la
+		la secci\'on para decidir sobre los
+		Responsables T\'ecnicos
+		\vspace{0.75cm}
+		\addtocounter{enumi}{1}
+		\item El Comitente elige los Responsables
+		T\'ecnicos y confirma la informaci\'on dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		solicitudes de servicios con la secci\'on
+		para decidir sobre los Responsables T\'ecnicos
+		\vspace{0.75cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para decidir sobre los Responsables T\'ecnicos
+		\vspace{0.75cm}
+		\addtocounter{enumi}{1}
+		\item El sistema guarda los cambios en la solicitud
+		de servicio dada y proporciona la confirmaci\'on
+		de la operaci\'on exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		Paso 5: El Comitente decide que la solicitud est\'e
+		abierta a la autoadjudicaci\'on de Responsables
+		T\'ecnicos. Al confirmar la decisi\'on, se modifica
+		la solicitud a abierta y proporciona la confirmaci\'on
+		de la operaci\'on exitosa
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-03}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-03}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Generar Orden}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-16}{CUN-16}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.75cm}
+		\item El Ayudante se dirige a la
+		secci\'on de \'ordenes de servicios
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El Ayudante se dirige a la
+		la secci\'on para generar la orden
+		de servicio
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		\'ordenes de servicios con la secci\'on
+		para generar documentos imprimibles
+		\vspace{0.75cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el archivo para
+		imprimir la orden servicio a ser firmada de
+		forma manuscrita
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		\textit{(ninguno)}
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-04}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-04}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Firmar Orden}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-17}{CUN-17}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.75cm}
+		\item El actor se dirige a la
+		secci\'on de \'ordenes de servicios
+		\vspace{1.5cm}
+		\addtocounter{enumi}{1}
+		\item El actor se dirige a la
+		la secci\'on para firmar la orden
+		de servicio
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El actor carga la firma digital,
+		junto con la contrase\~na de la misma,
+		y confirma la informaci\'on dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		\'ordenes de servicios con la secci\'on
+		para firmar la orden de servicio
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para firmar digitalmente la orden de servicio
+		\vspace{1.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema genera una nueva copia de la
+		orden de servicio con la firma digital y
+		proporciona la confirmaci\'on de la operaci\'on
+		exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		Paso 6: El archivo para firma digital proporcionado
+		no corresponde a un certificado digital privado.
+		El sistema indica el error cometido y permanece
+		en el mismo lugar.
+		\newline
+		Paso 6: La contrase\~na proporcionada no descifra
+		la firma digital proporcionada. El sistema indica
+		el error cometido y permanece en el mismo lugar.
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-05}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-05}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Subir Orden}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-19}{CUN-19}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.75cm}
+		\item El Ayudante se dirige a la
+		secci\'on de \'ordenes de servicios
+		\vspace{1.5cm}
+		\addtocounter{enumi}{1}
+		\item El Ayudante se dirige a la
+		la secci\'on para subir la orden
+		de servicio
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El Ayudante carga cada archivo que
+		representa una p\'agina de la orden de
+		servicio y confirma la informaci\'on dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		\'ordenes de servicios con la secci\'on
+		para subir la orden de servicio
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para subir la orden de servicio
+		\vspace{1.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema corrobora que las im\'agenes
+		corresponden a la orden de servicio del
+		formulario y proporciona la confirmaci\'on de
+		la operaci\'on exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		Paso 6: El texto del archivo no coincide con
+		la orden original. El sistema indica el error
+		cometido y permanece en el mismo lugar.
+		\newline
+		Paso 6: El bloque de firma no se encuentra en
+		el lugar de la orden original. El sistema indica
+		el error cometido y permanece en el mismo lugar.
+		\newline
+		Paso 6: No se encuentra una firma en el bloque
+		destinado para ello. El sistema indica
+		el error cometido y permanece en el mismo lugar.
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-06}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-06}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Subir Convenio}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-21}{CUN-21}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.75cm}
+		\item El Secretario se dirige a la
+		secci\'on de convenios
+		\vspace{1.5cm}
+		\addtocounter{enumi}{1}
+		\item El Secretario se dirige a la
+		la secci\'on para subir el convenio
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El actor carga el archivo de la
+		resoluci\'on y confirma la informaci\'on
+		dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.25cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		\'ordenes de servicios con la secci\'on
+		para agregar una nueva solicitud
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para firmar digitalmente la orden de servicio
+		\vspace{1.25cm}
+		\addtocounter{enumi}{1}
+		\item El sistema guarda la resoluci\'on con el
+		convenio correspondiente y proporciona la
+		confirmaci\'on de la operaci\'on exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		\textit{(ninguno)}
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-07}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-07}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Registrar pago}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-23}{CUN-23}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.75cm}
+		\item El Ayudante se dirige a la secci\'on
+		de servicios
+		\vspace{1.25cm}
+		\addtocounter{enumi}{1}
+		\item El Ayudante se dirige a la la secci\'on
+		para registrar el pago
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El Ayudante ingresa el monto pagado con
+		el Comitente que pag\'o y confirma la
+		informaci\'on dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.25cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		servicios con la secci\'on para agregar
+		un nuevo pago
+		\vspace{0.5cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para registrar el pago
+		\vspace{1.25cm}
+		\addtocounter{enumi}{1}
+		\item El sistema guarda la nueva completitud
+		en el servicio y proporciona la confirmaci\'on
+		de la operaci\'on exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		\textit{(ninguno)}
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+\newpage
+\hypertarget{CUE-08}{%
+\begin{longtable}{ | p{3cm} | p{6.25cm} | p{6.25cm} | }
+	\hline
+	\rowcolor{lightgray}
+	\hfil \textbf{\textit{CUE-08}} &
+	\multicolumn{2}{ p{13cm} | }
+		{\hfil \textbf{Registrar completitud}} \\
+	\hline
+	\endhead
+	\raggedleft \textit{Extiende} & 
+	\multicolumn{2}{ p{13cm} | }
+		{\hyperlink{CUN-24}{CUN-24}} \\
+	\hline
+	\multirow{2}{3cm}{%
+		\raggedleft
+		\textit{Flujo t\'ipico de Eventos}
+	} &
+	\hfil Acci\'on del Autor &
+	\hfil Respuesta del Sistema \\
+	\cline{2-3} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{-0.75cm}
+		\item El Responsable T\'ecnico se
+		dirige a la secci\'on de servicios
+		\vspace{1.25cm}
+		\addtocounter{enumi}{1}
+		\item El Responsable T\'ecnico se dirige
+		a la la secci\'on para registrar la completitud
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El Responsable T\'ecnico ingresa el
+		porcentaje de progreso en esta iteraci\'on
+		con una descripci\'on de ello y confirma la
+		informaci\'on dada
+	\end{enumerate} &%
+	\begin{enumerate}[wide, labelwidth=!, labelindent=0cm]
+		\vspace{0.25cm}
+		\addtocounter{enumi}{1}
+		\item El sistema devuelve el listado de
+		servicios con la secci\'on para agregar
+		una nueva completitud
+		\vspace{1cm}
+		\addtocounter{enumi}{1}
+		\item El sistema proporciona el formulario
+		para registrar la completitud
+		\vspace{2.25cm}
+		\addtocounter{enumi}{1}
+		\item El sistema guarda la nueva completitud
+		en el servicio y proporciona la confirmaci\'on
+		de la operaci\'on exitosa
+	\end{enumerate} \\
+	\hline
+	\raggedleft \textit{Curso Alternativo de Eventos} &
+	\multicolumn{2}{ p{13cm} | }{%
+		\vspace{-0.25cm}
+		\parbox{13cm}{%
+		\textit{(ninguno)}
+		\vspace{0.25cm}
+		}} \\
+	\hline
+\end{longtable}}
+% Registrar completitud, Registrar pago
+\end{center}

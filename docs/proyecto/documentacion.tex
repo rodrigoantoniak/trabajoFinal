@@ -1,0 +1,103 @@
+\documentclass[12pt,a4paper]{book}
+\special{papersize=210mm,297mm}
+\usepackage[
+	nomarginpar,
+	top=1in,
+	headheight=0.4in,
+	bottom=0.65in,
+	left=1in,
+	right=0.5in
+]{geometry}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{enumitem}
+\usepackage[hidelinks,linktoc=all]{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{float}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage[longtable]{multirow}
+\usepackage{makecell}
+\usepackage[usestackEOL]{stackengine}
+\usepackage{caption}
+\usepackage{diagbox}
+\usepackage{flafter}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
+\usepackage{helvet}
+\usepackage{ragged2e}
+\usepackage{pgfgantt}
+\usepackage{tikz-uml}
+\makeatletter
+\renewcommand{\thetable}
+{\arabic{chapter}.\arabic{table}}
+\@addtoreset{table}{section}
+\makeatother
+\renewcommand{\familydefault}{\sfdefault}
+\selectfont
+\addto\captionsspanish{
+	\renewcommand{\contentsname}{\'Indice}
+}
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\abovecaptionskip}{0mm}
+\setlength{\belowcaptionskip}{3mm}
+\renewcommand{\arraystretch}{1.5}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\urlstyle{same}
+\newcolumntype{d}{>
+	{\columncolor{lightgray}} p{4.5cm}
+}
+\tikzumlset{fill usecase=white}
+\graphicspath{ {./images/} }
+\begin{document}
+	\raggedbottom
+	\frontmatter
+	\pagenumbering{gobble}
+	\include{./include/caratula}
+	\cleardoublepage
+	\pagestyle{plain}
+	\pagenumbering{roman}
+	\setcounter{page}{3}
+	\include{./include/listaCambios}
+	\cleardoublepage
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	\cleardoublepage
+	\mainmatter
+	\pagestyle{fancy}
+	\fancyhead{}
+	\fancyhead[RO,RE]{
+		GesServOrConv \\ Antoniak, Rodrigo Lionel
+	}
+	\fancyfoot{}
+	\fancyfoot[RE,RO]{\thepage}
+	\chapter{Planificaci\'on}
+	\include{./include/plan}
+	\chapter{Relevamiento}
+	\include{./include/relevamiento}
+	\chapter[Factibilidad]{Estudio de Factibilidad}
+	\include{./include/factibilidad}
+	\chapter{Requerimientos}
+	\include{./include/requerimientos}
+	\chapter{An\'alisis}
+	\include{./include/analisis}
+	\chapter{Dise\~no}
+	\include{./include/disenio}
+	\chapter{Implementaci\'on}
+	\include{./include/implementacion}
+	\chapter{Pruebas}
+	\include{./include/pruebas}
+	\chapter{Implantaci\'on}
+	\include{./include/implantacion}
+	\cleardoublepage
+	\appendix
+	\pagestyle{fancy}
+	\chapter{Anexos auxiliares}
+	\include{./include/otrosAnexos}
+\end{document}

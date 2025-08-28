@@ -1,0 +1,79 @@
+\section{Bases de datos}
+\normalsize{\indent
+Para la administraci\'on de datos, se
+ha utilizado PostgreSQL como almacenamiento
+principal y Redis como complemento; donde
+este \'ultimo abarca el control de
+sesiones, la distribuci\'on de mensajes
+as\'incrono, rate limit, cach\'e y back-end
+de gesti\'on de tareas. Respecto al
+motor de base de datos SQL, se ha utilizado
+las extensiones hstore (para utilizar
+diccionarios), btree\_gin (para el indizado
+de palabras clave en forma de \'arbol B,
+destinado a b\'usquedas avanzadas) y
+unaccent (para remover acentos, utilizado
+en b\'usquedas).
+}
+\section{Back-end}
+\normalsize{\indent
+Para el desarrolo de la capa entre la
+interfaz de usuario y la base de datos,
+se ha utilizado el framework Django 4.2
+(por consecuente, el lenguaje de
+programaci\'on es Python, en su versi\'on
+3.11) junto con el manejador de tareas
+Celery 5.4 (para a gesti\'on de tareas
+peri\'odicas, crons, entre otros).
+Como complementos a Django, se utiliza
+Channels para utilizar WebSockets
+(destinado a notificaciones) a trav\'es
+del servidor Daphne. En adici\'on,
+se hace uso de otras librer\'ias para
+funcionalidades m\'as espec\'ificas:
+}
+\begin{itemize}
+	\item \textbf{Reportlab:} sirve
+	para obtener los reportes en el
+	sistema.
+	\item \textbf{Endesive:} sirve para
+	efectuar las firmas digitales.
+	\item \textbf{OpenCV 4:} sirve para
+	la manipulaci\'on de im\'agenes en
+	la validaci\'on de documentos
+	firmados a mano.
+	\item \textbf{Tesseract 5:} sirve
+	para leer el contenido de texto en
+	la validaci\'on de documentos
+	firmados a mano.
+	\item \textbf{Matplotlib 3:} sirve
+	para obtener las estad\'isticas
+	en el sistema.
+\end{itemize}
+\section{Front-end}
+\normalsize{\indent
+Para la interfaz de usuario, se ha
+utilizado el motor de plantillas de
+Django por defecto; junto con el
+framework CSS Bootstrap 5.3 y la
+librer\'ia de JavaScript HTMX 1.9.
+Respecto al marco de trabajo, se
+posee el bundle completo; mientras
+que de la librer\'ia, se agrega las
+extensiones de WebSocket y Preload.
+Adicionalmente, se ocupa las librer\'ias
+de JavaScript jQuery 3.6 y Select2
+(versi\'on 4); donde el primero es
+una dependencia del segundo, adem\'as
+de utilizarse en determinados casos
+para facilitar la resoluci\'on
+de conflictos con algunos componentes
+espec\'ificos en Bootstrap.
+}
+\section{Entorno de trabajo}
+\normalsize{\indent
+Para la codificaci\'on del software,
+se ha utilizado VSCodium en el
+sistema operativo OpenSUSE
+Tumbleweed.
+}

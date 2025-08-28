@@ -1,0 +1,50 @@
+\section{Servidor}
+\normalsize{\indent
+El servidor se encontrar\'ia en formato
+de una m\'aquina virtual con una conexi\'on
+de red puente con el hu\'esped. Esto
+\'ultimo se debe al uso de m\'ultiples
+puntos de acceso al sistema (gracias a
+django-hosts), donde el acceso a p\'ublico
+estar\'a disponible para todo p\'ublico y
+el administrador provisto por Django se
+accede solamente desde localhost.
+}
+\newline
+\normalsize{\indent
+El hu\'esped est\'a ubicado en la sede
+central de la FCEQyN (en F\'elix de Azara,
+por la ciudad de Posadas), contando
+con el uso del sistema operativo Linux
+Debian 12.
+}
+\newline
+\normalsize{\indent
+La cantidad de memoria asignada a la
+m\'aquina virtual estar\'a delegada al
+criterio del sector de mantenimiento de
+servidores de la FCEQyN en el edificio
+donde se encuentra el hu\'esped.
+As\'i mismo, la facultad posee un proveedor
+de correo electr\'onico propio; en
+consecuencia, no hace falta contratar
+alguno espec\'ifico para este software.
+}
+\newline
+\normalsize{\indent
+Este sistema no requiere el uso de
+CDNs para la distribuci\'on de contenido
+est\'atico o archivos varios (aunque
+puede mejorar el rendimiento del software
+en un futuro).
+}
+\newline
+\normalsize{\indent
+El gestor de tareas Celery se ejecutar\'ia
+como un servicio de SystemD tras el
+arranque de la m\'aquina virtual y
+mientras se mantenga en ejecuci\'on la
+misma. Por otro lado, el servidor Daphne
+estar\'ia gestionado por Nginx y
+Supervisor(d).
+}

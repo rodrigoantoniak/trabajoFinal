@@ -1,0 +1,1227 @@
+\section{Pruebas unitarias}
+\normalsize{\indent
+Para estas pruebas, se ha centrado principalmente
+en asegurar que las migraciones del sistema se
+hayan realizado adecuadamente; validando de que
+las pruebas de integraci\'on no vayan a tener
+problemas por inconsistencias en la base de datos
+con el ORM. Por cada migraci\'on del sistema,
+existe una prueba unitaria para tal transacci\'on.
+}
+\section{Pruebas de integraci\'on}
+\begin{center}
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0001 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Creaci\'on de solicitud sin categor\'ia ni
+	comitentes asociados. \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para agregar solicitudes
+			\item Rellenar los datos de la solicitud
+			\item Confirmar la creaci\'on de solicitud
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Nombre de solicitud: Un nombre gen\'erico
+    		\item Descripci\'on de solicitud: Una descripci\'on
+    		conforme
+    		\item Si Convenio u Orden de Servicio: Selecci\'on
+    		entre las dos opciones mencionadas
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0002 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Creaci\'on de solicitud con comitentes
+	asociados y sin categor\'ia. \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para agregar solicitudes
+			\item Rellenar los datos de la solicitud
+			\item Confirmar la creaci\'on de solicitud
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][3cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Comitentes asociados: Selecci\'on aleatoria
+			de comitentes
+			\item Nombre de solicitud: Un nombre gen\'erico
+    		\item Descripci\'on de solicitud: Una descripci\'on
+    		conforme
+    		\item Si Convenio u Orden de Servicio: Selecci\'on
+    		entre las dos opciones mencionadas
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0003 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Creaci\'on de solicitud con categor\'ia y sin
+	comitentes asociados. \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para agregar solicitudes
+			\item Rellenar los datos de la solicitud
+			\item Confirmar la creaci\'on de solicitud
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Categor\'ias: Selecci\'on aleatoria
+			de categor\'ias
+			\item Nombre de solicitud: Un nombre gen\'erico
+    		\item Descripci\'on de solicitud: Una descripci\'on
+    		conforme
+    		\item Si Convenio u Orden de Servicio: Selecci\'on
+    		entre las dos opciones mencionadas
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0004 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Creaci\'on de solicitud con categor\'ia y
+	comitentes asociados. \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para agregar solicitudes
+			\item Rellenar los datos de la solicitud
+			\item Confirmar la creaci\'on de solicitud
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][3.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Comitentes asociados: Selecci\'on aleatoria
+			de comitentes
+			\item Categor\'ias: Selecci\'on aleatoria
+			de categor\'ias
+			\item Nombre de solicitud: Un nombre gen\'erico
+    		\item Descripci\'on de solicitud: Una descripci\'on
+    		conforme
+    		\item Si Convenio u Orden de Servicio: Selecci\'on
+    		entre las dos opciones mencionadas
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Creaci\'on de la solicitud exitosa \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0005 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Aceptaci\'on de asociaci\'on a solicitud como
+	comitente. \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para aceptar
+			como comitente
+			\item Confirmar la aceptaci\'on de
+			asociaci\'on como comitente
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Solicitud de Servicio: Una
+			solicitud en la que asociaron al
+			comitente
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Comitente agregado definitivamente a una solicitud \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Comitente agregado definitivamente a una solicitud \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0006 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Rechazo de asociaci\'on a solicitud como
+	comitente. \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para rechazar
+			como comitente
+			\item Confirmar el rechazo
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Solicitud de Servicio: Una
+			solicitud en la que asociaron al
+			comitente
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Solicitud cancelada por rechazo de un comitente \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Solicitud cancelada por rechazo de un comitente \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0007 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Decisi\'on de Responsables T\'ecnicos en
+	solicitud \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente
+			\item Ir hacia la p\'agina para decidir
+			sobre los Responsables T\'ecnicos
+			\item Seleccionar los Responsables
+			T\'ecnicos a adjuntar
+			\item Confirmar la decisi\'on
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Solicitud de servicio: Una solicitud
+			en la que debe decidirse los Responsables
+			T\'ecnicos (todos los Comitentes ya aceptaron)
+			\item Responsables T\'ecnicos: Un conjunto
+			no vac\'io de Responsables T\'ecnicos
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Solicitud con Responsables T\'ecnicos adjuntos \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Solicitud con Responsables T\'ecnicos adjuntos \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0008 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Aceptaci\'on de Responsables T\'ecnicos en
+	solicitud \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Responsable T\'ecnico
+			\item Ir hacia la p\'agina para aceptar
+			ser Responsable T\'ecnico en solicitud
+			\item Confirmar la aceptaci\'on de la
+			responsabilidad
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Solicitud de servicio: Aquel en que
+			hayan adjuntado al Responsable T\'ecnico
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Solicitud con Responsable T\'ecnico aceptado
+	definitivamente \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Solicitud con Responsable T\'ecnico aceptado
+	definitivamente \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0009 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Propuesta de compromisos \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Responsable T\'ecnico
+			\item Ir hacia la p\'agina para proponer
+			compromisos
+			\item Ingresar las propuestas de compromisos
+			\item Confirmar la propuesta de compromisos
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Solicitud de servicio: Aquella a la que
+			se va a proponer compromisos
+			\item Compromisos de Comitente
+			\item Compromisos de Unidad Ejecutora
+			\item Retribuciones Econ\'omicas
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Nueva propuesta de compromisos para solicitud \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Nueva propuesta de compromisos para solicitud \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0010 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Aceptaci\'on de compromisos \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Responsable T\'ecnico
+			o Comitente
+			\item Ir hacia la p\'agina de la propuesta
+			de compromisos
+			\item Confirmar la aceptaci\'on de propuesta
+			de compromisos
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Propuesta de compromisos: Aquella que
+			se encuentre actualmente vigente para una
+			solicitud de servicio
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Nueva aceptaci\'on de propuesta de compromisos en
+	solicitud \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Nueva aceptaci\'on de propuesta de compromisos en
+	solicitud \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0011 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Renegociaci\'on de compromisos \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Responsable T\'ecnico
+			o Comitente
+			\item Ir hacia la p\'agina de la propuesta
+			de compromisos
+			\item Confirmar la renegociaci\'on de propuesta
+			de compromisos
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Propuesta de compromisos: Aquella que
+			se encuentre actualmente vigente para una
+			solicitud de servicio
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	La propuesta de compromisos deja de ser vigente,
+	pero la solicitud de servicio sigue en pie \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	La propuesta de compromisos deja de ser vigente,
+	pero la solicitud de servicio sigue en pie \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0012 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Rechazo de compromisos \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Responsable T\'ecnico
+			o Comitente
+			\item Ir hacia la p\'agina de la propuesta
+			de compromisos
+			\item Confirmar el rechazo de propuesta
+			de compromisos
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Propuesta de compromisos: Aquella que
+			se encuentre actualmente vigente para una
+			solicitud de servicio
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	La propuesta de compromisos deja de ser vigente y
+	se cancela la solicitud de servicio \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	La propuesta de compromisos deja de ser vigente y
+	se cancela la solicitud de servicio \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0013 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Firmar orden \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente,
+			Responsable T\'ecnico o Secretario
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir la firma e ingresar la
+			contrase\~na
+			\item Confirmar la firma de la orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento a
+			ser firmado
+			\item Firma digital: archivo PKCS\#12
+			que representa la parte privada del
+			certificado digital
+			\item Contrase\~na de firma: c\'odigo
+			que descifra la firma digital
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Existe una nueva versi\'on de la orden de
+	servicio con una firma digital adicional \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Existe un nuevo archivo vac\'io \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento err\'oneo \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	El causante de la falla se debe a la posici\'on
+	del puntero en el archivo al escribir todo el
+	contenido que deber\'ia tener. Se soluciona con
+	el cierre y reapertura del puntero \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0014 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Firmar orden \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Comitente,
+			Responsable T\'ecnico o Secretario
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir la firma e ingresar la
+			contrase\~na
+			\item Confirmar la firma de la orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento a
+			ser firmado
+			\item Firma digital: archivo PKCS\#12
+			que representa la parte privada del
+			certificado digital
+			\item Contrase\~na de firma: c\'odigo
+			que descifra la firma digital
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Existe una nueva versi\'on de la orden de
+	servicio con una firma digital adicional \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Existe una nueva versi\'on de la orden de
+	servicio con una firma digital adicional \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0015 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir documento con firmas manuscritas \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir las imágenes del
+			documento con firmas
+			\item Confirmar la subida de la
+			orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento
+			a ser firmado
+			\item Im\'agenes de documento: cada
+			escaneado del documento firmado
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Al ajustar los caracteres en una l\'inea
+	paralela al documento original, se obtiene una
+	imagen inesperada y provoca errores
+	posteriormente \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento err\'oneo \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	La falla se encuentra en que el n\'ucleo ORB
+	para el alineado es muy peque\~no (500),
+	entonces debe agrandarse (a 3500) \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0016 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir documento con firmas manuscritas \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir las imágenes del
+			documento con firmas
+			\item Confirmar la subida de la
+			orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento
+			a ser firmado
+			\item Im\'agenes de documento: cada
+			escaneado del documento firmado
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	El procedimiento considera que el texto entre
+	el original y el escaneado son insuficientemente
+	iguales \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento err\'oneo \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	La falla se encuentra en que la constante de
+	coincidencia de texto es muy grande (0,025),
+	entonces debe ser m\'as peque\~no (0,001) \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0017 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir documento con firmas manuscritas \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir las imágenes del
+			documento con firmas
+			\item Confirmar la subida de la
+			orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento
+			a ser firmado
+			\item Im\'agenes de documento: cada
+			escaneado del documento firmado
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se considera que no se hallan los bloques de
+	firma en el lugar indicado de la orden original \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento err\'oneo \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	La falla se encuentra en que, al alinear los
+	caracteres del documento escaneado, no se
+	hallan exactamente en el mismo lugar que el
+	original. Para corregir, se permite detectar el
+	bloque de firma con cierto rango de error \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0018 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir documento con firmas manuscritas \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir las imágenes del
+			documento con firmas
+			\item Confirmar la subida de la
+			orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento
+			a ser firmado
+			\item Im\'agenes de documento: cada
+			escaneado del documento firmado
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se considera que no se hallan los bloques de
+	firma en el lugar indicado de la orden original \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento err\'oneo \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	La falla se encuentra en que la constante para
+	asegurar de que hay una firma es muy grande para
+	firmas m\'inimas (0,1), para lo cual se reduce a
+	un n\'umero menor (0,09) \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0019 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir documento con firmas manuscritas \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir las imágenes del
+			documento con firmas
+			\item Confirmar la subida de la
+			orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento
+			a ser firmado
+			\item Im\'agenes de documento: cada
+			escaneado del documento firmado
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0019 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir documento con firmas manuscritas \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina de la
+			orden de servicio
+			\item Subir las imágenes del
+			documento con firmas
+			\item Confirmar la subida de la
+			orden
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Orden de servicio: documento
+			a ser firmado
+			\item Im\'agenes de documento: cada
+			escaneado del documento firmado
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se corrobora que cada imagen tiene suficiente
+	texto esperado y cuenta con las firmas, para
+	as\'i adjuntar a la orden de servicio en el
+	sistema \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0020 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Subir convenio \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Secretario
+			\item Ir hacia la p\'agina del convenio
+			\item Subir el archivo con la resoluci\'on
+			\item Confirmar la subida del convenio
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Convenio: lugar a donde guardar la
+			resoluci\'on
+			\item Resoluci\'on: archivo con el
+			documento firmado por el Consejo Directivo
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se adjunta la resolución al convenio \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se adjunta la resolución al convenio \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0021 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Agregar progreso \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Responsable T\'ecnico
+			\item Ir hacia la p\'agina del servicio
+			\item Cargar los datos del progreso en el servicio
+			\item Confirmar el progreso en el servicio
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][2.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Servicio
+			\item Descripci\'on de progreso:
+			informaci\'on adicional del progreso
+			\item Porcentaje de progreso: proporci\'on
+			de servicio completada
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se agrega el progreso al servicio \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se agrega el progreso al servicio \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0022 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Agregar pago \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][2cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Ayudante
+			\item Ir hacia la p\'agina del servicio
+			\item Cargar los datos del pago en el servicio
+			\item Confirmar el pago en el servicio
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Servicio
+			\item Comitente de pago: persona que
+			realiz\'o el pago
+			\item Monto de pago: cantidad de pesos
+			pagada
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se agrega el pago al servicio \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se agrega el pago al servicio \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\begin{tabular}{ | d | p{11cm} | }
+	\hline
+	\rowcolor{gray}
+	\multicolumn{2}{|c|}
+	{\textbf{\textit{Caso de prueba}}} \\
+	\hline
+	\raggedleft \textbf{ID del caso de prueba} &
+	P0023 \\
+	\hline
+	\raggedleft \textbf{Nombre del caso} &
+	Cancelar servicio \\
+	\hline
+	\raggedleft \textbf{Pasos a reproducir} &
+	\vspace{-0.9cm}
+	\begin{minipage}[t][1.5cm][t]{11cm}
+		\begin{enumerate}[noitemsep,nosep]
+			\item Acceder como Secretario
+			\item Ir hacia la p\'agina del servicio
+			\item Confirmar la cancelaci\'on del servicio
+		\end{enumerate}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Datos de entrada} &
+	\begin{minipage}[t][0.5cm][t]{11cm}
+		\begin{itemize}[noitemsep,nosep]
+			\item Servicio
+		\end{itemize}
+    \end{minipage} \\
+	\hline
+	\raggedleft \textbf{Resultado esperado} &
+	Se cancela el servicio \\
+	\hline
+	\raggedleft \textbf{Resultado obtenido} &
+	Se cancela el servicio \\
+	\hline
+	\raggedleft \textbf{Evaluaci\'on} &
+	Comportamiento correcto \\
+	\hline
+	\raggedleft \textbf{Comentarios} &
+	\textit{(ninguno)} \\
+	\hline
+\end{tabular} \\[1cm]
+\end{center}
