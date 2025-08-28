@@ -1,0 +1,80 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Subir orden{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:ayudante' %}">
+            Ayudante
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'firmas:lista_ordenes_ayudante' %}">
+            Órdenes de Servicio
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ orden }}</li>
+    <li class="breadcrumb-item" aria-current="page">Subir orden</li>
+</ol>
+<h2 class="text-center">Subir orden</h2>
+<form enctype="multipart/form-data" method="post" id="formulario">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table class="container mx-auto">
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Seleccione las imágenes que corresponden a
+                    cada página de la orden de servicio firmada
+                    (en orden). Recuerde que el archivo debe
+                    tener formato PNG y haber sido escaneado
+                    con 300 PPP mínimamente.
+                </p>
+            </td>
+        </tr>
+        {% for form in formset %}
+        <tr class="row d-flex justify-content-start mx-auto">
+            <td class="col-auto mt-0 my-2">
+                <div class="form-floating">
+                    <input type="file" class="form-control my-auto"
+                        id="{{ form.archivo_escaneo.id_for_label }}"
+                        name="{{ form.archivo_escaneo.html_name }}"
+                        accept="image/png"
+                        required
+                    >
+                    <label for="{{ form.archivo_escaneo.id_for_label }}">
+                        Página {{ forloop.counter }}
+                    </label>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'firmas:lista_ordenes_ayudante' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de convenios"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto"
+            value="Subir archivo"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}

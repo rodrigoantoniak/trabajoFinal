@@ -1,0 +1,75 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Subir convenio{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:secretario' %}">
+            Secretario
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'firmas:lista_convenios_secretario' %}">
+            Convenios
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ convenio }}</li>
+    <li class="breadcrumb-item" aria-current="page">Subir convenio</li>
+</ol>
+<h2 class="text-center">Subir convenio</h2>
+<form enctype="multipart/form-data" method="post" id="formulario">
+    {% csrf_token %}
+    <table class="container mx-auto">
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Seleccione el archivo que corresponde a la
+                    resolución firmada por el Consejo Directivo
+                    (se espera un archivo PDF)
+                </p>
+            </td>
+        </tr>
+        <tr class="row d-flex justify-content-start mx-auto">
+            <td class="col-auto mt-0 my-2">
+                <div class="form-floating">
+                    <input type="file" class="form-control my-auto"
+                        id="{{ form.archivo_convenio.id_for_label }}"
+                        name="{{ form.archivo_convenio.html_name }}"
+                        accept="application/pdf"
+                        required
+                    >
+                    <label for="{{ form.archivo_convenio.id_for_label }}">
+                        Archivo a subir
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'firmas:lista_convenios_secretario' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de convenios"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto"
+            value="Subir archivo"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}
