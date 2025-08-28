@@ -1,0 +1,156 @@
+{% load vector %}
+{% if page_obj %}
+    {% widthratio page_obj.number|add:"-1" 1 page_obj.paginator.per_page as inicio_pagina %}
+    {% for accion in page_obj|slice:":-1" %}
+    <div class="accordion-item">
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed text-break" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse{{ inicio_pagina|add:forloop.counter }}"
+                aria-expanded="false"
+                aria-controls="collapse{{ inicio_pagina|add:forloop.counter }}"
+            >{% if not accion.viejo and accion.nuevo %}
+                Creación en {{ accion.relname }} {{ accion.tiempo_auditoria|date:"c" }}
+            {% elif accion.viejo and accion.nuevo %}
+                Edición en {{ accion.relname }} {{ accion.tiempo_auditoria|date:"c" }}
+            {% elif accion.viejo and not accion.nuevo %}
+                Destrucción en {{ accion.relname }} {{ accion.tiempo_auditoria|date:"c" }}
+            {% endif %}</button>
+        </h3>
+        <div id="collapse{{ inicio_pagina|add:forloop.counter }}"
+            class="accordion-collapse collapse"
+            data-bs-parent="#auditorias"
+        >
+            <div class="accordion-body">
+                <div class="container">
+                    <div class="row justify-content-between">
+                    {% if accion.viejo and accion.nuevo %}
+                        <div class="col bg-danger text-white overflow-auto">
+                            {% with viejo=accion.viejo|first %}
+                            <p>{{ viejo.0 }}: {{ viejo.1 }}</p>
+                            {% endwith %}
+                            {% for atributo in accion.viejo|slice:"1:" %}
+                            {% with nuevo=accion.nuevo|enesimo:forloop.counter %}
+                            {% if atributo.1 != nuevo.1 %}
+                            <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                            {% endif %}
+                            {% endwith %}
+                            {% endfor %}
+                        </div>
+                        <div class="col bg-success text-white overflow-auto">
+                            {% with nuevo=accion.nuevo|first %}
+                            <p>{{ nuevo.0 }}: {{ nuevo.1 }}</p>
+                            {% endwith %}
+                            {% for atributo in accion.nuevo|slice:"1:" %}
+                            {% with viejo=accion.viejo|enesimo:forloop.counter %}
+                            {% if atributo.1 != viejo.1 %}
+                            <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                            {% endif %}
+                            {% endwith %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {% if accion.viejo %}
+                        <div class="col bg-danger text-white overflow-auto">
+                            {% for atributo in accion.viejo %}
+                            <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if accion.nuevo %}
+                        <div class="col bg-success text-white overflow-auto">
+                            {% for atributo in accion.nuevo %}
+                            <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% with ultimo=page_obj.end_index %}
+    {% for accion in page_obj|slice:"-1:" %}
+    <div class="accordion-item"
+        {% if page_obj.has_next %}
+        hx-get="{% url 'auditoria:index' %}?pagina={{ page_obj.next_page_number }}"
+        hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+        hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+        hx-trigger="revealed"
+        hx-target="#auditorias"
+        hx-indicator="#indicador"
+        hx-swap="beforeend"
+        {% endif %}
+    >
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse{{ ultimo }}"
+                aria-expanded="false"
+                aria-controls="collapse{{ ultimo }}"
+            >{% if not accion.viejo and accion.nuevo %}
+                Creación en {{ accion.relname }} {{ accion.tiempo_auditoria|date:"c" }}
+            {% elif accion.viejo and accion.nuevo %}
+                Edición en {{ accion.relname }} {{ accion.tiempo_auditoria|date:"c" }}
+            {% elif accion.viejo and not accion.nuevo %}
+                Destrucción en {{ accion.relname }} {{ accion.tiempo_auditoria|date:"c" }}
+            {% endif %}</button>
+        </h3>
+        <div id="collapse{{ ultimo }}"
+            class="accordion-collapse collapse"
+            data-bs-parent="#auditorias"
+        >
+            <div class="accordion-body">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        {% if accion.viejo and accion.nuevo %}
+                            <div class="col bg-danger text-white overflow-auto">
+                                {% with viejo=accion.viejo|first %}
+                                <p>{{ viejo.0 }}: {{ viejo.1 }}</p>
+                                {% endwith %}
+                                {% for atributo in accion.viejo|slice:"1:" %}
+                                {% with nuevo=accion.nuevo|enesimo:forloop.counter %}
+                                {% if atributo.1 != nuevo.1 %}
+                                <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                                {% endif %}
+                                {% endwith %}
+                                {% endfor %}
+                            </div>
+                            <div class="col bg-success text-white overflow-auto">
+                                {% with nuevo=accion.nuevo|first %}
+                                <p>{{ nuevo.0 }}: {{ nuevo.1 }}</p>
+                                {% endwith %}
+                                {% for atributo in accion.nuevo|slice:"1:" %}
+                                {% with viejo=accion.viejo|enesimo:forloop.counter %}
+                                {% if atributo.1 != viejo.1 %}
+                                <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                                {% endif %}
+                                {% endwith %}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {% if accion.viejo %}
+                                <div class="col bg-danger text-white overflow-auto">
+                                    {% for atributo in accion.viejo %}
+                                    <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if accion.nuevo %}
+                                <div class="col bg-success text-white overflow-auto">
+                                    {% for atributo in accion.nuevo %}
+                                    <p>{{ atributo.0 }}: {{ atributo.1 }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endwith %}
+{% else %}
+    <p class="text-center">No hay auditoría</p>
+{% endif %}

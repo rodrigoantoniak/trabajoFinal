@@ -1,0 +1,46 @@
+<fieldset class="row align-items-center mb-2">
+    <legend class="col-form-label col py-4 border rounded-start-2 fs-5">
+        Inicio
+    </legend>
+    <div class="col border rounded-end-2 bg-white was-validated">
+        <input type="date" class="form-control form-control-sm text-center mt-1"
+            id="id_buscar_fecha_inicio" name="buscar_fecha_inicio"
+            hx-get="{{ request.path }}" hx-trigger="input changed delay:500ms"
+            hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+            hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+            hx-target="#auditorias"
+            hx-indicator="#indicador"
+        >
+        <input type="time" class="form-control form-control-sm text-center mt-2 mb-1"
+            id="id_buscar_hora_inicio" name="buscar_hora_inicio"
+            hx-get="{{ request.path }}" hx-trigger="input changed delay:500ms"
+            hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+            hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+            hx-target="#auditorias"
+            hx-indicator="#indicador"
+        >
+    </div>
+</fieldset>
+<fieldset class="row align-items-center mb-2">
+    <legend class="col-form-label col py-4 border rounded-start-2 fs-5">
+        Fin
+    </legend>
+    <div class="col border rounded-end-2 bg-white was-validated">
+        <input type="date" class="form-control form-control-sm text-center mt-1"
+            id="id_buscar_fecha_fin" name="buscar_fecha_fin"
+            hx-get="{{ request.path }}" hx-trigger="input changed delay:500ms"
+            hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+            hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+            hx-target="#auditorias"
+            hx-indicator="#indicador"
+        >
+        <input type="time" class="form-control form-control-sm text-center mt-2 mb-1"
+            id="id_buscar_hora_fin" name="buscar_hora_fin"
+            hx-get="{{ request.path }}" hx-trigger="input changed delay:500ms"
+            hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+            hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+            hx-target="#auditorias"
+            hx-indicator="#indicador"
+        >
+    </div>
+</fieldset>

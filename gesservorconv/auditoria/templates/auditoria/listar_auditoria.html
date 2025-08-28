@@ -1,0 +1,325 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Auditoría{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buscarFechaInicio = document.getElementById("id_buscar_fecha_inicio");
+        const buscarHoraInicio = document.getElementById("id_buscar_hora_inicio");
+        const buscarFechaFin = document.getElementById("id_buscar_fecha_fin");
+        const buscarHoraFin = document.getElementById("id_buscar_hora_fin");
+        const primerTiempo = new Date(Date.UTC(70)); // momento 0 epoch
+        const ahora = new Date("{% now 'c' %}");
+        const primerAnio = String(primerTiempo.getFullYear());
+        const primerMes = String(primerTiempo.getMonth() + 1).padStart(2, '0');
+        const primerDia = String(primerTiempo.getDate()).padStart(2, '0');
+        const primeraHora = String(primerTiempo.getHours()).padStart(2, '0');
+        const primerMinuto = String(primerTiempo.getMinutes()).padStart(2, '0');
+        const anioActual = String(ahora.getFullYear());
+        const mesActual = String(ahora.getMonth() + 1).padStart(2, '0');
+        const diaActual = String(ahora.getDate()).padStart(2, '0');
+        const horaActual = String(ahora.getHours()).padStart(2, '0');
+        const minutoActual = String(ahora.getMinutes()).padStart(2, '0');
+        buscarFechaInicio.value = primerAnio + "-" + primerMes + "-" + primerDia;
+        buscarFechaInicio.min = primerAnio + "-" + primerMes + "-" + primerDia;
+        buscarFechaInicio.max = anioActual + "-" + mesActual + "-" + diaActual;
+        buscarHoraInicio.value = primeraHora + ":" + primerMinuto;
+        buscarHoraInicio.min = primeraHora + ":" + primerMinuto;
+        buscarHoraInicio.max = "23:59";
+        buscarFechaFin.value = anioActual + "-" + mesActual + "-" + diaActual;
+        buscarFechaFin.min = primerAnio + "-" + primerMes + "-" + primerDia;
+        buscarFechaFin.max = anioActual + "-" + mesActual + "-" + diaActual;
+        buscarHoraFin.value = horaActual + ":" + minutoActual;
+        buscarHoraFin.min = "00:00";
+        buscarHoraFin.max = horaActual + ":" + minutoActual;
+        const creadoIncluido = document.getElementById("id_creado_incluido");
+        const editadoIncluido = document.getElementById("id_editado_incluido");
+        const destruidoIncluido = document.getElementById("id_destruido_incluido");
+        creadoIncluido.checked = true;
+        editadoIncluido.checked = true;
+        destruidoIncluido.checked = true;
+        const buscarTabla = document.getElementById("id_buscar_tabla");
+        const buscarValor = document.getElementById("id_buscar_valor");
+        buscarTabla.value = "";
+        buscarValor.value = "";
+        const titulos = document.getElementsByClassName("accordion-button");
+        let indice = -1;
+        let tiempoAccion;
+        let anioAccion;
+        let mesAccion;
+        let diaAccion;
+        let horaAccion;
+        let minutoAccion;
+        for (const titulo of titulos) {
+            indice = titulo.innerHTML.search(
+                /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/
+            );
+            tiempoAccion = new Date(titulo.innerHTML.substring(indice, indice+32));
+            diaAccion = new Intl.DateTimeFormat(
+                [],
+                {dateStyle: "short"}
+            ).format(tiempoAccion);
+            horaAccion = new Intl.DateTimeFormat(
+                [],
+                {timeStyle: "short"}
+            ).format(tiempoAccion);
+            titulo.innerHTML = titulo.innerHTML.replace(
+                /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/,
+                "hecho el " + diaAccion + " a las " + horaAccion
+            );
+        }
+    }, false);
+
+    document.addEventListener("htmx:beforeRequest", function (e) {
+        const fechaValida = /^([0-9]{4}-((((0[1-9])|(1[0-2]))-(([0-1][0-9])|(2[0-8])))|(((0[13-9])|(1[0-2]))-(29|30))|(((0[1358])|(1[02]))-31)))|([0-9]{2}(([02468][048])|([13579][26]))-02-29)$/;
+        const horaValida = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/;
+        const buscarFechaInicio = document.getElementById("id_buscar_fecha_inicio");
+        const buscarHoraInicio = document.getElementById("id_buscar_hora_inicio");
+        const buscarFechaFin = document.getElementById("id_buscar_fecha_fin");
+        const buscarHoraFin = document.getElementById("id_buscar_hora_fin");
+        const fechaInicioValida = fechaValida.test(buscarFechaInicio.value);
+        const horaInicioValida = horaValida.test(buscarHoraInicio.value);
+        const fechaFinValida = fechaValida.test(buscarFechaFin.value);
+        const horaFinValida = horaValida.test(buscarHoraFin.value);
+        if (!(fechaInicioValida && horaInicioValida && fechaFinValida && horaFinValida)) {
+            e.preventDefault();
+            return;
+        }
+        const primerTiempo = new Date(Date.UTC(70)); // momento 0 epoch
+        const ahora = new Date("{% now 'c' %}");
+        const anioUno = String(primerTiempo.getFullYear());
+        const mesUno = String(primerTiempo.getMonth() + 1).padStart(2, '0');
+        const diaUno = String(primerTiempo.getDate()).padStart(2, '0');
+        const horaUno = String(primerTiempo.getHours()).padStart(2, '0');
+        const minutoUno = String(primerTiempo.getMinutes()).padStart(2, '0');
+        const anioDos = String(ahora.getFullYear());
+        const mesDos = String(ahora.getMonth() + 1).padStart(2, '0');
+        const diaDos = String(ahora.getDate()).padStart(2, '0');
+        const horaDos = String(ahora.getHours()).padStart(2, '0');
+        const minutoDos = String(ahora.getMinutes()).padStart(2, '0');
+        const tiempoInicio = new Date(
+            buscarFechaInicio.value + "T" + buscarHoraInicio.value
+        );
+        const tiempoFin = new Date(
+            buscarFechaFin.value + "T" + buscarHoraFin.value
+        );
+        buscarFechaInicio.min = anioUno + "-" + mesUno + "-" + diaUno;
+        if (
+            buscarFechaInicio.value === anioUno + "-" + mesUno + "-" + diaUno
+        ) {
+            buscarHoraInicio.min = horaUno + ":" + minutoUno;
+        } else {
+            buscarHoraInicio.min = "00:00";
+        }
+        buscarFechaInicio.max = buscarFechaFin.value;
+        if (
+            buscarFechaInicio.value >= buscarFechaFin.value
+        ) {
+            buscarHoraInicio.max = buscarHoraFin.value;
+        } else {
+            buscarHoraInicio.max = "23:59";
+        }
+        buscarFechaFin.min = buscarFechaInicio.value;
+        if (
+            buscarFechaFin.value <= buscarFechaInicio.value
+        ) {
+            buscarHoraFin.min = buscarHoraInicio.value;
+        } else {
+            buscarHoraFin.min = "00:00";
+        }
+        buscarFechaFin.max = anioDos + "-" + mesDos + "-" + diaDos;
+        if (
+            buscarFechaFin.value === anioDos + "-" + mesDos + "-" + diaDos
+        ) {
+            buscarHoraFin.max = horaDos + ":" + minutoDos;
+        } else {
+            buscarHoraFin.max = "23:59";
+        }
+        if (
+            (e.detail.elt.id === "id_buscar_fecha_inicio") ||
+            (e.detail.elt.id === "id_buscar_hora_inicio")
+        ) {
+            if (tiempoInicio < primerTiempo || tiempoInicio > tiempoFin) {
+                e.preventDefault();
+                const auditorias = document.getElementById("auditorias");
+                auditorias.innerHTML = "<p class=\"text-center\">No hay auditoría</p>";
+            }
+        }
+        if (
+            (e.detail.elt.id === "id_buscar_fecha_fin") ||
+            (e.detail.elt.id === "id_buscar_hora_fin")
+        ) {
+            if (tiempoFin > ahora || tiempoFin < tiempoInicio ) {
+                e.preventDefault();
+                const auditorias = document.getElementById("auditorias");
+                auditorias.innerHTML = "<p class=\"text-center\">No hay auditoría</p>";
+            }
+        }
+        return;
+    }, true);
+
+    document.addEventListener("htmx:afterSettle", function (e) {
+        if (e.detail.target.id === "auditorias") {
+            let indice = -1;
+            let tiempoAccion;
+            let anioAccion;
+            let mesAccion;
+            let diaAccion;
+            let horaAccion;
+            let minutoAccion;
+            if (e.detail.requestConfig.elt.className === "accordion-item") {
+                const auditorias = document.getElementById("auditorias");
+                let titulo;
+                indice = 0;
+                while (auditorias.children.item(indice) !== e.detail.requestConfig.elt) {
+                    ++indice;
+                }
+                for (let i = ++indice; i < auditorias.children.length; i++) {
+                    titulo = auditorias.children.item(i).firstElementChild.firstElementChild;
+                    indice = titulo.innerHTML.search(
+                        /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/
+                    );
+                    tiempoAccion = new Date(titulo.innerHTML.substring(indice, indice+32));
+                    diaAccion = new Intl.DateTimeFormat(
+                        [],
+                        {dateStyle: "short"}
+                    ).format(tiempoAccion);
+                    horaAccion = new Intl.DateTimeFormat(
+                        [],
+                        {timeStyle: "short"}
+                    ).format(tiempoAccion);
+                    titulo.innerHTML = titulo.innerHTML.replace(
+                        /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/,
+                        "hecho el " + diaAccion + " a las " + horaAccion
+                    );
+                }
+            } else {
+                const titulos = document.getElementsByClassName("accordion-button");
+                for (const titulo of titulos) {
+                    indice = titulo.innerHTML.search(
+                        /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/
+                    );
+                    tiempoAccion = new Date(titulo.innerHTML.substring(indice, indice+32));
+                    diaAccion = new Intl.DateTimeFormat(
+                        [],
+                        {dateStyle: "short"}
+                    ).format(tiempoAccion);
+                    horaAccion = new Intl.DateTimeFormat(
+                        [],
+                        {timeStyle: "short"}
+                    ).format(tiempoAccion);
+                    titulo.innerHTML = titulo.innerHTML.replace(
+                        /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/,
+                        "hecho el " + diaAccion + " a las " + horaAccion
+                    );
+                }
+            }
+        }
+    }, true);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item" aria-current="page">Auditoría</li>
+</ol>
+<h2 class="text-center">Auditorías</h2>
+<div class="container ms-1 me-auto ps-3 d-flex flex-column align-items-start">
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="form-floating col my-2 ps-0 pe-2">
+            <input type="search" class="form-control"
+                id="id_buscar_tabla" name="buscar_tabla"
+                hx-get="{{ request.path }}"
+                hx-include="#id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+                hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+                hx-trigger="input changed delay:500ms, search"
+                hx-target="#auditorias"
+                hx-indicator="#indicador"
+            >
+            <label for="id_buscar_tabla">
+                Buscar por tabla:
+            </label>
+        </div>
+        <div class="form-floating col my-2 ps-0 pe-2">
+            <input type="search" class="form-control"
+                id="id_buscar_valor" name="buscar_valor"
+                hx-get="{{ request.path }}"
+                hx-include="#id_buscar_tabla, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido, #id_destruido_incluido"
+                hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+                hx-trigger="input changed delay:500ms, search"
+                hx-target="#auditorias"
+                hx-indicator="#indicador"
+            >
+            <label for="id_buscar_valor">
+                Buscar por valor:
+            </label>
+        </div>
+    </div>
+    {% include 'parciales/_lapso_busqueda_auditoria.html' %}
+    <fieldset class="row mb-2 align-items-center">
+        <legend class="col-form-label col py-4 border rounded-start-2 fs-5">
+            Incluidos
+        </legend>
+        <div class="col border rounded-end-2 bg-white ps-5">
+            <div class="form-check form-switch p-0">
+                <input class="form-check-input" type="checkbox"
+                    role="switch" id="id_creado_incluido" name="creado_incluido"
+                    checked
+                    hx-get="{{ request.path }}"
+                    hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_editado_incluido, #id_destruido_incluido"
+                    hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+                    hx-target="#auditorias"
+                    hx-indicator="#indicador"
+                >
+                <label class="form-check-label" for="id_creado_incluido">
+                    Creado
+                </label>
+            </div>
+            <div class="form-check form-switch p-0">
+                <input class="form-check-input" type="checkbox"
+                    role="switch" id="id_editado_incluido" name="editado_incluido"
+                    checked
+                    hx-get="{{ request.path }}"
+                    hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_destruido_incluido"
+                    hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+                    hx-target="#auditorias"
+                    hx-indicator="#indicador"
+                >
+                <label class="form-check-label" for="id_editado_incluido">
+                    Editado
+                </label>
+            </div>
+            <div class="form-check form-switch p-0">
+                <input class="form-check-input" type="checkbox"
+                    role="switch" id="id_destruido_incluido" name="destruido_incluido"
+                    checked
+                    hx-get="{{ request.path }}"
+                    hx-include="#id_buscar_tabla, #id_buscar_valor, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, #id_creado_incluido, #id_editado_incluido"
+                    hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset()}'
+                    hx-target="#auditorias"
+                    hx-indicator="#indicador"
+                >
+                <label class="form-check-label" for="id_destruido_incluido">
+                    Destruido
+                </label>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="accordion px-2 fs-4" id="auditorias">
+    {% include 'parciales/_auditoria.html' %}
+</div>
+<div class="htmx-indicator container my-2" id="indicador">
+    <div class="row justify-content-center">
+        <div class="col-auto spinner-border text-primary"
+            role="status"
+        >
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}
