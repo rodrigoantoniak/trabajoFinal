@@ -1,0 +1,57 @@
+{% extends "base_gesservorconv.html" %}
+
+{% block contenido %}
+<h2 class="text-center fw-bold">Bienvenido a GesServOrConv</h2>
+<div class="px-2 fs-4">
+    <p>
+        Este sistema busca cubrir los procedimientos que se
+        hallan alrededor de los servicios solicitados
+        por uno o varios Comitentes a una Unidad Ejecutora
+        de la UNaM. De esta forma, se solucionan las
+        siguientes cuestiones con el software:
+    </p>
+    <ul>
+        <li>
+            Disponer de una plantilla de orden de servicio
+            parametrizada, para generar el documento de
+            forma consistente.
+        </li>
+        <li>
+            Otorgar un vía más formal y rápida para acordar
+            los términos en que se regirá un servicio.
+        </li>
+        <li>
+            Controlar la validez de las firmas en los
+            documentos firmados para las órdenes de servicio.
+        </li>
+        <li>
+            Definir condiciones en donde se cierre una orden
+            de servicio o su solicitud.
+        </li>
+        <li>
+            Vincular cada uno de los comprobantes con la
+            etapa en la que se encuentra un servicio.
+        </li>
+    </ul>
+    <p class="text-center">
+        Para comenzar, puede realizar una de las siguientes
+        acciones:
+    </p>
+    <div class="clearfix container">
+        <div class="float-start row my-2">
+            <a href="{% url 'cuentas:crear_cuenta' %}"
+                class="col-auto btn btn-primary btn-lg text-wrap"
+            >
+                Crear Cuenta
+            </a>
+        </div>
+        <div class="float-end row my-2">
+            <a href="{% url 'cuentas:iniciar_sesion' %}"
+                class="col-auto btn btn-primary btn-lg text-wrap"
+            >
+                Iniciar Sesión
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

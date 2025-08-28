@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es-AR" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}GesServOrConv{% endblock %}</title>
+    {% load static %}
+    <link href="{{ protocolo }}://{{ dominio }}{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{{ protocolo }}://{{ dominio }}{% static 'css/tangerine.css' %}" rel="stylesheet">
+    <link href="{{ protocolo }}://{{ dominio }}{% static 'css/basic.css' %}" rel="stylesheet">
+    <link href="{{ protocolo }}://{{ dominio }}{% static 'css/openSans.css' %}" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Open Sans Medium';
+        }
+        h1 {
+            font-family: 'Tangerine';
+        }
+        h2, #offcanvasNavbarLabel {
+            font-family: 'Basic', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-responsive">
+        <table cellpadding="0" cellspacing="0" class="table table-borderless">
+            <tr>
+                <td class="align-middle">
+                    <table cellpadding="0" cellspacing="0" class="table table-borderless">
+                        <tr>
+                            <td class="bg-primary text-center text-white">
+                                <h1>GesServOrConv</h1>
+                            </td>
+                        </tr>
+                        {% block cuerpo %}{% endblock %}
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
