@@ -1,0 +1,344 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Agregar Solicitud de Servicio{% endblock %}
+
+{% block estilos %}
+<link href="{% url 'select2_css' %}" rel="stylesheet">
+<style>
+    .select2-container {
+        width: auto !important;
+        min-width: 13rem;
+        max-width: 95%;
+    }
+    .select2-selection__choice {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% url 'jquery' %}"></script>
+<script src="{% url 'select2_js' %}"></script>
+<script src="{% url 'select2_js_es' %}"></script>
+<script>
+    function matchStart(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+        if (typeof data.children === 'undefined') {
+            return null;
+        }
+        const palabras = params.term.split(/\s+/);
+        if (
+            palabras.every(
+                palabra => data.text.indexOf(
+                    palabra.toUpperCase()
+                ) > -1
+            )
+        ) {
+            return data;
+        }
+        return null;
+    }
+    $(document).ready(function() {
+        const solicitante = document.getElementById("id_organizacion_comitente");
+        solicitante.value = "{% if convenio %}0{% endif %}";
+        const comitentes = document.getElementById("id_comitentes");
+        comitentes.value = "";
+        const por_convenio = document.getElementById("id_por_convenio");
+        const url = new URL(window.location.href);
+        por_convenio.checked = url.searchParams.has("convenio");
+        $("#id_por_convenio").on("change", function() {
+            if($(this).is(":checked")) {
+                $("#etiqueta_firma").text("Convenio");
+            } else {
+                $("#etiqueta_firma").text("Orden de Servicio");
+            }
+        });
+        const $selector = $(".selector");
+        $selector.select2(
+            {
+                language: "es",
+                theme: "default",
+                placeholder: "Elija los otros comitentes",
+                closeOnSelect: false,
+                scrollAfterSelect: true,
+                allowClear: false,
+                width: "style",
+                dropdownParent: $("#asociados"),
+                matcher: matchStart
+            } 
+        );
+        $selector.on('select2:selecting', function (e) {
+            const elemento = e.params.args.data.element;
+            for (let i=0; i<elemento.parentElement.children.length; i++) {
+                if (elemento !== elemento.parentElement.children.item(i)) {
+                    elemento.parentElement.children[i].selected = false;
+                }
+            }
+        });
+        $(".seleccionador").select2(
+            {
+                language: "es",
+                theme: "default",
+                placeholder: "Elija las categorías",
+                closeOnSelect: false,
+                scrollAfterSelect: true,
+                allowClear: false,
+                width: "style",
+                dropdownParent: $("#categorias")
+            }
+        )
+    });
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:comitente' %}">
+            Comitente
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}">
+            Solicitudes
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Nueva</li>
+</ol>
+<h2 class="text-center">Agregar Solicitud de Servicio</h2>
+<p class="form-text text-center mt-0 mb-4">
+    Todos los campos obligatorios están marcados con un asterisco (*)
+</p>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <table class="container mx-auto">
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Seleccione el rol con el que va a solicitar el servicio *
+                </p>
+            </td>
+        </tr>
+        <tr class="row mw-100 mx-auto justify-content-start">
+            <td class="col-auto mb-2">
+                <div class="form-floating">
+                    <select class="form-select"
+                        id="id_organizacion_comitente"
+                        name="organizacion_comitente"
+                        required
+                    >
+                        {% if usuario_comitente.habilitado_comitente is True %}
+                        <option value="0"{% if convenio %} selected{% endif %}>
+                            CUIL: {{ usuario_comitente.cuil_comitente|cuil }} (persona física)
+                        </option>
+                        {% endif %}
+                        {% for organizacion in usuario_comitente.cuit_organizaciones_comitente %}
+                        {% with razon_social=usuario_comitente.razones_sociales_comitente|enesimo:forloop.counter0 %}
+                        {% with puesto=usuario_comitente.puestos_organizaciones_comitente|enesimo:forloop.counter0 %}
+                        {% with habilitado=usuario_comitente.habilitado_organizaciones_comitente|enesimo:forloop.counter0 %}
+                        {% if habilitado is True %}
+                        <option value="{{ forloop.counter }}">
+                            {{ puesto }} - {{ razon_social }}. CUIT: {{ organizacion|cuit }}
+                        </option>
+                        {% endif %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endfor %}
+                    </select>
+                    <label for="id_organizacion_comitente">Solicitante</label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Seleccione los otros comitentes que deberían estar asociados
+                    a esta solicitud de servicio
+                </p>
+            </td>
+        </tr>
+        <tr class="row mw-100 mx-auto">
+            <td class="col mb-2">
+                <div class="text-start w-100" id="asociados">
+                    <label class="form-label" for="id_comitentes">
+                        Comitentes asociados:
+                    </label>
+                    <select class="form-select selector"
+                        id="id_comitentes"
+                        name="comitentes"
+                        multiple
+                    >
+                        {% for comitente in comitentes_solicitud %}
+                        <optgroup label="{{ comitente.usuario_comitente.last_name }}, {{ comitente.usuario_comitente.first_name }}">
+                            {% if comitente.habilitado_comitente is True %}
+                            <option value="{{ comitente.cuil_comitente|stringformat:"d" }}:0">
+                                CUIL: {{ comitente.cuil_comitente|cuil }} (persona física)
+                            </option>
+                            {% endif %}
+                            {% for organizacion in comitente.cuit_organizaciones_comitente %}
+                            {% with razon_social=comitente.razones_sociales_comitente|enesimo:forloop.counter0 %}
+                            {% with puesto=comitente.puestos_organizaciones_comitente|enesimo:forloop.counter0 %}
+                            {% with habilitado=comitente.habilitado_organizaciones_comitente|enesimo:forloop.counter0 %}
+                            {% if habilitado is True %}
+                            <option value="{{ comitente.cuil_comitente|stringformat:"d" }}:{{ forloop.counter }}">
+                                {{ puesto }} - {{ razon_social }}. CUIT: {{ organizacion|cuit }}
+                            </option>
+                            {% endif %}
+                            {% endwith %}
+                            {% endwith %}
+                            {% endwith %}
+                            {% endfor %}
+                        </optgroup>
+                        {% endfor %}
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Seleccione las categorías que correspondan
+                    a esta solicitud de servicio
+                </p>
+            </td>
+        </tr>
+        <tr class="row mw-100 mx-auto">
+            <td class="col mb-2">
+                <div class="text-start w-100" id="categorias">
+                    <label class="form-label" for="id_categorias">
+                        Categorías:
+                    </label>
+                    <select class="form-select seleccionador"
+                        id="id_categorias"
+                        name="categorias"
+                        multiple
+                    >
+                        {% for facultad in facultades %}
+                        <optgroup label="{{ facultad.nombre_facultad }}">
+                            {% for categoria in facultad.categoria_set.all %}
+                            <option value="{{ categoria.pk }}">
+                                {{ facultad.acronimo_facultad }}:
+                                {{ categoria.nombre_categoria }}
+                            </option>
+                            {% endfor %}
+                        </optgroup>
+                        {% endfor %}
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Ingrese el nombre del servicio que va a solicitar *
+                </p>
+            </td>
+        </tr>
+        <tr class="row d-flex justify-content-start mx-auto">
+            <td class="col-auto mt-0 my-2">
+                <div class="form-floating">
+                    <input type="text" class="form-control my-auto"
+                        id="id_nombre_solicitud"
+                        name="nombre_solicitud"
+                        placeholder="Solicitud"
+                        required
+                    >
+                    <label for="id_nombre_solicitud">Nombre</label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Ingrese la descripción del servicio que va a solicitar *
+                </p>
+            </td>
+        </tr>
+        <tr class="row d-flex justify-content-start mx-auto">
+            <td class="col-auto mt-0 my-2">
+                <div class="form-floating">
+                    <textarea class="form-control my-auto"
+                        id="id_descripcion_solicitud"
+                        name="descripcion_solicitud"
+                        placeholder="Descripción de solicitud"
+                        required
+                    ></textarea>
+                    <label for="id_descripcion_solicitud">
+                        Descripción
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="container mt-2 me-auto align-items-start">
+        <div class="row justify-content-start ps-3">
+            <p class="col-auto me-auto align-self-start form-text text-start px-2">
+                Seleccione el tipo de documento a firmar después de
+                asentar la solicitud de servicio *
+            </p>
+        </div>
+        <fieldset class="row justify-content-start ps-2">
+            <legend class="col-form-label col-auto border rounded-start-2 ms-1">
+                Firma
+            </legend>
+            <div class="col-auto align-self-start border rounded-end-2 bg-white">
+                <div class="form-check form-switch py-2">
+                    <input class="form-check-input" type="checkbox"
+                        role="switch" id="id_por_convenio" name="por_convenio"
+                        {% if convenio %}checked{% endif %}
+                    >
+                    <label class="form-check-label" for="id_por_convenio"
+                        id="etiqueta_firma"
+                    >
+                        {% if convenio %}
+                        Convenio
+                        {% else %}
+                        Orden de Servicio
+                        {% endif %}
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row justify-content-start ps-3">
+            <p class="col-auto me-auto align-self-start form-text text-start px-2">
+                En caso de seleccionar Orden de Servicio, todos los Comitentes y
+                Responsables Técnicos (además de la persona encargada de la
+                Secretaría de Extensión y Vinculación Tecnológica) deberán firmar
+                tal documento; en cambio, el Convenio es sólo firmado por el
+                Consejo Directivo.
+            </p>
+        </div>
+    </div>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de solicitudes"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto"
+            value="Agregar solicitud"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}

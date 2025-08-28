@@ -1,0 +1,189 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Decidir Responsables Técnicos{% endblock %}
+
+{% block estilos %}
+<link href="{% url 'select2_css' %}" rel="stylesheet">
+<style>
+    .select2-container {
+        width: auto !important;
+        min-width: 12rem;
+        max-width: 95%;
+    }
+    .select2-selection__choice {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% url 'jquery' %}"></script>
+<script src="{% url 'select2_js' %}"></script>
+<script src="{% url 'select2_js_es' %}"></script>
+<script>
+    function matchStart(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+        if (typeof data.children === 'undefined') {
+            return null;
+        }
+        const palabras = params.term.split(/\s+/);
+        if (
+            palabras.every(
+                palabra => data.text.indexOf(
+                    palabra.toUpperCase()
+                ) > -1
+            )
+        ) {
+            return data;
+        }
+        return null;
+    }
+    $(document).ready(function() {
+        const comitentes = document.getElementById("id_responsables");
+        comitentes.value = "";
+        const autoadjudicados = document.getElementById("id_autoadjudicados");
+        autoadjudicados.checked = false;
+        $("#id_autoadjudicados").on("change", function() {
+            $("#id_responsables").prop("disabled", $(this).is(":checked"));
+            $("#responsables").css(
+                "display",
+                $(this).is(":checked") ? "none" : "block"
+            );
+            $("#etiqueta_autoadjudicado").text(
+                $(this).is(":checked") ? "Solicitud abierta" : "Responsables Técnicos seleccionados"
+            )
+        });
+        const $eventSelect = $(".selector");
+        $eventSelect.select2(
+            {
+                language: "es",
+                placeholder: "Elija los Responsables",
+                closeOnSelect: false,
+                scrollAfterSelect: true,
+                allowClear: false,
+                width: "style",
+                dropdownParent: $("#responsables"),
+                matcher: matchStart
+            } 
+        );
+        $eventSelect.on('select2:selecting', function (e) {
+            const elemento = e.params.args.data.element;
+            for (let i=0; i<elemento.parentElement.children.length; i++) {
+                if (elemento !== elemento.parentElement.children.item(i)) {
+                    elemento.parentElement.children[i].selected = false;
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:comitente' %}">
+            Comitente
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}">
+            Solicitudes
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ solicitud }}</li>
+    <li class="breadcrumb-item" aria-current="page">Decidir Responsables Técnicos</li>
+</ol>
+<h2 class="text-center">Decidir Responsables Técnicos</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <table class="mx-auto container">
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto my-2">
+                <div class="form-check form-switch mx-auto p-0">
+                    <input class="form-check-input ms-0" type="checkbox"
+                        role="switch" id="id_autoadjudicados" name="autoadjudicados"
+                    >
+                    <label class="form-check-label ms-1" for="id_autoadjudicado"
+                        id="etiqueta_autoadjudicado"
+                    >
+                        Responsables Técnicos seleccionados
+                    </label>
+                </div>
+                <p class="me-auto align-self-start form-text text-start p-0">
+                    En caso de seleccionar los Responsables Técnicos, no se
+                    permitirá la aplicación de otros para la solicitud en
+                    cuestión. Sin embargo, cuando la solicitud se encuentra
+                    abierta; permite que los Responsables Técnicos puedan
+                    aplicar como tales dentro de una solicitud, sin selección
+                    previa.
+                </p>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto my-2" id="responsables">
+                <label class="form-label" for="id_responsables">
+                    Responsables Técnicos
+                </label>
+                <select class="selector"
+                    id="id_responsables"
+                    name="responsables"
+                    multiple required
+                >
+                    {% for responsable in responsables_solicitud %}
+                    <optgroup label="{{ responsable.usuario_responsable.last_name }}, {{ responsable.usuario_responsable.first_name }}">
+                        {% if responsable.habilitado_responsable is True %}
+                        <option value="{{ responsable.cuil_responsable|stringformat:"d" }}:0">
+                            CUIL: {{ responsable.cuil_responsable|cuil }} (persona física)
+                        </option>
+                        {% endif %}
+                        {% for organizacion in responsable.cuit_organizaciones_responsable %}
+                        {% with razon_social=responsable.razones_sociales_responsable|enesimo:forloop.counter0 %}
+                        {% with puesto=responsable.puestos_organizaciones_responsable|enesimo:forloop.counter0 %}
+                        {% with habilitado=responsable.habilitado_organizaciones_responsable|enesimo:forloop.counter0 %}
+                        {% if habilitado is True %}
+                        <option value="{{ responsable.cuil_responsable|stringformat:"d" }}:{{ forloop.counter }}">
+                            {{ puesto }} - {{ razon_social }}. CUIT: {{ organizacion|cuit }}
+                        </option>
+                        {% endif %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endfor %}
+                    </optgroup>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de solicitudes"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto text-wrap"
+            value="Tomar decisión"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}

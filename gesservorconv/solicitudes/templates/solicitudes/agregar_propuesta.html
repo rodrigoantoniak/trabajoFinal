@@ -1,0 +1,510 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Proponer Compromisos{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const local = document.getElementById("local");
+        local.value = navigator.language
+        const creadoDescripcionCompromisoComitente1 = document.getElementById(
+            "id_creado_descripcion_compromiso_comitente_1"
+        );
+        creadoDescripcionCompromisoComitente1.value = "";
+        const creadoDescripcionCompromisoUnidadEjecutora = document.getElementById(
+            "id_creado_descripcion_compromiso_unidad_ejecutora_1"
+        );
+        creadoDescripcionCompromisoUnidadEjecutora.value = "";
+        const creadoDescripcionRetribucionEconomica1 = document.getElementById(
+            "id_creado_descripcion_retribucion_economica_1"
+        );
+        creadoDescripcionRetribucionEconomica1.value = "";
+        const creadoMontoRetribucionEconomica1 = document.getElementById(
+            "id_creado_monto_retribucion_economica_1"
+        );
+        creadoMontoRetribucionEconomica1.value = Number(0).toLocaleString(
+            navigator.language, { minimumFractionDigits: 2 }
+        );
+    }, false);
+
+    document.addEventListener("htmx:beforeRequest", function (e) {
+        const elementoDisparador = e.detail.elt;
+        const dialogoModal = elementoDisparador.parentElement.parentElement;
+        const entradas = dialogoModal.getElementsByClassName("form-control");
+        const cuerpoModal = dialogoModal.getElementsByClassName("modal-body")[0];
+        const modalMostrado = bootstrap.Modal.getInstance(
+            `#${elementoDisparador.parentElement.parentElement.parentElement.parentElement.id}`
+        );
+        if (
+            elementoDisparador.name === "boton-creado-compromiso-comitente" ||
+            elementoDisparador.name === "boton-editado-compromiso-comitente" ||
+            elementoDisparador.name === "boton-creado-compromiso-unidad-ejecutora" ||
+            elementoDisparador.name === "boton-editado-compromiso-unidad-ejecutora"
+        ) {
+            if (entradas[0].value.trim() === "") {
+                const alerta = document.createElement('div');
+                alerta.className = "alert alert-danger alert-dismissible fade show fs-6 p-2 rounded clearfix text-center mx-auto";
+                alerta.setAttribute("role", "alert");
+                alerta.innerHTML = [
+                '<button type="button"',
+                '    class="close float-end align-baseline navbar-toggler my-0 ms-1 me-0 p-0"',
+                '    data-bs-dismiss="alert"',
+                '    aria-label="Close"',
+                '>',
+                '    <i class="fa-solid fa-xmark fa-sm"></i>',
+                '</button>',
+                'Debe ingresar una descripción'
+                ].join("");
+                cuerpoModal.insertAdjacentElement("afterbegin", alerta);
+                e.preventDefault();
+                return;
+            }
+        } else if (
+            elementoDisparador.name === "boton-creado-retribucion-economica" ||
+            elementoDisparador.name === "boton-editado-retribucion-economica"
+        ) {
+            let invalido = false;
+            const precio = parseFloat(entradas[1].value);
+            if (
+                isNaN(precio) ||
+                precio !== parseFloat(precio.toFixed(2)) ||
+                precio <= 0
+            ) {
+                invalido = true;
+                const alerta = document.createElement('div');
+                alerta.className = "alert alert-danger alert-dismissible fade show fs-6 p-2 rounded clearfix text-center mx-auto";
+                alerta.setAttribute("role", "alert");
+                alerta.innerHTML = [
+                '<button type="button"',
+                '    class="close float-end align-baseline navbar-toggler my-0 ms-1 me-0 p-0"',
+                '    data-bs-dismiss="alert"',
+                '    aria-label="Close"',
+                '>',
+                '    <i class="fa-solid fa-xmark fa-sm"></i>',
+                '</button>',
+                'El precio es inválido'
+                ].join("");
+                cuerpoModal.insertAdjacentElement("afterbegin", alerta);
+            }
+            if (entradas[0].value.trim() === "") {
+                invalido = true;
+                const alerta = document.createElement('div');
+                alerta.className = "alert alert-danger alert-dismissible fade show fs-6 p-2 rounded clearfix text-center mx-auto";
+                alerta.setAttribute("role", "alert");
+                alerta.innerHTML = [
+                '<button type="button"',
+                '    class="close float-end align-baseline navbar-toggler my-0 ms-1 me-0 p-0"',
+                '    data-bs-dismiss="alert"',
+                '    aria-label="Close"',
+                '>',
+                '    <i class="fa-solid fa-xmark fa-sm"></i>',
+                '</button>',
+                'Debe ingresar una descripción'
+                ].join("");
+                cuerpoModal.insertAdjacentElement("afterbegin", alerta);
+            }
+            if (invalido) {
+                e.preventDefault();
+                return;
+            }
+        }
+        modalMostrado.hide();
+    }, true);
+
+    document.addEventListener("htmx:afterRequest", function (e) {
+        const elementoDisparador = e.detail.requestConfig.elt;
+        if (
+            elementoDisparador.name === "boton-creado-compromiso-comitente" ||
+            elementoDisparador.name === "boton-borrado-compromiso-comitente"
+        ) {
+            const listaCompromisosComitente = document.getElementById(
+                "lista-compromisos-comitente"
+            );
+            const sinCompromisoComitente = document.getElementById(
+                "sin-compromiso-comitente"
+            );
+            if (listaCompromisosComitente.children.length === 0) {
+                sinCompromisoComitente.style.display = "block";
+            } else {
+                sinCompromisoComitente.style.display = "none";
+            }
+        } else if (
+            elementoDisparador.name === "boton-creado-compromiso-unidad-ejecutora" ||
+            elementoDisparador.name === "boton-borrado-compromiso-unidad-ejecutora"
+        ) {
+            const listaCompromisosUnidadEjecutora = document.getElementById(
+                "lista-compromisos-unidad-ejecutora"
+            );
+            const sinCompromisoUnidadEjecutora = document.getElementById(
+                "sin-compromiso-unidad-ejecutora"
+            );
+            if (listaCompromisosUnidadEjecutora.children.length === 0) {
+                sinCompromisoUnidadEjecutora.style.display = "block";
+            } else {
+                sinCompromisoUnidadEjecutora.style.display = "none";
+            }
+        } else if (
+            elementoDisparador.name === "boton-creado-retribucion-economica" ||
+            elementoDisparador.name === "boton-borrado-retribucion-economica"
+        ) {
+            const listaRetribucionesEconomicas = document.getElementById(
+                "lista-retribuciones-economicas"
+            );
+            const sinRetribucionEconomica = document.getElementById(
+                "sin-retribucion-economica"
+            );
+            if (listaRetribucionesEconomicas.children.length === 0) {
+                sinRetribucionEconomica.style.display = "block";
+            } else {
+                sinRetribucionEconomica.style.display = "none";
+            }
+        }
+    }, true);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:responsable_tecnico' %}">
+            Responsable Técnico
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'solicitudes:lista_solicitudes_responsable' %}">
+            Solicitudes
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ solicitud }}</li>
+    <li class="breadcrumb-item" aria-current="page">Proponer</li>
+</ol>
+<h2 class="text-center">Proponer Compromisos</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <input type="hidden" id="local" name="local">
+    <div class="accordion px-2 fs-4" id="propuesta">
+        <div class="accordion-item" id="compromisos-comitente">
+            <h3 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-compromisos-comitente"
+                    aria-expanded="true"
+                    aria-controls="collapse-compromisos-comitente"
+                >Compromisos de Comitentes</button>
+            </h3>
+            <div id="collapse-compromisos-comitente"
+                class="accordion-collapse collapse show compromisos-ambos"
+                data-bs-parent="#propuesta"
+            >
+                <div class="accordion-body">
+                    <div class="container mx-auto align-items-start">
+                        <p id="sin-compromiso-comitente" class="fs-6 form-text">
+                            No hay ningún Compromiso de Comitente
+                        </p>
+                        <div id="lista-compromisos-comitente"></div>
+                        <div id="nuevo-compromiso-comitente" hx-swap-oob="outerHTML">
+                            <div class="row justify-content-start my-2" id="agregar-compromiso-comitente">
+                                <input type="button" class="btn btn-success col-auto text-wrap"
+                                    data-bs-toggle="modal" data-bs-target="#crear-compromiso-comitente-1"
+                                    value="Agregar Compromiso de Comitentes"
+                                >
+                            </div>
+                            <div class="modal fade" id="crear-compromiso-comitente-1"
+                                aria-labelledby="titulo-crear-compromiso-comitente-1"
+                                aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+                            >
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+                                    <div class="modal-content">
+                                        <div class="modal-header clearfix">
+                                            <h3 class="modal-title fs-5 float-start me-auto"
+                                                id="titulo-crear-compromiso-comitente-1"
+                                            >
+                                                Crear
+                                            </h3>
+                                            <button type="button" class="btn float-end ms-auto"
+                                                data-bs-dismiss="modal" aria-label="Close"
+                                            >
+                                                <i class="fa-solid fa-xmark fa-xl"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center mx-0 my-1">
+                                                <b>Compromiso de Comitente</b>
+                                            </p>
+                                            <p class="fs-5 form-text">
+                                                Ingrese la descripción del nuevo
+                                                Compromiso de Comitente
+                                            </p>
+                                            <div class="form-floating my-1">
+                                                <textarea class="form-control"
+                                                    id="id_creado_descripcion_compromiso_comitente_1"
+                                                    name="creado_descripcion_compromiso_comitente_1"
+                                                ></textarea>
+                                                <label for="id_creado_descripcion_compromiso_comitente_1" class="fs-6">
+                                                    Descripción
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-end">
+                                            <input type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal" value="Cerrar"
+                                            >
+                                            <input type="button" name="boton-creado-compromiso-comitente"
+                                                class="btn btn-success col-auto text-wrap"
+                                                value="Agregar"
+                                                hx-get="{{ request.path }}"
+                                                hx-target="#lista-compromisos-comitente"
+                                                hx-include="#id_creado_descripcion_compromiso_comitente_1"
+                                                hx-vals='{"numero": "1"}' hx-swap="beforeend"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-start my-2">
+                            <a class="btn btn-primary col-auto text-wrap"
+                                href="#compromisos-unidad-ejecutora"
+                                data-bs-toggle="collapse" data-bs-target=".compromisos-ambos"
+                                role="button" aria-expanded="false"
+                                aria-controls="collapse-compromisos-comitente collapse-compromisos-unidad-ejecutora"
+                            >
+                                Siguiente
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item" id="compromisos-unidad-ejecutora">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-compromisos-unidad-ejecutora"
+                    aria-expanded="false"
+                    aria-controls="collapse-compromisos-unidad-ejecutora"
+                >Compromisos de Unidad Ejecutora</button>
+            </h3>
+            <div id="collapse-compromisos-unidad-ejecutora"
+                class="accordion-collapse collapse compromisos-ambos compromiso-y-retribucion"
+                data-bs-parent="#propuesta"
+            >
+                <div class="accordion-body">
+                    <div class="container mx-auto align-items-start">
+                        <p id="sin-compromiso-unidad-ejecutora" class="fs-6 form-text">
+                            No hay ningún Compromiso de Unidad Ejecutora
+                        </p>
+                        <div id="lista-compromisos-unidad-ejecutora"></div>
+                        <div id="nuevo-compromiso-unidad-ejecutora" hx-swap-oob="outerHTML">
+                            <div class="row justify-content-start my-2" id="agregar-compromiso-unidad-ejecutora">
+                                <input type="button" class="btn btn-success col-auto text-wrap"
+                                    data-bs-toggle="modal" data-bs-target="#crear-compromiso-unidad-ejecutora-1"
+                                    value="Agregar Compromiso de Unidad Ejecutora"
+                                >
+                            </div>
+                            <div class="modal fade" id="crear-compromiso-unidad-ejecutora-1"
+                                aria-labelledby="titulo-crear-compromiso-unidad-ejecutora-1"
+                                aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+                            >
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+                                    <div class="modal-content">
+                                        <div class="modal-header clearfix">
+                                            <h3 class="modal-title fs-5 float-start me-auto"
+                                                id="titulo-crear-compromiso-unidad-ejecutora-1"
+                                            >
+                                                Crear
+                                            </h3>
+                                            <button type="button" class="btn float-end ms-auto"
+                                                data-bs-dismiss="modal" aria-label="Close"
+                                            >
+                                                <i class="fa-solid fa-xmark fa-xl"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center mx-0 my-1">
+                                                <b>Compromiso de Unidad Ejecutora</b>
+                                            </p>
+                                            <p class="fs-5 form-text">
+                                                Ingrese la descripción del nuevo
+                                                Compromiso de Unidad Ejecutora
+                                            </p>
+                                            <div class="form-floating my-1">
+                                                <textarea class="form-control"
+                                                    id="id_creado_descripcion_compromiso_unidad_ejecutora_1"
+                                                    name="creado_descripcion_compromiso_unidad_ejecutora_1"
+                                                ></textarea>
+                                                <label for="id_creado_descripcion_compromiso_unidad_ejecutora_1" class="fs-6">
+                                                    Descripción
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-end">
+                                            <input type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal" value="Cerrar"
+                                            >
+                                            <input type="button" name="boton-creado-compromiso-unidad-ejecutora"
+                                                class="btn btn-success col-auto text-wrap"
+                                                value="Agregar"
+                                                hx-get="{{ request.path }}"
+                                                hx-target="#lista-compromisos-unidad-ejecutora"
+                                                hx-include="#id_creado_descripcion_compromiso_unidad_ejecutora_1"
+                                                hx-vals='{"numero": "1"}' hx-swap="beforeend"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-start my-2 gap-2">
+                            <a class="btn btn-primary col-auto text-wrap"
+                                href="#compromisos-comitente"
+                                data-bs-toggle="collapse" data-bs-target=".compromisos-ambos"
+                                role="button" aria-expanded="false"
+                                aria-controls="collapse-compromisos-comitente collapse-compromisos-unidad-ejecutora"
+                            >
+                                Anterior
+                            </a>
+                            <a class="btn btn-primary col-auto text-wrap"
+                                href="#retribuciones-economicas"
+                                data-bs-toggle="collapse" data-bs-target=".compromiso-y-retribucion"
+                                role="button" aria-expanded="false"
+                                aria-controls="collapse-compromisos-unidad-ejecutora collapse-retribuciones-economicas"
+                            >
+                                Siguiente
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item" id="retribuciones-economicas">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-retribuciones-economicas"
+                    aria-expanded="false"
+                    aria-controls="collapse-retribuciones-economicas"
+                >Retribuciones Económicas</button>
+            </h3>
+            <div id="collapse-retribuciones-economicas"
+                class="accordion-collapse collapse compromiso-y-retribucion"
+                data-bs-parent="#propuesta"
+            >
+                <div class="accordion-body"><div class="container mx-auto align-items-start">
+                    <p id="sin-retribucion-economica" class="fs-6 form-text">
+                        No hay ninguna Retribución Económica
+                    </p>
+                    <div id="lista-retribuciones-economicas"></div>
+                    <div id="nueva-retribucion-economica" hx-swap-oob="outerHTML">
+                        <div class="row justify-content-start my-2" id="agregar-retribucion-economica">
+                            <input type="button" class="btn btn-success col-auto text-wrap"
+                                data-bs-toggle="modal" data-bs-target="#crear-retribucion-economica-1"
+                                value="Agregar Retribución Económica"
+                            >
+                        </div>
+                        <div class="modal fade" id="crear-retribucion-economica-1"
+                            aria-labelledby="titulo-crear-retribucion-economica-1"
+                            aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+                        >
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+                                <div class="modal-content">
+                                    <div class="modal-header clearfix">
+                                        <h3 class="modal-title fs-5 float-start me-auto"
+                                            id="titulo-crear-retribucion-economica-1"
+                                        >
+                                            Crear
+                                        </h3>
+                                        <button type="button" class="btn float-end ms-auto"
+                                            data-bs-dismiss="modal" aria-label="Close"
+                                        >
+                                            <i class="fa-solid fa-xmark fa-xl"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center mx-0 my-1">
+                                            <b>Retribución Económica</b>
+                                        </p>
+                                        <p class="fs-5 form-text">
+                                            Ingrese la descripción de la nueva
+                                            Retribución Económica
+                                        </p>
+                                        <div class="form-floating my-1">
+                                            <textarea class="form-control"
+                                                id="id_creado_descripcion_retribucion_economica_1"
+                                                name="creado_descripcion_retribucion_economica_1"
+                                            ></textarea>
+                                            <label for="id_creado_descripcion_retribucion_economica_1" class="fs-6">
+                                                Descripción
+                                            </label>
+                                        </div>
+                                        <p class="fs-5 form-text">
+                                            Ingrese el monto de la nueva
+                                            Retribución Económica
+                                        </p>
+                                        <div class="form-floating my-1">
+                                            <input type="number" class="form-control"
+                                                id="id_creado_monto_retribucion_economica_1"
+                                                name="creado_monto_retribucion_economica_1"
+                                                step="0.01" min="0"
+                                            >
+                                            <label for="id_creado_monto_retribucion_economica_1" class="fs-6">
+                                                Monto ($)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-end">
+                                        <input type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal" value="Cerrar"
+                                        >
+                                        <input type="button" name="boton-creado-retribucion-economica"
+                                            class="btn btn-success col-auto text-wrap"
+                                            value="Agregar"
+                                            hx-get="{{ request.path }}"
+                                            hx-target="#lista-retribuciones-economicas"
+                                            hx-include="#id_creado_descripcion_retribucion_economica_1, #id_creado_monto_retribucion_economica_1"
+                                            hx-vals='js:{"numero": "1", "local": navigator.language}' hx-swap="beforeend"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-start my-2">
+                            <a class="btn btn-primary col-auto text-wrap"
+                                href="#compromisos-unidad-ejecutora"
+                                data-bs-toggle="collapse" data-bs-target=".compromiso-y-retribucion"
+                                role="button" aria-expanded="false"
+                                aria-controls="collapse-compromisos-unidad-ejecutora collapse-retribuciones-economicas"
+                            >
+                                Anterior
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2">
+        <a href="{% url 'solicitudes:lista_solicitudes_responsable' %}"
+            class="col-auto" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de solicitudes"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-info btn-lg col-auto"
+            value="Proponer"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}

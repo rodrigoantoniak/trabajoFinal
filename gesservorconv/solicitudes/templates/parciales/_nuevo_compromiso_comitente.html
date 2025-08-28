@@ -1,0 +1,186 @@
+<div id="id_compromiso_comitente_{{ indice }}" name="compromiso_comitente">
+    <div class="row align-items-center justify-content-start my-2 input-group clearfix">
+        <textarea class="col form-control-plaintext border rounded-2 ms-2 float-start"
+            id="id_descripcion_compromiso_comitente_{{ indice }}"
+            name="descripcion_compromiso_comitente"
+            required readonly
+        >{{ descripcion_compromiso_comitente }}</textarea>
+        <div class="col-2 col-md-6 col-lg-5 col-xl-4 rounded-1 float-end">
+            <button type="button" class="btn btn-warning m-2"
+                data-bs-toggle="modal" data-bs-target="#editar-compromiso-comitente-{{ indice }}"
+            >
+                <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-danger m-2"
+                data-bs-toggle="modal" data-bs-target="#borrar-compromiso-comitente-{{ indice }}"
+            >
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="borrar-compromiso-comitente-{{ indice }}"
+        aria-labelledby="titulo-borrar-compromiso-comitente-{{ indice }}"
+        aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h3 class="modal-title fs-5 float-start me-auto"
+                        id="titulo-compromiso-comitente-1"
+                    >
+                        Borrar
+                    </h3>
+                    <button type="button" class="btn float-end ms-auto"
+                        data-bs-dismiss="modal" aria-label="Close"
+                    >
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mx-0 my-1">
+                        <b>Compromiso de Comitente</b>
+                    </p>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control-plaintext"
+                            id="id_borrado_descripcion_compromiso_comitente_{{ indice }}"
+                            name="borrado_descripcion_compromiso_comitente_{{ indice }}"
+                            readonly
+                        >{{ descripcion_compromiso_comitente }}</textarea>
+                        <label for="id_borrado_descripcion_compromiso_comitente_{{ indice }}"
+                            class="fs-6"
+                        >
+                            Descripción
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <input type="button" name="boton-borrado-compromiso-comitente"
+                        class="btn btn-danger col-auto text-wrap"
+                        value="Eliminar" data-bs-toggle="modal"
+                        hx-get="{{ request.path }}"
+                        hx-target="#id_compromiso_comitente_{{ indice }}"
+                        hx-swap="outerHTML"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editar-compromiso-comitente-{{ indice }}"
+        aria-labelledby="titulo-editar-compromiso-comitente-{{ indice }}"
+        aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h3 class="modal-title fs-5 float-start me-auto"
+                        id="titulo-editar-compromiso-comitente-{{ indice }}"
+                    >
+                        Editar
+                    </h3>
+                    <button type="button" class="btn float-end ms-auto"
+                        data-bs-dismiss="modal" aria-label="Close"
+                    >
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mx-0 my-1">
+                        <b>Compromiso de Comitente</b>
+                    </p>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control"
+                            id="id_editado_descripcion_compromiso_comitente_{{ indice }}"
+                            name="editado_descripcion_compromiso_comitente_{{ indice }}"
+                        >{{ descripcion_compromiso_comitente }}</textarea>
+                        <label for="id_editado_descripcion_compromiso_comitente_{{ indice }}"
+                            class="fs-6"
+                        >
+                            Descripción
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <input type="button" name="boton-editado-compromiso-comitente"
+                        class="btn btn-warning col-auto text-wrap"
+                        value="Modificar"
+                        hx-get="{{ request.path }}"
+                        hx-target="#id_descripcion_compromiso_comitente_{{ indice }}"
+                        hx-include="#id_editado_descripcion_compromiso_comitente_{{ indice }}"
+                        hx-vals='{"numero": "{{ indice }}"}' hx-swap="outerHTML"
+                        hx-select-oob="#id_borrado_descripcion_compromiso_comitente_{{ indice }}"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="nuevo-compromiso-comitente" hx-swap-oob="outerHTML">
+    <div class="row justify-content-start my-2" id="agregar-compromiso-comitente">
+        <input type="button" class="btn btn-success col-auto text-wrap"
+            data-bs-toggle="modal" data-bs-target="#crear-compromiso-comitente-1"
+            value="Agregar Compromiso de Comitentes"
+        >
+    </div>
+    <div class="modal fade" id="crear-compromiso-comitente-1"
+        aria-labelledby="titulo-crear-compromiso-comitente-1"
+        aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h3 class="modal-title fs-5 float-start me-auto"
+                        id="titulo-crear-compromiso-comitente-1"
+                    >
+                        Crear
+                    </h3>
+                    <button type="button" class="btn float-end ms-auto"
+                        data-bs-dismiss="modal" aria-label="Close"
+                    >
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mx-0 my-1">
+                        <b>Compromiso de Comitente</b>
+                    </p>
+                    <p class="fs-5 form-text">
+                        Ingrese la descripción del nuevo
+                        Compromiso de Comitente
+                    </p>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control"
+                            id="id_creado_descripcion_compromiso_comitente_{{ indice|add:'1' }}"
+                            name="creado_descripcion_compromiso_comitente_{{ indice|add:'1' }}"
+                        ></textarea>
+                        <label for="id_creado_descripcion_compromiso_comitente_{{ indice|add:'1' }}" class="fs-6">
+                            Descripción
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <input type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal" value="Cerrar"
+                    >
+                    <input type="button" name="boton-creado-compromiso-comitente"
+                        class="btn btn-success col-auto text-wrap"
+                        value="Agregar"
+                        hx-get="{{ request.path }}"
+                        hx-target="#lista-compromisos-comitente"
+                        hx-include="#id_creado_descripcion_compromiso_comitente_{{ indice|add:'1' }}"
+                        hx-vals='{"numero": "{{ indice|add:"1" }}"}' hx-swap="beforeend"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

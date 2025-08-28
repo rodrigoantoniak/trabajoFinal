@@ -1,0 +1,15 @@
+{{ custom_popovers|safe }}
+{{ hist_patches|json_script:"hist-patches" }}
+<div id="reporte" class="container ms-0 me-auto" hx-swap-oob="true" hx-ext="preload">
+    {% if estado and buscar_fecha_inicio and buscar_hora_inicio and buscar_fecha_fin and buscar_hora_fin %}
+    <a class="btn btn-dark"
+        href="{% url 'solicitudes:reporte_informe_solicitudes_comitente' %}?estado={{ estado }}&buscar_fecha_inicio={{ buscar_fecha_inicio }}&buscar_hora_inicio={{ buscar_hora_inicio }}&buscar_fecha_fin={{ buscar_fecha_fin }}&buscar_hora_fin={{ buscar_hora_fin }}"
+        preload="mouseover"
+    >Generar Reporte</a>
+    {% endif %}
+</div>
+{{ botones|safe }}
+{{ svg|safe }}
+<div id="tabla" class="table-responsive me-1" hx-swap-oob="true">
+    {{ tabla|safe }}
+</div>

@@ -1,0 +1,306 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Revisar Propuesta{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% url 'jquery' %}"></script>
+<script>
+    $(document).ready(function() {
+        let monto;
+        {% for monto_retribucion_economica in propuesta_compromisos.montos_retribuciones_economicas %}
+        monto = document.getElementById("id_monto_retribucion_economica_{{ forloop.counter }}")
+        monto.value = "$ " + Number(
+            "{{ monto_retribucion_economica|stringformat:'.2f' }}"
+        ).toLocaleString(
+            navigator.language, {
+                minimumFractionDigits: 2,
+                useGrouping: false
+            }
+        );
+        {% endfor %}
+        const causaRechazoPropuesta = document.getElementById("id_causa_rechazo_propuesta");
+        causaRechazoPropuesta.disabled = true;
+        causaRechazoPropuesta.value = "";
+        const decisionPropuesta = document.getElementById("id_decision_propuesta");
+        decisionPropuesta.value = "aceptar";
+        $("#id_decision_propuesta").on("change", function() {
+            $("#id_causa_rechazo_propuesta").prop("disabled", ($(this).val() === "aceptar"));
+        });
+    });
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:comitente' %}">
+            Comitente
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}">
+            Solicitudes
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ propuesta_compromisos.solicitud_servicio_propuesta.id_solicitud }}</li>
+    <li class="breadcrumb-item" aria-current="page">Propuesta</li>
+</ol>
+<h2 class="text-center">Revisar Propuesta</h2>
+<div class="accordion px-2 fs-4" id="propuesta">
+    <div class="accordion-item" id="compromisos-comitente">
+        <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-compromisos-comitente"
+                aria-expanded="true"
+                aria-controls="collapse-compromisos-comitente"
+            >Compromisos de Comitentes</button>
+        </h3>
+        <div id="collapse-compromisos-comitente"
+            class="accordion-collapse collapse show compromisos-ambos"
+            data-bs-parent="#propuesta"
+        >
+            <div class="accordion-body">
+                <div class="container me-auto align-items-start">
+                    {% for descripcion_compromiso_comitente in propuesta_compromisos.descripciones_compromisos_comitente %}
+                    <fieldset class="row justify-content-start my-2">
+                        <legend class="col-form-label col-auto border rounded-start-2">
+                            Compromiso
+                        </legend>
+                        <div class="col-auto align-self-start border rounded-end-2 bg-white">
+                            <div class="form-floating my-2">
+                                <textarea class="form-control-plaintext"
+                                    id="id_descripcion_compromiso_comitente_{{ forloop.counter }}"
+                                    name="descripcion_compromiso_comitente"
+                                    readonly
+                                >{{ descripcion_compromiso_comitente }}</textarea>
+                                <label for="id_descripcion_compromiso_comitente_{{ forloop.counter }}" class="fs-6">
+                                    Descripción
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    {% empty %}
+                    <p class="fs-6 form-text">
+                        No hay ningún Compromiso de Comitente
+                    </p>
+                    {% endfor %}
+                    <div class="row justify-content-start my-2">
+                        <a class="btn btn-primary col-auto text-wrap"
+                            href="#compromisos-unidad-ejecutora"
+                            data-bs-toggle="collapse" data-bs-target=".compromisos-ambos"
+                            role="button" aria-expanded="false"
+                            aria-controls="collapse-compromisos-comitente collapse-compromisos-unidad-ejecutora"
+                        >
+                            Siguiente
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item" id="compromisos-unidad-ejecutora">
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-compromisos-unidad-ejecutora"
+                aria-expanded="false"
+                aria-controls="collapse-compromisos-unidad-ejecutora"
+            >Compromisos de Unidad Ejecutora</button>
+        </h3>
+        <div id="collapse-compromisos-unidad-ejecutora"
+            class="accordion-collapse collapse compromisos-ambos compromiso-y-retribucion"
+            data-bs-parent="#propuesta"
+        >
+            <div class="accordion-body">
+                <div class="container me-auto align-items-start">
+                    {% for descripcion_compromiso_unidad_ejecutora in propuesta_compromisos.descripciones_compromisos_unidad_ejecutora %}
+                    <fieldset class="row justify-content-start my-2">
+                        <legend class="col-form-label col-auto border rounded-start-2">
+                            Compromiso
+                        </legend>
+                        <div class="col-auto align-self-start border rounded-end-2 bg-white">
+                            <div class="form-floating my-2">
+                                <textarea class="form-control-plaintext"
+                                    id="id_descripcion_compromiso_unidad_ejecutora_{{ forloop.counter }}"
+                                    name="descripcion_compromiso_unidad_ejecutora"
+                                    readonly
+                                >{{ descripcion_compromiso_unidad_ejecutora }}</textarea>
+                                <label for="id_descripcion_compromiso_unidad_ejecutora_{{ forloop.counter }}" class="fs-6">
+                                    Descripción
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    {% endfor %}
+                    <div class="row justify-content-start my-2 gap-2">
+                        <a class="btn btn-primary col-auto text-wrap"
+                            href="#compromisos-comitente"
+                            data-bs-toggle="collapse" data-bs-target=".compromisos-ambos"
+                            role="button" aria-expanded="false"
+                            aria-controls="collapse-compromisos-comitente collapse-compromisos-unidad-ejecutora"
+                        >
+                            Anterior
+                        </a>
+                        <a class="btn btn-primary col-auto text-wrap"
+                            href="#retribuciones-economicas"
+                            data-bs-toggle="collapse" data-bs-target=".compromiso-y-retribucion"
+                            role="button" aria-expanded="false"
+                            aria-controls="collapse-compromisos-unidad-ejecutora collapse-retribuciones-economicas"
+                        >
+                            Siguiente
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item" id="retribuciones-economicas">
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-retribuciones-economicas"
+                aria-expanded="false"
+                aria-controls="collapse-retribuciones-economicas"
+            >Retribuciones Económicas</button>
+        </h3>
+        <div id="collapse-retribuciones-economicas"
+            class="accordion-collapse collapse compromiso-y-retribucion"
+            data-bs-parent="#propuesta"
+        >
+            <div class="accordion-body">
+                <div class="container me-auto align-items-start">
+                    {% for descripcion_retribucion_economica in propuesta_compromisos.descripciones_retribuciones_economicas %}
+                    <fieldset class="row justify-content-start my-2">
+                        <legend class="col-form-label col-auto border rounded-start-2">
+                            Retribución
+                        </legend>
+                        <div class="col-auto align-self-start border rounded-end-2 bg-white">
+                            <div class="form-floating my-2">
+                                <textarea class="form-control-plaintext"
+                                    id="id_descripcion_retribucion_economica_{{ forloop.counter }}"
+                                    name="descripcion_retribucion_economica"
+                                    readonly
+                                >{{ descripcion_retribucion_economica }}</textarea>
+                                <label for="id_descripcion_retribucion_economica_{{ forloop.counter }}" class="fs-6">
+                                    Descripción
+                                </label>
+                            </div>
+                            <div class="form-floating my-2">
+                                {% with monto_retribucion_economica=propuesta_compromisos.montos_retribuciones_economicas|enesimo:forloop.counter0 %}
+                                <input type="text" class="form-control-plaintext"
+                                    id="id_monto_retribucion_economica_{{ forloop.counter }}"
+                                    name="monto_retribucion_economica"
+                                    readonly
+                                >
+                                {% endwith %}
+                                <label for="id_monto_retribucion_economica_{{ forloop.counter }}" class="fs-6">
+                                    Monto
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    {% endfor %}
+                    <div class="row justify-content-start my-2">
+                        <a class="btn btn-primary col-auto text-wrap"
+                            href="#compromisos-unidad-ejecutora"
+                            data-bs-toggle="collapse" data-bs-target=".compromiso-y-retribucion"
+                            role="button" aria-expanded="false"
+                            aria-controls="collapse-compromisos-unidad-ejecutora collapse-retribuciones-economicas"
+                        >
+                            Anterior
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de solicitudes"
+            >
+        </a>
+        <input type="button" class="btn btn-primary btn-lg col-auto text-wrap"
+            data-bs-toggle="modal" data-bs-target="#propuesta-solicitud"
+            value="Decidir sobre propuesta"
+        >
+    </div>
+</div>
+<div class="modal fade" id="propuesta-solicitud"
+    aria-labelledby="titulo-propuesta-solicitud"
+    aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <h3 class="modal-title fs-5 float-start me-auto"
+                    id="titulo-propuesta-solicitud"
+                >
+                    Decisión sobre propuesta
+                </h3>
+                <button type="button" class="btn float-end ms-auto"
+                    data-bs-dismiss="modal" aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formulario">
+                    {% csrf_token %}
+                    <p class="text-start mx-0 my-1">
+                        <b>Nombre:</b>
+                        {{ propuesta_compromisos.solicitud_servicio_propuesta.nombre_solicitud }}
+                    </p>
+                    <div class="form-floating my-1">
+                        <select class="form-select"
+                            id="id_decision_propuesta"
+                            name="decision_propuesta"
+                            required
+                        >
+                            <optgroup label="Propuesta aceptada">
+                                <option value="aceptar">Aceptar</option>
+                            </optgroup>
+                            <optgroup label="Propuesta rechazada">
+                                <option value="renegociar">Renegociar</option>
+                                <option value="cancelar">Cancelar solicitud</option>
+                            </optgroup>
+                        </select>
+                        <label for="id_decision_propuesta">Decisión</label>
+                    </div>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control"
+                            id="id_causa_rechazo_propuesta"
+                            name="causa_rechazo_propuesta"
+                            disabled required
+                        ></textarea>
+                        <label for="id_causa_rechazo_propuesta">Causa</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Cerrar
+                </button>
+                <input type="submit" form="formulario"
+                    class="btn btn-primary col-auto text-wrap"
+                    value="Decidir"
+                >
+            </div>
+        </div>
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}

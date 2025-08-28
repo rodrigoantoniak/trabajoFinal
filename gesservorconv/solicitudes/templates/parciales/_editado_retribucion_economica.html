@@ -1,0 +1,22 @@
+<div id="id_campos_retribucion_economica_{{ indice }}" class="col">
+    <textarea class="col form-control-plaintext border rounded-2 ms-2 float-start"
+        id="id_descripcion_retribucion_economica_{{ indice }}"
+        name="descripcion_retribucion_economica"
+        required readonly
+    >{{ descripcion_retribucion_economica }}</textarea>
+    <input type="text" class="col form-control-plaintext border rounded-2 ms-2 float-none"
+        id="id_monto_retribucion_economica_{{ indice }}"
+        name="monto_retribucion_economica"
+        required readonly value="$ {{ monto_retribucion_economica }}"
+    >
+</div>
+<textarea class="form-control-plaintext"
+    id="id_borrado_descripcion_retribucion_economica_{{ indice }}"
+    name="borrado_descripcion_retribucion_economica_{{ indice }}"
+    readonly
+>{{ descripcion_retribucion_economica }}</textarea>
+<input type="text" class="form-control-plaintext"
+    id="id_borrado_monto_retribucion_economica_{{ indice }}"
+    name="borrado_monto_retribucion_economica_{{ indice }}"
+    readonly value="$ {{ monto_retribucion_economica }}"
+>

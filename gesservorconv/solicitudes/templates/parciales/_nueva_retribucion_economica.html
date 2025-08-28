@@ -1,0 +1,227 @@
+<div id="id_retribucion_economica_{{ indice }}" name="retribucion_economica">
+    <div class="row align-items-center justify-content-start my-2 input-group clearfix">
+        <div id="id_campos_retribucion_economica_{{ indice }}" class="col">
+            <textarea class="form-control-plaintext border rounded-2 ms-2 float-start"
+                id="id_descripcion_retribucion_economica_{{ indice }}"
+                name="descripcion_retribucion_economica"
+                required readonly
+            >{{ descripcion_retribucion_economica }}</textarea>
+            <input type="text" class="form-control-plaintext border rounded-2 ms-2 float-none"
+                id="id_monto_retribucion_economica_{{ indice }}"
+                name="monto_retribucion_economica"
+                required readonly value="$ {{ monto_retribucion_economica }}"
+            >
+        </div>
+        <div class="col-2 col-md-6 col-lg-5 col-xl-4 rounded-1 float-end">
+            <button type="button" class="btn btn-warning m-2"
+                data-bs-toggle="modal" data-bs-target="#editar-retribucion-economica-{{ indice }}"
+            >
+                <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-danger m-2"
+                data-bs-toggle="modal" data-bs-target="#borrar-retribucion-economica-{{ indice }}"
+            >
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="borrar-retribucion-economica-{{ indice }}"
+        aria-labelledby="titulo-borrar-retribucion-economica-{{ indice }}"
+        aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h3 class="modal-title fs-5 float-start me-auto"
+                        id="titulo-retribucion-economica-1"
+                    >
+                        Borrar
+                    </h3>
+                    <button type="button" class="btn float-end ms-auto"
+                        data-bs-dismiss="modal" aria-label="Close"
+                    >
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mx-0 my-1">
+                        <b>Retribución Económica</b>
+                    </p>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control-plaintext"
+                            id="id_borrado_descripcion_retribucion_economica_{{ indice }}"
+                            name="borrado_descripcion_retribucion_economica_{{ indice }}"
+                            readonly
+                        >{{ descripcion_retribucion_economica }}</textarea>
+                        <label for="id_borrado_descripcion_retribucion_economica_{{ indice }}"
+                            class="fs-6"
+                        >
+                            Descripción
+                        </label>
+                    </div>
+                    <div class="form-floating my-1">
+                        <input type="text" class="form-control-plaintext"
+                            id="id_borrado_monto_retribucion_economica_{{ indice }}"
+                            name="borrado_monto_retribucion_economica_{{ indice }}"
+                            readonly value="$ {{ monto_retribucion_economica }}"
+                        >
+                        <label for="id_borrado_monto_retribucion_economica_{{ indice }}" class="fs-6">
+                            Monto
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <input type="button" name="boton-borrado-retribucion-economica"
+                        class="btn btn-danger col-auto text-wrap"
+                        value="Eliminar" data-bs-toggle="modal"
+                        hx-get="{{ request.path }}"
+                        hx-target="#id_retribucion_economica_{{ indice }}"
+                        hx-swap="outerHTML"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editar-retribucion-economica-{{ indice }}"
+        aria-labelledby="titulo-editar-retribucion-economica-{{ indice }}"
+        aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h3 class="modal-title fs-5 float-start me-auto"
+                        id="titulo-editar-retribucion-economica-{{ indice }}"
+                    >
+                        Editar
+                    </h3>
+                    <button type="button" class="btn float-end ms-auto"
+                        data-bs-dismiss="modal" aria-label="Close"
+                    >
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mx-0 my-1">
+                        <b>Retribución Económica</b>
+                    </p>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control"
+                            id="id_editado_descripcion_retribucion_economica_{{ indice }}"
+                            name="editado_descripcion_retribucion_economica_{{ indice }}"
+                        >{{ descripcion_retribucion_economica }}</textarea>
+                        <label for="id_editado_descripcion_retribucion_economica_{{ indice }}"
+                            class="fs-6"
+                        >
+                            Descripción
+                        </label>
+                    </div>
+                    <div class="form-floating my-1">
+                        <input type="number" class="form-control"
+                            id="id_editado_monto_retribucion_economica_{{ indice }}"
+                            name="editado_monto_retribucion_economica_{{ indice }}"
+                            step="0.01" min="0" value="{{ monto_retribucion_economica }}"
+                        >
+                        <label for="id_editado_monto_retribucion_economica_{{ indice }}" class="fs-6">
+                            Monto ($)
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <input type="button" name="boton-editado-retribucion-economica"
+                        class="btn btn-warning col-auto text-wrap"
+                        value="Modificar"
+                        hx-get="{{ request.path }}"
+                        hx-target="#id_campos_retribucion_economica_{{ indice }}"
+                        hx-include="#id_editado_descripcion_retribucion_economica_{{ indice }}, #id_editado_monto_retribucion_economica_{{ indice }}"
+                        hx-vals='{"numero": "{{ indice }}"}' hx-swap="outerHTML"
+                        hx-select-oob="#id_borrado_descripcion_retribucion_economica_{{ indice }}, #id_borrado_monto_retribucion_economica_{{ indice }}"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="nueva-retribucion-economica" hx-swap-oob="outerHTML">
+    <div class="row justify-content-start my-2" id="agregar-retribucion-economica">
+        <input type="button" class="btn btn-success col-auto text-wrap"
+            data-bs-toggle="modal" data-bs-target="#crear-retribucion-economica-1"
+            value="Agregar Retribución Económica"
+        >
+    </div>
+    <div class="modal fade" id="crear-retribucion-economica-1"
+        aria-labelledby="titulo-crear-retribucion-economica-1"
+        aria-hidden="true" tabindex="-1" data-bs-backdrop="static"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h3 class="modal-title fs-5 float-start me-auto"
+                        id="titulo-crear-retribucion-economica-1"
+                    >
+                        Crear
+                    </h3>
+                    <button type="button" class="btn float-end ms-auto"
+                        data-bs-dismiss="modal" aria-label="Close"
+                    >
+                        <i class="fa-solid fa-xmark fa-xl"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mx-0 my-1">
+                        <b>Retribución Económica</b>
+                    </p>
+                    <p class="fs-5 form-text">
+                        Ingrese la descripción de la nueva
+                        Retribución Económica
+                    </p>
+                    <div class="form-floating my-1">
+                        <textarea class="form-control"
+                            id="id_creado_descripcion_retribucion_economica_{{ indice|add:'1' }}"
+                            name="creado_descripcion_retribucion_economica_{{ indice|add:'1' }}"
+                        ></textarea>
+                        <label for="id_creado_descripcion_retribucion_economica_{{ indice|add:'1' }}" class="fs-6">
+                            Descripción
+                        </label>
+                    </div>
+                    <p class="fs-5 form-text">
+                        Ingrese el monto de la nueva
+                        Retribución Económica
+                    </p>
+                    <div class="form-floating my-1">
+                        <input type="number" class="form-control"
+                            id="id_creado_monto_retribucion_economica_{{ indice|add:'1' }}"
+                            name="creado_monto_retribucion_economica_{{ indice|add:'1' }}"
+                            step="0.01" value="{{ nuevo_monto }}"
+                        >
+                        <label for="id_creado_monto_retribucion_economica_{{ indice|add:'1' }}" class="fs-6">
+                            Monto ($)
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <input type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal" value="Cerrar"
+                    >
+                    <input type="button" name="boton-creado-retribucion-economica"
+                        class="btn btn-success col-auto text-wrap"
+                        value="Agregar"
+                        hx-get="{{ request.path }}"
+                        hx-target="#lista-retribuciones-economicas"
+                        hx-include="#id_creado_descripcion_retribucion_economica_{{ indice|add:'1' }}, #id_creado_monto_retribucion_economica_{{ indice|add:'1' }}"
+                        hx-vals='{"numero": "{{ indice|add:"1" }}"}' hx-swap="beforeend"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

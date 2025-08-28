@@ -1,0 +1,327 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Informe de Solicitudes de Servicio{% endblock %}
+
+{% block estilos %}
+<style>
+input[type="number"] {
+    width: 13rem;
+}
+g {
+    transition:opacity 0.4s ease-out;
+    -moz-transition:opacity 0.4s ease-out;
+    -webkit-transition:opacity 0.4s ease-out;
+}
+path {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+</style>
+<style id="custom-popovers"></style>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+{% load static %}
+<script src="{% static 'js/preload.js' %}"></script>
+<script id="hist-patches" type="application/json">{}</script>
+<script type="text/ecmascript">
+    function toggle(oid, attribute, values) {
+        const obj = document.getElementById(oid);
+        let a = obj.style[attribute];
+        a = (a == values[0] || a == "") ? values[1] : values[0];
+        obj.style[attribute] = a;
+    }
+
+    function toggle_hist(obj) {
+        const num = obj.id;
+        toggle('leg_patch_' + num, 'opacity', [1, 0.3]);
+        toggle('leg_text_' + num, 'opacity', [1, 0.5]);
+        const contenedor = JSON.parse(
+            document.getElementById('hist-patches').textContent
+        );
+        const names = contenedor['hist_'+num];
+        let popover;
+        for (var i=0; i < names.length; i++) {
+            toggle(names[i], 'opacity', [1, 0]);
+            popover = bootstrap.Popover.getInstance(`#${names[i]}`);
+            if (popover !== null) {
+                popover.hide();
+                popover.toggleEnabled();
+            }
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const grupos = document.getElementById("id_grupos");
+        grupos.value = "10";
+        const buscarFechaInicio = document.getElementById("id_buscar_fecha_inicio");
+        const buscarHoraInicio = document.getElementById("id_buscar_hora_inicio");
+        const buscarFechaFin = document.getElementById("id_buscar_fecha_fin");
+        const buscarHoraFin = document.getElementById("id_buscar_hora_fin");
+        const primerTiempo = new Date(Date.UTC(70)); // momento 0 epoch
+        const ahora = new Date("{% now 'c' %}");
+        const primerAnio = String(primerTiempo.getFullYear());
+        const primerMes = String(primerTiempo.getMonth() + 1).padStart(2, '0');
+        const primerDia = String(primerTiempo.getDate()).padStart(2, '0');
+        const primeraHora = String(primerTiempo.getHours()).padStart(2, '0');
+        const primerMinuto = String(primerTiempo.getMinutes()).padStart(2, '0');
+        const anioActual = String(ahora.getFullYear());
+        const mesActual = String(ahora.getMonth() + 1).padStart(2, '0');
+        const diaActual = String(ahora.getDate()).padStart(2, '0');
+        const horaActual = String(ahora.getHours()).padStart(2, '0');
+        const minutoActual = String(ahora.getMinutes()).padStart(2, '0');
+        buscarFechaInicio.value = primerAnio + "-" + primerMes + "-" + primerDia;
+        buscarFechaInicio.min = primerAnio + "-" + primerMes + "-" + primerDia;
+        buscarFechaInicio.max = anioActual + "-" + mesActual + "-" + diaActual;
+        buscarHoraInicio.value = primeraHora + ":" + primerMinuto;
+        buscarHoraInicio.min = primeraHora + ":" + primerMinuto;
+        buscarHoraInicio.max = "23:59";
+        buscarFechaFin.value = anioActual + "-" + mesActual + "-" + diaActual;
+        buscarFechaFin.min = primerAnio + "-" + primerMes + "-" + primerDia;
+        buscarFechaFin.max = anioActual + "-" + mesActual + "-" + diaActual;
+        buscarHoraFin.value = horaActual + ":" + minutoActual;
+        buscarHoraFin.min = "00:00";
+        buscarHoraFin.max = horaActual + ":" + minutoActual;
+        htmx.ajax(
+            'GET',
+            '{{ request.path }}',
+            {
+                source:'#htmx',
+                target:'#histograma',
+                swap:'outerHTML',
+                values:{
+                    "offset": new Date(Date.now()).getTimezoneOffset(),
+                    "local": navigator.language
+                },
+                select:'#histograma, #custom-popovers, #hist-patches'
+            }
+        );
+    }, false);
+
+    document.addEventListener("htmx:beforeRequest", function (e) {
+        const fechaValida = /^([0-9]{4}-((((0[1-9])|(1[0-2]))-(([0-1][0-9])|(2[0-8])))|(((0[13-9])|(1[0-2]))-(29|30))|(((0[1358])|(1[02]))-31)))|([0-9]{2}(([02468][048])|([13579][26]))-02-29)$/;
+        const horaValida = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/;
+        const buscarFechaInicio = document.getElementById("id_buscar_fecha_inicio");
+        const buscarHoraInicio = document.getElementById("id_buscar_hora_inicio");
+        const buscarFechaFin = document.getElementById("id_buscar_fecha_fin");
+        const buscarHoraFin = document.getElementById("id_buscar_hora_fin");
+        const fechaInicioValida = fechaValida.test(buscarFechaInicio.value);
+        const horaInicioValida = horaValida.test(buscarHoraInicio.value);
+        const fechaFinValida = fechaValida.test(buscarFechaFin.value);
+        const horaFinValida = horaValida.test(buscarHoraFin.value);
+        if (!(fechaInicioValida && horaInicioValida && fechaFinValida && horaFinValida)) {
+            e.preventDefault();
+            return;
+        }
+        const primerTiempo = new Date(Date.UTC(70)); // momento 0 epoch
+        const ahora = new Date("{% now 'c' %}");
+        const anioUno = String(primerTiempo.getFullYear());
+        const mesUno = String(primerTiempo.getMonth() + 1).padStart(2, '0');
+        const diaUno = String(primerTiempo.getDate()).padStart(2, '0');
+        const horaUno = String(primerTiempo.getHours()).padStart(2, '0');
+        const minutoUno = String(primerTiempo.getMinutes()).padStart(2, '0');
+        const anioDos = String(ahora.getFullYear());
+        const mesDos = String(ahora.getMonth() + 1).padStart(2, '0');
+        const diaDos = String(ahora.getDate()).padStart(2, '0');
+        const horaDos = String(ahora.getHours()).padStart(2, '0');
+        const minutoDos = String(ahora.getMinutes()).padStart(2, '0');
+        const tiempoInicio = new Date(
+            buscarFechaInicio.value + "T" + buscarHoraInicio.value
+        );
+        const tiempoFin = new Date(
+            buscarFechaFin.value + "T" + buscarHoraFin.value
+        );
+        buscarFechaInicio.min = anioUno + "-" + mesUno + "-" + diaUno;
+        if (
+            buscarFechaInicio.value === anioUno + "-" + mesUno + "-" + diaUno
+        ) {
+            buscarHoraInicio.min = horaUno + ":" + minutoUno;
+        } else {
+            buscarHoraInicio.min = "00:00";
+        }
+        buscarFechaInicio.max = buscarFechaFin.value;
+        if (
+            buscarFechaInicio.value >= buscarFechaFin.value
+        ) {
+            buscarHoraInicio.max = buscarHoraFin.value;
+        } else {
+            buscarHoraInicio.max = "23:59";
+        }
+        buscarFechaFin.min = buscarFechaInicio.value;
+        if (
+            buscarFechaFin.value <= buscarFechaInicio.value
+        ) {
+            buscarHoraFin.min = buscarHoraInicio.value;
+        } else {
+            buscarHoraFin.min = "00:00";
+        }
+        buscarFechaFin.max = anioDos + "-" + mesDos + "-" + diaDos;
+        if (
+            buscarFechaFin.value === anioDos + "-" + mesDos + "-" + diaDos
+        ) {
+            buscarHoraFin.max = horaDos + ":" + minutoDos;
+        } else {
+            buscarHoraFin.max = "23:59";
+        }
+        const histograma = document.getElementById("histograma");
+        histograma.innerHTML = "";
+        const tabla = document.getElementById("tabla");
+        tabla.innerHTML = "";
+        if (e.detail.requestConfig.triggeringEvent !== undefined) {
+            if (
+                (e.detail.requestConfig.triggeringEvent.srcElement.id === "id_buscar_fecha_inicio") ||
+                (e.detail.requestConfig.triggeringEvent.srcElement.id === "id_buscar_hora_inicio")
+            ) {
+                if (tiempoInicio < primerTiempo || tiempoInicio > tiempoFin) {
+                    e.preventDefault();
+                    const etiquetas = document.getElementById("etiquetas");
+                    if (etiquetas !== null) {
+                        etiquetas.innerHTML = "<p class=\"text-start\">No hay solicitudes</p>";
+                    }
+                    return;
+                }
+            }
+            if (
+                (e.detail.requestConfig.triggeringEvent.srcElement.id === "id_buscar_fecha_fin") ||
+                (e.detail.requestConfig.triggeringEvent.srcElement.id === "id_buscar_hora_fin")
+            ) {
+                if (tiempoFin > ahora || tiempoFin < tiempoInicio ) {
+                    e.preventDefault();
+                    const etiquetas = document.getElementById("etiquetas");
+                    if (etiquetas !== null) {
+                        etiquetas.innerHTML = "<p class=\"text-start\">No hay solicitudes</p>";
+                    }
+                    return;
+                }
+            }
+        }
+        const etiquetas = document.getElementById("etiquetas");
+        if (etiquetas !== null) etiquetas.innerHTML = "";
+        
+        const grupos = document.getElementById("id_grupos");
+        if (
+            !(/^\d+$/.test(grupos.value)) ||
+            parseInt(grupos.value) < 2
+        ) {
+            e.preventDefault();
+            const etiquetas = document.getElementById("etiquetas");
+            if (etiquetas !== null) {
+                etiquetas.innerHTML = "<p class=\"text-start\">No hay solicitudes</p>";
+            }
+            return;
+        }
+    }, true);
+
+
+    document.addEventListener("htmx:afterRequest", function (e) {
+        const popoverTriggerList = [].slice.call(
+            document.querySelectorAll('[data-bs-toggle="popover"]')
+        );
+        popoverTriggerList.forEach(function (popoverTriggerEl) {
+            new bootstrap.Popover(popoverTriggerEl);
+            popoverTriggerEl.addEventListener('show.bs.popover', function () {
+                popoverTriggerList.forEach(function (popoverEl) {
+                    let popover;
+                    if (popoverEl !== popoverTriggerEl) {
+                        popover = bootstrap.Popover.getInstance(`#${popoverEl.id}`);
+                        popover.hide();
+                    }
+                });
+            });
+        });
+    }, true);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:responsable_tecnico' %}">
+            Responsable Técnico
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'solicitudes:lista_solicitudes_responsable' %}">
+            Solicitudes
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Informe</li>
+</ol>
+<h2 class="text-center fw-bold">Informe de Solicitudes de Servicio</h2>
+<div class="container ms-0 me-auto" hx-get="{{ request.path }}"
+    hx-target="#histograma" hx-swap="outerHTML"
+    hx-include="#id_grupos, #id_buscar_fecha_inicio, #id_buscar_hora_inicio, #id_buscar_fecha_fin, #id_buscar_hora_fin, [name='estado']"
+    hx-vals='js:{"offset": new Date(Date.now()).getTimezoneOffset(), "local": navigator.language}'
+    hx-indicator="#indicador" hx-select-oob="#custom-popovers, #hist-patches"
+    hx-trigger="input delay:500ms, change from:[type='radio']"
+>
+    <div class="row row-cols-1 align-items-center">
+        <p class="col-auto my-0">Estado:</p>
+        <div class="col-auto btn-group-vertical mx-1" role="group" aria-label="Clasificación de solicitudes según estado">
+            <input type="radio" class="btn-check" name="estado" id="completo" value="completo" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="completo">Completa</label>
+            <input type="radio" class="btn-check" name="estado" id="curso" value="curso" autocomplete="off">
+            <label class="btn btn-outline-primary" for="curso">En curso</label>
+            <input type="radio" class="btn-check" name="estado" id="suspendido" value="suspendido" autocomplete="off">
+            <label class="btn btn-outline-primary" for="suspendido">Suspendida</label>
+            <input type="radio" class="btn-check" name="estado" id="cancelado" value="cancelado" autocomplete="off">
+            <label class="btn btn-outline-primary" for="cancelado">Cancelada</label>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-auto form-floating my-2 ps-0 pe-2 was-validated">
+            <input type="number" class="form-control form-control-sm mt-1"
+                id="id_grupos" name="grupos" value="10" min="2" max="25"
+            >
+            <label for="id_grupos">Cantidad de grupos:</label>
+        </div>
+    </div>
+    <fieldset class="row align-items-center my-2">
+        <legend class="col-form-label col-auto py-4 border rounded-start-2 fs-5">
+            Desde
+        </legend>
+        <div class="col-auto border rounded-end-2 bg-white was-validated">
+            <input type="date" class="form-control form-control-sm text-center mt-1"
+                id="id_buscar_fecha_inicio" name="buscar_fecha_inicio"
+            >
+            <input type="time" class="form-control form-control-sm text-center mt-2 mb-1"
+                id="id_buscar_hora_inicio" name="buscar_hora_inicio"
+            >
+        </div>
+    </fieldset>
+    <fieldset class="row align-items-center mb-2">
+        <legend class="col-form-label col-auto py-4 border rounded-start-2 fs-5">
+            Hasta
+        </legend>
+        <div class="col-auto border rounded-end-2 bg-white was-validated">
+            <input type="date" class="form-control form-control-sm text-center mt-1"
+                id="id_buscar_fecha_fin" name="buscar_fecha_fin"
+            >
+            <input type="time" class="form-control form-control-sm text-center mt-2 mb-1"
+                id="id_buscar_hora_fin" name="buscar_hora_fin"
+            >
+        </div>
+    </fieldset>
+</div>
+<div id="reporte" class="container ms-0 me-auto" hx-swap-oob="true" hx-ext="preload"></div>
+<div id="htmx" hx-indicator="#indicador" hx-select-oob="#custom-popovers, #hist-patches">
+    <div class="htmx-indicator spinner-border text-primary my-2 position-absolute start-50 translate-middle"
+        role="status" id="indicador"
+    >
+        <span class="visually-hidden">
+            Cargando...
+        </span>
+    </div>
+    <div id="etiquetas" hx-swap-oob="outerHTML"></div>
+    <svg id="histograma" xmlns="http://www.w3.org/2000/svg" width="1" height="1"></svg>
+    <div id="tabla" class="table-responsive me-1" hx-swap-oob="true"></div>
+</div>
+{% endblock %}

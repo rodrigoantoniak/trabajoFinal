@@ -1,0 +1,73 @@
+{% extends "base_cuentas.html" %}
+
+{% load cui %}
+
+{% block titulo %}Recuperar Solicitud de Servicio{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:comitente' %}">
+            Comitente
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}">
+            Solicitudes
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ solicitud_servicio.id_solicitud }}</li>
+    <li class="breadcrumb-item" aria-current="page">Recuperar</li>
+</ol>
+<h2 class="text-center">Recuperar Solicitud de Servicio</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <div class="form-text text-center">¿Desea recuperar la siguiente solicitud de servicio?</div>
+    <table class="mx-auto container">
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <input type="text" class="form-control-plaintext overflow-x-scroll"
+                        id="nombre_solicitud" readonly
+                        value="{{ solicitud_servicio.nombre_solicitud }}"
+                        size="{{ solicitud_servicio.nombre_solicitud|length }}"
+                    >
+                    <label for="nombre_solicitud">Nombre</label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <textarea class="form-control-plaintext"
+                        id="descripcion_solicitud" readonly
+                    >{{ solicitud_servicio.descripcion_solicitud }}</textarea>
+                    <label for="descripcion_solicitud">Descripción</label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2">
+        <a href="{% url 'solicitudes:lista_solicitudes_comitente' %}"
+            class="col-auto" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de solicitudes"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto"
+            value="Recuperar"
+        >
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}
