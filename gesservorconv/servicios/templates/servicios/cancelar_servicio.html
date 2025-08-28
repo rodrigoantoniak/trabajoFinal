@@ -1,0 +1,114 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Cancelar servicio{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const causa = document.getElementById("causa");
+        causa.value = "";
+    }, false);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:secretario' %}">
+            Secretario
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'servicios:lista_servicios_secretario' %}">
+            Servicios
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ servicio.id_servicio }}</li>
+    <li class="breadcrumb-item" aria-current="page">Cancelar</li>
+</ol>
+<h2 class="text-center">Cancelar servicio</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <div class="form-text text-center">¿Quiere cancelar el siguiente servicio?</div>
+    <table class="mx-auto container">
+        {% if servicio.convenio is None %}
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <input type="text" class="form-control-plaintext"
+                        id="nombre_solicitud" readonly
+                        value="{{ servicio.orden_servicio.solicitud_servicio.nombre_solicitud }}"
+                        size="{{ servicio.orden_servicio.solicitud_servicio.nombre_solicitud|length }}"
+                    >
+                    <label for="nombre_solicitud">Nombre</label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <textarea class="form-control-plaintext"
+                        id="descripcion_solicitud" readonly
+                    >{{ servicio.orden_servicio.solicitud_servicio.descripcion_solicitud }}</textarea>
+                    <label for="descripcion_solicitud">Descripción</label>
+                </div>
+            </td>
+        </tr>
+        {% else %}
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <input type="text" class="form-control-plaintext"
+                        id="nombre_solicitud" readonly
+                        value="{{ servicio.convenio.solicitud_servicio.nombre_solicitud }}"
+                        size="{{ servicio.convenio.solicitud_servicio.nombre_solicitud|length }}"
+                    >
+                    <label for="nombre_solicitud">Nombre</label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <textarea class="form-control-plaintext"
+                        id="descripcion_solicitud" readonly
+                    >{{ servicio.convenio.solicitud_servicio.descripcion_solicitud }}</textarea>
+                    <label for="descripcion_solicitud">Descripción</label>
+                </div>
+            </td>
+        </tr>
+        {% endif %}
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <textarea type="text" class="form-control" id="causa" name="causa" required></textarea>
+                    <label for="causa">Causa</label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2">
+        <a href="{% url 'servicios:lista_servicios_secretario' %}"
+            class="col-auto" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de servicios"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-danger btn-lg col-auto"
+            value="Cancelar"
+        >
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}

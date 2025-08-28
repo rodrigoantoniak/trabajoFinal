@@ -1,0 +1,116 @@
+{% extends "base_cuentas.html" %}
+
+{% load l10n %}
+{% load cui %}
+
+{% block titulo %}Agregar Progreso{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const porcentajeProgreso = document.getElementById("{{ form.porcentaje_progreso.id_for_label }}");
+        porcentajeProgreso.value = Number("{{ restante|unlocalize }}").toLocaleString(
+            navigator.language, {
+                minimumFractionDigits: 2,
+                useGrouping: false
+            }
+        );
+        const descripcionProgreso = document.getElementById("{{ form.descripcion_progreso.id_for_label }}");
+        descripcionProgreso.value = "";
+    }, false);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:responsable_tecnico' %}">
+            Responsable Técnico
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'servicios:lista_servicios_responsable' %}">
+            Servicios
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ servicio }}</li>
+    <li class="breadcrumb-item" aria-current="page">Nuevo progreso</li>
+</ol>
+<h2 class="text-center">Agregar progreso en servicio</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <table class="mx-auto container">
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Ingrese la descripción del progreso
+                    en el servicio
+                </p>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto my-2">
+                <div class="form-floating">
+                    <textarea class="form-control"
+                        id="{{ form.descripcion_progreso.id_for_label }}"
+                        name="{{ form.descripcion_progreso.html_name }}"
+                        required
+                    ></textarea>
+                    <label for="{{ form.descripcion_progreso.id_for_label }}">
+                        Descripción de progreso
+                    </label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row justify-content-start w-100 mt-2">
+            <td class="col text-start">
+                <p class="form-text ms-4 mb-0">
+                    Ingrese el porcentaje de este progreso
+                    (no se trata de la completitud total,
+                    sino de la porción abarcada en esta
+                    iteración)
+                </p>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto my-2">
+                <div class="form-floating was-validated">
+                    <input type="number" class="form-control"
+                        id="{{ form.porcentaje_progreso.id_for_label }}"
+                        name="{{ form.porcentaje_progreso.html_name }}"
+                        step="0.01" min="0" max="100" value="{{ restante|unlocalize }}"
+                        required
+                    >
+                    <label for="{{ form.porcentaje_progreso.id_for_label }}">
+                        Porcentaje (%)
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'servicios:lista_servicios_responsable' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de servicios"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto text-wrap"
+            value="Agregar progreso"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}

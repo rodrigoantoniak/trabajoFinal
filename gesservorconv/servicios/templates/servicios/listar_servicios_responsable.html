@@ -1,0 +1,194 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Servicios{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    function localizarTiempos(tiempos) {
+        let indice = -1;
+        let tiempoAccion;
+        let anioAccion;
+        let mesAccion;
+        let diaAccion;
+        let horaAccion;
+        let minutoAccion;
+        for (const tiempo of tiempos) {
+            indice = tiempo.innerHTML.search(
+                /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/
+            );
+            tiempoAccion = new Date(tiempo.innerHTML.substring(indice, indice+32));
+            anioAccion = String(tiempoAccion.getFullYear());
+            mesAccion = String(tiempoAccion.getMonth() + 1).padStart(2, '0');
+            diaAccion = String(tiempoAccion.getDate()).padStart(2, '0');
+            horaAccion = String(tiempoAccion.getHours()).padStart(2, '0');
+            minutoAccion = String(tiempoAccion.getMinutes()).padStart(2, '0');
+            tiempo.innerHTML = tiempo.innerHTML.replace(
+                /\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}\.\d{6}[+-]\d{2}\:\d{2}/,
+                diaAccion + "/" + mesAccion + "/" + anioAccion +
+                " - " + horaAccion + ":" + minutoAccion
+            );
+        }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        localizarTiempos(document.querySelectorAll('[id^="tiempo-creacion-"]'));
+        const porPagina = document.getElementById("id_por_pagina");
+        porPagina.value = "{{ pagina_curso.paginator.per_page }}";
+        const buscarNombre = document.getElementById("id_buscar_nombre");
+        buscarNombre.value = "";
+        const progresos = document.getElementsByClassName("progress-bar");
+        for (const progreso of progresos) {
+            progreso.innerHTML = Number(progreso.innerHTML).toLocaleString(
+                navigator.language, {
+                    minimumFractionDigits: 2,
+                    useGrouping: false
+                }
+            ) + " %";
+        }
+    }, false);
+
+
+    document.addEventListener("htmx:afterSettle", function(e) {
+        localizarTiempos(e.detail.elt.querySelectorAll('[id^="tiempo-creacion-"]'));
+        const progresos = e.detail.elt.getElementsByClassName("progress-bar");
+        for (const progreso of progresos) {
+            progreso.innerHTML = Number(progreso.innerHTML).toLocaleString(
+                navigator.language, {
+                    minimumFractionDigits: 2,
+                    useGrouping: false
+                }
+            ) + " %";
+        }
+    }, true);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:responsable_tecnico' %}">
+            Responsable Técnico
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Servicios</li>
+</ol>
+<h2 class="text-center fw-bold">Lista de Servicios</h2>
+{% comment %}
+<div class="my-2 container">
+    <div class="row gap-2 justify-content-center">
+        <a class="col-auto btn btn-outline-dark"
+            href=""
+        >Informe</a>
+    </div>
+</div>
+{% endcomment %}
+<div class="clearfix">
+    <div class="float-start form-floating my-1 ms-2">
+        <input type="number" class="form-control" id="id_por_pagina"
+            size="13" value="{{ pagina_curso.paginator.per_page }}"
+            name="por_pagina" hx-get="{{ request.path }}"
+            hx-trigger="input changed delay:500ms, search"
+            hx-include="#id_buscar_nombre"
+            hx-target="#resultados-curso"
+            hx-select-oob="#resultados-completado, #resultados-cancelado"
+            hx-indicator=".htmx-indicator"
+        >
+        <label for="id_por_pagina">
+            Servicios por página:
+        </label>
+    </div>
+    <div class="form-floating float-end my-1 me-2">
+        <input type="search" class="form-control"
+            id="id_buscar_nombre" name="buscar_nombre"
+            hx-get="{{ request.path }}"
+            hx-trigger="input changed delay:500ms, search"
+            hx-include="#id_por_pagina"
+            hx-target="#resultados-curso"
+            hx-select-oob="#resultados-completado, #resultados-cancelado"
+            hx-indicator=".htmx-indicator"
+        >
+        <label for="id_buscar_nombre">
+            Buscar por nombre:
+        </label>
+    </div>
+</div>
+<p class="mx-3 mt-2 mb-0">Estado:</p>
+{% comment %}
+Agregar nav-fill a class de ul (post nav-pills) para rellenar
+{% endcomment %}
+<ul class="nav nav-pills d-flex justify-content-start flex-column flex-sm-row mb-3"
+    id="tabulado" role="tablist"
+>
+    <li class="nav-item" role="presentation">
+        <input class="nav-link active" id="tab-curso"
+            data-bs-toggle="tab" data-bs-target="#curso"
+            type="button" role="tab" aria-controls="curso"
+            aria-selected="true" name="tab" value="En curso"
+        >
+    </li>
+    <li class="nav-item" role="presentation">
+        <input class="nav-link" id="tab-completado"
+            data-bs-toggle="tab" data-bs-target="#completado"
+            type="button" role="tab" aria-controls="completado"
+            aria-selected="false" name="tab" value="Completado"
+        >
+    </li>
+    <li class="nav-item" role="presentation">
+        <input class="nav-link" id="tab-cancelado"
+            data-bs-toggle="tab" data-bs-target="#cancelado"
+            type="button" role="tab" aria-controls="cancelado"
+            aria-selected="false" name="tab" value="Cancelado"
+        >
+    </li>
+</ul>
+<div class="tab-content m-0 p-0" id="myTabContent">
+    <div class="tab-pane fade show active" id="curso"
+        role="tabpanel" aria-labelledby="tab-curso"
+    >
+        <div class="htmx-indicator spinner-border text-primary my-2 position-absolute start-50 translate-middle"
+            id="indicador-curso"
+        >
+            <span class="visually-hidden">
+                Cargando...
+            </span>
+        </div>
+        <div class="m-0 p-0" id="resultados-curso">
+        {% include "parciales/_lista_servicios_en_curso_responsable.html" %}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="completado"
+        role="tabpanel" aria-labelledby="tab-completado"
+    >
+        <div class="htmx-indicator spinner-border text-primary my-2 position-absolute start-50 translate-middle"
+            id="indicador-completado"
+        >
+            <span class="visually-hidden">
+                Cargando...
+            </span>
+        </div>
+        <div class="m-0 p-0" id="resultados-completado">
+        {% include "parciales/_lista_servicios_completados_responsable.html" %}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="cancelado"
+        role="tabpanel" aria-labelledby="tab-cancelado"
+    >
+        <div class="htmx-indicator spinner-border text-primary my-2 position-absolute start-50 translate-middle"
+            id="indicador-cancelado"
+        >
+            <span class="visually-hidden">
+                Cargando...
+            </span>
+        </div>
+        <div class="m-0 p-0" id="resultados-cancelado">
+        {% include "parciales/_lista_servicios_cancelados_responsable.html" %}
+        </div>
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}

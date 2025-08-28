@@ -1,0 +1,117 @@
+{% extends "base_cuentas.html" %}
+
+{% load l10n %}
+{% load ciu %}
+
+{% block titulo %}Agregar Pago{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const comitentePago = document.getElementById("{{ form.comitente_pago.id_for_label }}");
+        comitentePago.value = "";
+        const montoPago = document.getElementById("{{ form.monto_pago.id_for_label }}");
+        montoPago.value = Number("{{ restante|unlocalize }}").toLocaleString(
+            navigator.language, {
+                minimumFractionDigits: 2,
+                useGrouping: false
+            }
+        );
+    }, false);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:ayudante' %}">
+            Ayudante
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'servicios:lista_servicios_ayudante' %}">
+            Servicios
+        </a>
+    </li>
+    <li class="breadcrumb-item active">{{ servicio.id_servicio }}</li>
+    <li class="breadcrumb-item" aria-current="page">Nuevo pago</li>
+</ol>
+<h2 class="text-center">Agregar pago en servicio</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <table class="mx-auto container">
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto my-2">
+                <div class="form-floating">
+                    <select class="form-select"
+                        id="{{ form.comitente_pago.id_for_label }}"
+                        name="{{ form.comitente_pago.html_name }}"
+                        required
+                    >
+                    {% for comitente_servicio in comitentes %}
+                    {% if comitente_servicio.cuit_organizacion_comitente %}
+                    <option value="{{ comitente_servicio.comitente.usuario_comitente.id }}">
+                        {{ comitente_servicio.comitente.usuario_comitente.last_name }},
+                        {{ comitente_servicio.comitente.usuario_comitente.first_name }}.
+                        {{ comitente_servicio.puesto_organizacion_comitente }} -
+                        {{ comitente_servicio.razon_social_comitente }}.
+                        CUIT: {{ comitente_servicio.cuit_organizacion_comitente|cuit }}
+                    </option>
+                    {% else %}
+                    <option value="{{ comitente_servicio.comitente.usuario_comitente.id }}">
+                        {{ comitente_servicio.comitente.usuario_comitente.last_name }},
+                        {{ comitente_servicio.comitente.usuario_comitente.first_name }}.
+                        CUIL: {{ comitente_servicio.comitente.cuil_comitente|cuil }}
+                        (persona física)
+                    </option>
+                    {% endif %}
+                    {% endfor %}
+                    </select>
+                    <label for="{{ form.comitente_pago.id_for_label }}">
+                        Comitente que paga
+                    </label>
+                </div>
+            </td>
+        </tr>
+        <tr class="row mw-100 justify-content-start">
+            <td class="col-auto my-2">
+                <div class="form-floating was-validated">
+                    <input type="number" class="form-control"
+                        id="{{ form.monto_pago.id_for_label }}"
+                        name="{{ form.monto_pago.html_name }}"
+                        step="0.01" min="0" max="{{ restante|unlocalize }}"
+                        required
+                    >
+                    <label for="{{ form.monto_pago.id_for_label }}">
+                        Monto ($)
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'servicios:lista_servicios_ayudante' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a lista de servicios"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto text-wrap"
+            value="Agregar pago"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}
