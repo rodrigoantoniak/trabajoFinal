@@ -1,0 +1,81 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Registro de Comitente{% endblock %}
+
+{% block contenido %}
+<h2 class="text-center">Registrarse como Comitente</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <table class="mx-auto container">
+        <tr class="row justify-content-start">
+            <td class="col-auto">
+                <div class="form-floating">
+                    <input type="text" type="text" inputmode="numeric" min="0" minlength="11" maxlength="11" pattern="[0-9]{11}"
+                        class="form-control my-auto{% if form.cuil_comitente.errors %} is-invalid{% endif %}"
+                        id="id_cuil_comitente" name="cuil_comitente"
+                        aria-describedby="errores-razon-social-comitente"
+                        {% if form.cuil_comitente.initial is not None %}
+                        value="{{ form.cuil_comitente.initial }}"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                        {% endif %}
+                    >
+                    <label class="form-label" for="id_cuil_comitente">
+                        CUIL:
+                    </label>
+                    <div id="errores-cuil-comitente" class="invalid-feedback m-0 p-0">
+                        {% for error in form.cuil_comitente.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.cuil_comitente.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">{{ form.cuil_comitente.help_text }}</div>
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="row justify-content-start">
+            <td class="col-auto">
+                <div class="form-check d-inline-flex my-3 p-0">
+                    <label for="id_habilitado_comitente" class="form-check-label">
+                        ¿Quiere ser Comitente como persona física?
+                    </label>
+                    <input type="checkbox" class="form-check-input mx-1"
+                        id="id_habilitado_comitente"
+                        name="habilitado_comitente"
+                    >
+                </div>
+            </td>
+        </tr>
+        <tr class="row justify-content-start">
+            <td class="col-auto">
+                <div class="form-check d-inline-flex my-3 p-0">
+                    <label for="id_firma_digital_comitente" class="form-check-label">
+                        ¿Tiene firma digital?
+                    </label>
+                    <input type="checkbox" class="form-check-input mx-1"
+                        id="id_firma_digital_comitente"
+                        name="firma_digital_comitente"
+                    >
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2 px-3">
+        <a href="{% url 'cuentas:perfil' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-outline-secondary btn-lg text-wrap"
+                value="Volver a perfil"
+            >
+        </a>
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto"
+            value="Registrarse"
+        >
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}

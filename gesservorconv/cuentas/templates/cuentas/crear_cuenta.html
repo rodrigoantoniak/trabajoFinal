@@ -1,0 +1,189 @@
+{% extends "base_gesservorconv.html" %}
+
+{% block titulo %}Cuenta Nueva{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'indice' %}">
+            Principal
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Crear cuenta</li>
+</ol>
+<h2 class="text-center">Creación de Cuenta</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-text text-center">Todos los campos son obligatorios</div>
+    <table class="container mx-auto d-flex flex-column align-items-center">
+        {% load i18n %}
+        {% language 'es-ar' %}
+        <tr class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="text"
+                        class="form-control{% if form.last_name.errors %} is-invalid{% endif %}"
+                        id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}"
+                        aria-describedby="errores-last-name"
+                        {% if form.last_name.initial is not None %}
+                        value="{{ form.last_name.initial }}"
+                        {% endif %}
+                    >
+                    <label for="{{ form.last_name.id_for_label }}">
+                        Apellido
+                    </label>
+                    <div id="errores-last-name" class="invalid-feedback m-0 p-0">
+                        {% for error in form.last_name.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.last_name.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">{{ form.last_name.help_text }}</div>
+                {% endif %}
+            </td>
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="text"
+                        class="form-control{% if form.first_name.errors %} is-invalid{% endif %}"
+                        id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"
+                        aria-describedby="errores-first-name"
+                        {% if form.first_name.initial is not None %}
+                        value="{{ form.first_name.initial }}"
+                        {% endif %}
+                    >
+                    <label for="{{ form.first_name.id_for_label }}">
+                        Nombre de pila
+                    </label>
+                    <div id="errores-first-name" class="invalid-feedback m-0 p-0">
+                        {% for error in form.first_name.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.first_name.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">{{ form.first_name.help_text }}</div>
+                {% endif %}
+            </td>
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="email"
+                        class="form-control{% if form.email.errors %} is-invalid{% endif %}"
+                        id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}"
+                        aria-describedby="errores-email"
+                        {% if form.email.initial is not None %}
+                        value="{{ form.email.initial }}"
+                        {% endif %}
+                    >
+                    <label for="{{ form.email.id_for_label }}">
+                        Correo electrónico
+                    </label>
+                    <div id="errores-email" class="invalid-feedback m-0 p-0">
+                        {% for error in form.email.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.email.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">{{ form.email.help_text }}</div>
+                {% endif %}
+            </td>
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="text"
+                        class="form-control{% if form.username.errors %} is-invalid{% endif %}"
+                        id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
+                        aria-describedby="errores-username"
+                        {% if form.username.initial is not None %}
+                        value="{{ form.username.initial }}"
+                        {% endif %}
+                    >
+                    <label for="{{ form.username.id_for_label }}">
+                        Nombre de usuario
+                    </label>
+                    <div id="errores-username" class="invalid-feedback m-0 p-0">
+                        {% for error in form.username.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.username.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">{{ form.username.help_text }}</div>
+                {% endif %}
+            </td>
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="password"
+                        class="form-control{% if form.password1.errors %} is-invalid{% endif %}"
+                        id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}"
+                        aria-describedby="errores-password1"
+                    >
+                    <label for="{{ form.password1.id_for_label }}">
+                        Contraseña
+                    </label>
+                    <div id="errores-password1" class="invalid-feedback m-0 p-0">
+                        {% for error in form.password1.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.password1.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">
+                    {{ form.password1.help_text }}
+                    <p>
+                        Referencia ASCII:
+                        <a href="https://www.ascii-code.com/es"
+                            class="btn btn-link btn-sm p-0 align-text-bottom"
+                        >
+                            https://www.ascii-code.com/es
+                        </a>
+                    </p>
+                </div>
+                {% endif %}
+            </td>
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="password"
+                        class="form-control{% if form.password2.errors %} is-invalid{% endif %}"
+                        id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}"
+                        aria-describedby="errores-password2"
+                    >
+                    <label for="{{ form.password2.id_for_label }}">
+                        Confirmación de contraseña
+                    </label>
+                    <div id="errores-password2" class="invalid-feedback m-0 p-0">
+                        {% for error in form.password2.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if form.password2.help_text %}
+                <div class="form-text mw-25 p-0 mb-2 mt-0 mx-0">{{ form.password2.help_text }}</div>
+                {% endif %}
+            </td>
+        </tr>
+        {% endlanguage %}
+    </table>
+    {{ form.id }}
+    <div class="my-2 container">
+        <div class="row justify-content-center">
+            <input type="submit"
+                class="btn btn-primary btn-lg col-auto"
+                value="Crear Cuenta"
+            >
+        </div>
+    </div>
+</form>
+<div class="container mt-3">
+    <div class="row justify-content-center gap-2 px-3">
+        <a href="{% url 'cuentas:iniciar_sesion' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-link text-wrap"
+                value="¿Ya es usuario? Iniciar sesión"
+            >
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base_correo.html" %}
+
+{% block titulo %}Autenticación de usuario{% endblock %}
+
+{% block cuerpo %}
+<tr>
+    <td class="text-center">
+        <h2 class="fw-bold">Autenticación de usuario</h2>
+    </td>
+</tr>
+<tr>
+    <td>
+        Alguien está intentando iniciar sesión con la cuenta
+        {{ nombre_usuario }} en el sistema GesServOrConv. Si
+        ha sido usted, ingrese el siguiente código dentro del
+        formulario que apareció después de ingresar su nombre
+        de usuario y contraseña:
+    </td>
+</tr>
+<tr>
+    <td class="bg-secondary font-monospace fs-3 text-center text-white">
+        {{ codigo }}
+    </td>
+</tr>
+<tr>
+    <td>
+        Si no ha sido usted, simplemente ignore este mensaje.
+    </td>
+</tr>
+{% endblock %}

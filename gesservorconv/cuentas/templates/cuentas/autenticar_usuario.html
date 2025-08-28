@@ -1,0 +1,55 @@
+{% extends "base_gesservorconv.html" %}
+
+{% block titulo %}Autenticación{% endblock %}
+
+{% block contenido %}
+
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'indice' %}">
+            Principal
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:iniciar_sesion' %}">
+            Iniciar sesión
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Autenticación</li>
+</ol>
+<h2 class="text-center">Autenticación de usuario</h2>
+<p class="text-center">
+    Se ha enviado un código de autenticación a su correo
+    electrónico. Revíselo y coloque el mismo en el campo
+    de texto. En caso de no encontrarlo en sus correos
+    recibidos, revise el correo no deseado.
+</p>
+<form method="post">
+    {% csrf_token %}
+    <table class="container mx-auto d-flex flex-column align-items-center">
+        <tr class="row">
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control"
+                        id="id-codigo"
+                        name="codigo" placeholder="codigo"
+                    >
+                    <label for="id-codigo">Código</label>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="my-2 container">
+        <div class="row justify-content-center">
+            <input type="submit"
+                class="btn btn-primary btn-lg col-auto text-wrap"
+                value="Autenticar"
+            >
+        </div>
+    </div>
+    {% if siguiente %}
+    <input type="hidden" name="siguiente" value="{{ siguiente }}">
+    {% endif %}
+</form>
+
+{% endblock %}

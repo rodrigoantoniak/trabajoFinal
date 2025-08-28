@@ -1,0 +1,10 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Sesión cerrada{% endblock %}
+
+{% block contenido %}
+<p>¡Ha cerrado sesión!</p> 
+<a href="{% url 'cuentas:iniciar_sesion'%}">
+    Haga clic aquí para iniciar sesión de vuelta
+</a>
+{% endblock %}

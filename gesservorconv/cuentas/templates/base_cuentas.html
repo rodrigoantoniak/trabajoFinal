@@ -1,0 +1,271 @@
+{% extends "base_gesservorconv.html" %}
+
+{% block titulo %}Cuentas{% endblock %}
+
+{% block scripts %}
+<script>
+    function mostrarNotificaciones() {
+        const notificaciones = document.getElementsByClassName("toast");
+        const ultimaNotificacion = new bootstrap.Toast(notificaciones[0], null);
+        ultimaNotificacion.show();
+    }
+    function leerNotificaciones() {
+        const indicador = document.getElementById("indicador-notificacion");
+        if (indicador !== null) {
+            indicador.parentElement.removeChild(indicador);
+        }
+    }
+</script>
+{% endblock %}
+
+{% block cabecera %}
+<div class="dropdown position-sticky end-0 translate-middle-x" id="barra-notificaciones"
+    hx-on-show.bs.dropdown="leerNotificaciones();"
+>
+    <button type="button" id="boton-notificaciones"
+        class="btn btn-primary border-0 focus-ring focus-ring-light px-1 py-0"
+        data-bs-toggle="dropdown" aria-expanded="false"
+    >
+        <i class="fas fa-bell"></i>
+        <span id="indicador-notificacion"></span>
+    </button>
+    <ul class="dropdown-menu my-1" id="bandeja-notificaciones"
+        aria-labelledby="boton-notificaciones"
+    >
+        <li>
+            <a class="dropdown-item" href="{% url 'cuentas:notificaciones' %}">
+                <p class="text-secondary text-wrap text-break">
+                    Ver todas las notificaciones
+                </p>
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block navegacion %}
+<div class="d-flex flex-align-start flex-column h-100">
+    <div class="h-100 mb-auto overflow-y-auto">
+        {% if comitente %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" id="menu-comitente"
+            >
+                Comitente
+            </a>
+            <ul class="dropdown-menu" aria-expanded="false" aria-labelledby="menu-comitente">
+                <li>
+                    {% url 'solicitudes:lista_solicitudes_comitente' as lista_solicitudes_comitente %}
+                    {% if request.path == lista_solicitudes_comitente %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'solicitudes:lista_solicitudes_comitente' %}">
+                    {% endif %}
+                        Lista de Solicitudes
+                    </a>
+                </li>
+                <li>
+                    {% url 'firmas:lista_ordenes_comitente' as lista_ordenes_comitente %}
+                    {% if request.path == lista_ordenes_comitente %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'firmas:lista_ordenes_comitente' %}">
+                    {% endif %}
+                        Lista de Órdenes
+                    </a>
+                </li>
+                <li>
+                    {% url 'firmas:lista_convenios_comitente' as lista_convenios_comitente %}
+                    {% if request.path == lista_convenios_comitente %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'firmas:lista_convenios_comitente' %}">
+                    {% endif %}
+                        Lista de Convenios
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+        {% if responsable %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" id="menu-responsable-tecnico"
+            >
+                Responsable Técnico
+            </a>
+            <ul class="dropdown-menu" aria-expanded="false" aria-labelledby="menu-responsable-tecnico">
+                <li>
+                    {% url 'solicitudes:lista_solicitudes_responsable' as lista_solicitudes_responsable %}
+                    {% if request.path == lista_solicitudes_responsable %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'solicitudes:lista_solicitudes_responsable' %}">
+                    {% endif %}
+                        Lista de Solicitudes
+                    </a>
+                </li>
+                <li>
+                    {% url 'firmas:lista_ordenes_responsable' as lista_ordenes_responsable %}
+                    {% if request.path == lista_ordenes_responsable %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'firmas:lista_ordenes_responsable' %}">
+                    {% endif %}
+                        Lista de Órdenes
+                    </a>
+                </li>
+                <li>
+                    {% url 'firmas:lista_convenios_responsable' as lista_convenios_responsable %}
+                    {% if request.path == lista_convenios_responsable %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'firmas:lista_convenios_responsable' %}">
+                    {% endif %}
+                        Lista de Convenios
+                    </a>
+                </li>
+                <li>
+                    {% url 'servicios:lista_servicios_responsable' as lista_servicios_responsable %}
+                    {% if request.path == lista_servicios_responsable %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'servicios:lista_servicios_responsable' %}">
+                    {% endif %}
+                        Lista de Servicios
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+        {% if secretario %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" id="menu-staff"
+            >
+                Secretario
+            </a>
+            <ul class="dropdown-menu" aria-expanded="false" aria-labelledby="menu-staff">
+                <li>
+                    {% url 'firmas:lista_convenios_secretario' as lista_convenios_secretario %}
+                    {% if request.path == lista_convenios_secretario %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'firmas:lista_convenios_secretario' %}">
+                    {% endif %}
+                        Lista de Convenios
+                    </a>
+                </li>
+                <li>
+                    {% url 'firmas:lista_ordenes_secretario' as lista_ordenes_secretario %}
+                    {% if request.path == lista_ordenes_secretario %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'firmas:lista_ordenes_secretario' %}">
+                    {% endif %}
+                        Lista de Órdenes
+                    </a>
+                </li>
+                <li>
+                    {% url 'servicios:lista_servicios_secretario' as lista_servicios_secretario %}
+                    {% if request.path == lista_servicios_secretario %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'servicios:lista_servicios_secretario' %}">
+                    {% endif %}
+                        Lista de Servicios
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+        {% if staff %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" id="menu-staff"
+            >
+                Staff
+            </a>
+            <ul class="dropdown-menu" aria-expanded="false" aria-labelledby="menu-staff">
+                <li>
+                    {% url 'auditoria:index' as auditoria_index %}
+                    {% if request.path == auditoria_index %}
+                    <a class="dropdown-item active"
+                        aria-selected="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'auditoria:index' %}">
+                    {% endif %}
+                        Auditoría
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" id="menu-cuenta"
+            >
+                Cuenta
+            </a>
+            <ul class="dropdown-menu" aria-expanded="false" aria-labelledby="menu-cuenta">
+                {% if not staff and not admin %}
+                <li><a class="dropdown-item" href="{% url 'cuentas:perfil' %}">Ver Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                {% endif %}
+                <li>
+                    {% url 'cuentas:cambiar_contrasenia' as cuentas_cambiar_contrasenia %}
+                    {% if request.path == cuentas_cambiar_contrasenia %}
+                    <a class="dropdown-item active"
+                        aria-current="page" href="#"
+                    >
+                    {% else %}
+                    <a class="dropdown-item"
+                        href="{% url 'cuentas:cambiar_contrasenia' %}"
+                    >
+                    {% endif %}
+                        Cambiar Contraseña
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cuentas:cerrar_sesion' %}">Cerrar Sesión</a>
+        </li>
+    </div>
+    <div class="d-flex align-items-end">
+        <li class="nav-item text-wrap text-break">
+            <p class="border border-primary-subtle rounded m-0 p-1">{{ usuario.username }}</p>
+        </li>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<div class="toast-container position-absolute bottom-0 end-0 p-3" id="mensajes"
+    hx-ext="ws" ws-connect="/cuenta/notificaciones/"
+    hx-on--ws-after-message="mostrarNotificaciones();"
+>
+</div>
+{% endblock %}

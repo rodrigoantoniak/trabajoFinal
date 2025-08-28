@@ -1,0 +1,37 @@
+{% extends "base_correo.html" %}
+
+{% block titulo %}{{ notificacion.titulo_notificacion }}{% endblock %}
+
+{% block cuerpo %}
+<tr>
+    <td class="text-center">
+        <h2 class="fw-bold">{{ notificacion.titulo_notificacion }}</h2>
+    </td>
+</tr>
+<tr>
+    <td>
+        {{ notificacion.usuario_notificacion }}, se le notifica
+        de la siguiente situación en el sistema GesServOrConv:
+    </td>
+</tr>
+<tr>
+    <td>
+        {{ notificacion.contenido_notificacion }}.
+    </td>
+</tr>
+<tr>
+    <td>
+        Puede observarlo desde el enlace a continuación:
+    </td>
+</tr>
+<tr>
+    <td class="text-center mx-auto">
+        <a href="{{ notificacion.enlace_notificacion }}"
+            role="button" class="btn btn-link"
+            data-bs-toggle="button"
+        >
+            {{ notificacion.enlace_notificacion }}
+        </a>
+    </td>
+</tr>
+{% endblock %}

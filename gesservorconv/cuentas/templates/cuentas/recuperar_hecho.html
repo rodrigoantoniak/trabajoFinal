@@ -1,0 +1,26 @@
+{% extends "base_gesservorconv.html" %}
+
+{% block titulo %}Cuenta recuperada{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'indice' %}">
+            Principal
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:recuperar_cuenta' %}">
+            Recuperar cuenta
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Hecho</li>
+</ol>
+<h2 class="text-center">Correo de recuperación enviado</h2>
+<p>
+    Te hemos enviado un correo electrónico con las
+    instrucciones para ajustar tu contraseña.
+    Si no ha llegado en unos minutos, revise su carpeta
+    de correo no deseado.
+</p>
+{% endblock %}

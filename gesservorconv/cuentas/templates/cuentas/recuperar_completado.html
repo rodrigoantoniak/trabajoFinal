@@ -1,0 +1,17 @@
+{% extends "base_gesservorconv.html" %}
+
+{% block titulo %}Contraseña recuperada{% endblock %}
+
+{% block contenido %}
+<h2 class="text-center">¡La contraseña ha sido recuperada!</h2>
+<div class="mt-3">
+    <a class="position-relative start-50 translate-middle"
+        href="{% url 'cuentas:iniciar_sesion' %}"
+        tabindex="-1"
+    >
+        <input type="button" class="btn btn-link position-relative translate-middle"
+            value="¿Iniciar sesión de nuevo?"
+        >
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es-AR" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}GesServOrConv{% endblock %}</title>
+    {% load static %}
+    <link href="{{ protocol }}://{{ domain }}{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{{ protocol }}://{{ domain }}{% static 'css/tangerine.css' %}" rel="stylesheet">
+    <link href="{{ protocol }}://{{ domain }}{% static 'css/basic.css' %}" rel="stylesheet">
+    <link href="{{ protocol }}://{{ domain }}{% static 'css/dmSerifDisplay.css' %}" rel="stylesheet">
+    <style type="text/css">
+        h1 {
+            font-family: 'Tangerine';
+        }
+        h2 {
+            font-family: 'Basic', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <table width="100%" cellpadding="0" cellspacing="0" class="border border-0">
+        <tr>
+            <td class="align-middle">
+                <table width="600" cellpadding="0" cellspacing="0" class="border border-0">
+                    <tr>
+                        <td class="bg-primary text-center text-white">
+                            <h1>GesServOrConv</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <h2 class="fw-bold">Recuperación de Contraseña</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Alguien ha solicitado una recuperación de contraseña para
+                            el correo electrónico {{ email }}. Si ha sido usted, haga
+                            clic en el enlace debajo:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bg-secondary font-monospace fs-3 text-center text-white">
+                            {{ protocol }}://{{ domain }}{% url 'cuentas:recuperar_contrasenia' uidb64=uid token=token %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Si no ha sido usted, simplemente ignore este mensaje.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>    
+</body>
+</html>

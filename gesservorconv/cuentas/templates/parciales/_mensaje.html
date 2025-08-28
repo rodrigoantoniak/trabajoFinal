@@ -1,0 +1,40 @@
+<span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger"
+    style="padding: 0.1rem;" id="indicador-notificacion" hx-swap-oob="outerHTML"
+>
+    <span class="visually-hidden" id="hay-notificacion" hx-preserve>
+        Mensajes no leídos
+    </span>
+</span>
+
+<ul id="bandeja-notificaciones" hx-swap-oob="afterbegin">
+    <li>
+        <a class="dropdown-item" href="{{ enlace }}">
+            <p class="text-primary text-wrap text-break">{{ titulo }}</p>
+            <p class="text-wrap text-break">{{ mensaje }}</p>
+        </a>
+    </li>
+    <div class="dropdown-divider"></div>
+</ul>
+
+<div class="toast-container position-absolute bottom-0 end-0 p-3"
+    id="mensajes" hx-swap-oob="afterbegin"
+    hx-ext="ws" ws-connect="/cuenta/notificaciones/"
+    hx-on--ws-after-message="mostrarNotificaciones();"
+>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-delay="10000"
+    >
+        <div class="toast-header">
+            <strong class="me-auto">{{ titulo }}</strong>
+            <input type="button" class="btn-close me-1 m-auto" data-bs-dismiss="toast" aria-label="Close">
+        </div>
+        <div class="toast-body">
+            {{ mensaje }}
+            <div class="mt-2 pt-2 border-top">
+                <a class="btn btn-primary btn-sm" role="button" href="{{ enlace }}">
+                    Ver
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

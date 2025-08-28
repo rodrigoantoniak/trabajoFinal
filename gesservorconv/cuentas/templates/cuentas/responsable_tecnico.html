@@ -1,0 +1,165 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Responsable Técnico{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("slid.bs.carousel", function () {
+        const espia = document.getElementById('espia')
+        bootstrap.ScrollSpy.getOrCreateInstance(espia).refresh();
+    }, true);
+</script>
+{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Responsable Técnico</li>
+</ol>
+<h2 class="text-center fw-bold">Responsable Técnico</h2>
+<div id="grupo" class="list-group list-group-horizontal-sm text-center clearfix mb-3">
+    <button class="btn btn-outline-secondary float-start" type="button"
+        data-bs-target="#carrusel" data-bs-slide="prev"
+    >
+        <span aria-hidden="true">
+            <i class="fa-solid fa-chevron-left"></i>
+        </span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <a class="list-group-item list-group-item-action rounded-2 active"
+        data-bs-toggle="list" role="tab" aria-controls="list-settings"
+        href="#solicitudes"
+    >
+        Solicitudes
+    </a>
+    <a class="list-group-item list-group-item-action rounded-2"
+        data-bs-toggle="list" role="tab" aria-controls="list-settings"
+        href="#ordenes"
+    >
+        Órdenes
+    </a>
+    <a class="list-group-item list-group-item-action rounded-2"
+        data-bs-toggle="list" role="tab" aria-controls="list-settings"
+        href="#convenios"
+    >
+        Convenios
+    </a>
+    <a class="list-group-item list-group-item-action rounded-2"
+        data-bs-toggle="list" role="tab" aria-controls="list-settings"
+        href="#servicios"
+    >
+        Servicios
+    </a>
+    <button class="btn btn-outline-secondary float-end" type="button"
+        data-bs-target="#carrusel" data-bs-slide="next"
+    >
+        <span aria-hidden="true">
+            <i class="fa-solid fa-chevron-right"></i>
+        </span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+<div id="carrusel" class="carousel slide">
+    <div id="espia" class="carousel-inner"
+        data-bs-spy="scroll" data-bs-target="#grupo"
+        tabindex="0"
+    >
+        <div id="solicitudes" class="carousel-item active">
+            <h4>Solicitudes de servicio</h4>
+            <p>
+                Es el primer paso para llevar a cabo un servicio.
+                En ello, se asocia a todos los Comitentes que
+                solicitan el servicio; de ahí, se debe gestionar
+                la inclusión de todos los Responsables Técnicos
+                deseados. Luego, se propone todos los compromisos
+                a cumplir en el servicio y se espera la aprobación
+                de estos por todas las partes involucradas.
+            </p>
+            <div class="btn-group-vertical" role="group" aria-label="Opciones para solicitudes">
+                <a role="button" class="btn btn-primary"
+                    href="{% url 'solicitudes:lista_solicitudes_responsable' %}"
+                >
+                    Lista de solicitudes
+                </a>
+                <a role="button" class="btn btn-dark"
+                    href="{% url 'solicitudes:reporte_informe_solicitudes_responsable' %}"
+                >
+                    Reporte de solicitudes
+                </a>
+                <a role="button" class="btn btn-danger"
+                    href="{% url 'solicitudes:informe_solicitudes_responsable' %}"
+                >
+                    Informe de solicitudes
+                </a>
+            </div>
+        </div>
+        <div id="ordenes" class="carousel-item">
+            <h4>Órdenes de servicio</h4>
+            <p>
+                En caso de decidir realizar una Orden de 
+                Servicio, los que deberán firmar este
+                documento son los Comitentes, los Responsables
+                Técnicos y el encargado de la Secretaría
+                de Extensión y Vinculación Tecnológica.
+                La firma del mismo puede ser de forma
+                manuscrita o digitalmente.
+            </p>
+            <div class="btn-group-vertical" role="group" aria-label="Opciones para órdenes">
+                <a role="button" class="btn btn-primary"
+                    href="{% url 'firmas:lista_ordenes_responsable' %}"
+                >
+                    Lista de órdenes
+                </a>
+                <a role="button" class="btn btn-danger"
+                    href="{% url 'firmas:informe_ordenes_responsable' %}"
+                >
+                    Informe de órdenes
+                </a>
+            </div>
+        </div>
+        <div id="convenios" class="carousel-item">
+            <h4>Convenios</h4>
+            <p>
+                En caso de decidir realizar un Convenio,
+                los que deberán firmar este
+                documento son integrantes del Consejo
+                Directivo; lo cual, evita la necesidad
+                de solicitar la firma de muchas partes.
+            </p>
+            <div class="btn-group-vertical" role="group" aria-label="Opciones para convenios">
+                <a role="button" class="btn btn-primary"
+                    href="{% url 'firmas:lista_convenios_responsable' %}"
+                >
+                    Lista de convenios
+                </a>
+                <a role="button" class="btn btn-danger"
+                    href="{% url 'firmas:informe_convenios_responsable' %}"
+                >
+                    Informe de convenios
+                </a>
+            </div>
+        </div>
+        <div id="servicios" class="carousel-item">
+            <h4>Servicios</h4>
+            <p>
+                Finalmente, tras firmar el documento
+                pactado para afianzar el servicio;
+                se lleva a cabo el proceso solicitado,
+                así como el pago a cambio del mismo.
+            </p>
+            <div class="btn-group-vertical" role="group" aria-label="Opciones para convenios">
+                <a role="button" class="btn btn-primary"
+                    href="{% url 'servicios:lista_servicios_responsable' %}"
+                >
+                    Lista de servicios
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base_gesservorconv.html" %}
+
+{% load i18n %}
+
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+
+{% language 'es-ar' %}
+
+{% if form.non_field_errors %}
+    <div
+        class="alert alert-danger alert-dismissible p-2
+            rounded clearfix text-center mt-4 mx-auto fade show"
+        role="alert"
+        tabindex="-1"
+    >
+        <button type="button"
+            class="close float-end align-baseline navbar-toggler my-0 ms-1 me-0 p-0"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+        >
+            <i class="fa-solid fa-xmark fa-sm"></i>
+        </button>
+        {% for error in form.non_field_errors %}
+            <p class="m-0">{{ error }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if siguiente %}
+    {% if user.is_authenticated %}
+    <div
+        class="alert alert-danger alert-dismissible py-2 ps-2 pe-4
+            rounded clearfix text-center mt-4 mx-auto fade show"
+        role="alert"
+        tabindex="-1"
+    >
+        <button type="button"
+            class="close float-end align-baseline navbar-toggler btn-close m-1 p-0"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+        ></button>
+        Tu cuenta no tiene acceso a esta página.
+        Para proceder, ingrese con una cuenta que
+        tenga los permisos adecuados.
+    </div>
+    {% endif %}
+{% endif %}
+
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item">
+        <a href="{% url 'indice' %}">
+            Principal
+        </a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">Iniciar sesión</li>
+</ol>
+<h2 class="text-center">Inicio de Sesión</h2>
+<form method="post">
+    {% csrf_token %}
+    <table class="container mx-auto d-flex flex-column align-items-center">
+        <tr class="row row-cols-1 row-cols-md-2">
+            <td class="col my-2">
+                <div class="form-floating">
+                    <input type="text" class="form-control"
+                        id="{{ form.username.id_for_label }}"
+                        name="{{ form.username.html_name }}"
+                        placeholder="usuario"
+                    >
+                    <label for="{{ form.username.id_for_label }}">
+                        Nombre de usuario
+                    </label>
+                    <div id="errores-username" class="invalid-feedback m-0 p-0">
+                        {% for error in form.username.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </td>
+            <td class="col my-2">
+                <div class="form-floating">
+                    <input type="password" class="form-control"
+                        id="{{ form.password.id_for_label }}"
+                        name="{{ form.password.html_name }}"
+                        placeholder="contrasenia"
+                    >
+                    <label for="{{ form.password.id_for_label }}">
+                        Contraseña
+                    </label>
+                    <div id="errores-password" class="invalid-feedback m-0 p-0">
+                        {% for error in form.password.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="my-2 container">
+        <div class="row justify-content-center">
+            <input type="submit"
+                class="btn btn-primary btn-lg col-auto"
+                value="Iniciar Sesión"
+            >
+        </div>
+    </div>
+    {% if siguiente %}
+    <input type="hidden" name="siguiente" value="{{ siguiente }}">
+    {% endif %}
+</form>
+<div class="container mt-3">
+    <div class="row justify-content-center gap-2 px-3">
+        <a href="{% url 'cuentas:crear_cuenta' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-link text-wrap"
+                value="¿Aún no tiene cuenta? Regístrese"
+            >
+        </a>
+        <a href="{% url 'cuentas:recuperar_cuenta' %}"
+            class="col-auto px-0" tabindex="-1"
+        >
+            <input type="button"
+                class="btn btn-link text-wrap"
+                value="¿No recuerda la contraseña?"
+            >
+        </a>
+    </div>
+</div>
+<pre></pre>
+{% endlanguage %}
+
+{% endblock %}

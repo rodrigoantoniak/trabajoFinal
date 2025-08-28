@@ -1,0 +1,45 @@
+{% extends "base_correo.html" %}
+
+{% block titulo %}Sugerencia de Convenio{% endblock %}
+
+{% block cuerpo %}
+<tr>
+    <td class="text-center">
+        <h2 class="fw-bold">Sugerencia de Convenio</h2>
+    </td>
+</tr>
+<tr>
+    <td>
+        {{ usuario.username }}, se le notifica
+        de la siguiente situación en el sistema GesServOrConv:
+    </td>
+</tr>
+<tr>
+    <td>
+        Hemos observado que sus últimos servicios han sido
+        realizados con órdenes de servicio como documento
+        a firmar y posiblemente solicite un nuevo servicio
+        en estos días. Por ello, sugerimos que la siguiente
+        solicitud sea realizada con un Convenio como documento
+        a firmar en su lugar; así, evita la necesidad
+        de tener que esperar la firma de todos los integrantes
+        del servicio y esa tarea se delega únicamente al
+        Consejo Directivo.
+    </td>
+</tr>
+<tr>
+    <td>
+        Puede observarlo desde el enlace a continuación:
+    </td>
+</tr>
+<tr>
+    <td class="text-center mx-auto">
+        <a href="{{ protocolo }}://{{ dominio }}{% url 'solicitudes:agregar_solicitud' %}?convenio"
+            role="button" class="btn btn-link"
+            data-bs-toggle="button"
+        >
+            {{ protocolo }}://{{ dominio }}{% url 'solicitudes:agregar_solicitud' %}?convenio
+        </a>
+    </td>
+</tr>
+{% endblock %}

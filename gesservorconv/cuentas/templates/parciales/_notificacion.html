@@ -1,0 +1,59 @@
+{% if page_obj %}
+    {% widthratio page_obj.number|add:"-1" 1 page_obj.paginator.per_page as inicio_pagina %}
+    {% for notificacion in page_obj|slice:":-1" %}
+    <div class="accordion-item">
+        <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse{{ inicio_pagina|add:forloop.counter }}"
+                aria-expanded="false"
+                aria-controls="collapse{{ inicio_pagina|add:forloop.counter }}"
+            >
+                {{ notificacion.titulo_notificacion }}
+            </button>
+        </h3>
+        <div id="collapse{{ inicio_pagina|add:forloop.counter }}"
+            class="accordion-collapse collapse"
+            data-bs-parent="#notificaciones"
+        >
+            <div class="accordion-body">
+                {{ notificacion.contenido_notificacion }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% widthratio page_obj.start_index 1 -1 as resta %}
+    {% with ultimo=page_obj.end_index|add:'resta' %}
+    {% for notificacion in page_obj|slice:"-1:" %}
+    <p>{{ page_obj.object_list.ultimo }}</p>
+    <div class="accordion-item"
+        {% if page_obj.has_next %}
+        hx-get="{% url 'cuentas:notificaciones' %}?pagina={{ page_obj.next_page_number }}"
+        hx-trigger="revealed"
+        hx-target="#notificaciones"
+        hx-indicator="#indicador"
+        hx-swap="beforeend"
+        {% endif %}
+    >
+        <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse{{ inicio_pagina|add:ultimo }}"
+                aria-expanded="false"
+                aria-controls="collapse{{ inicio_pagina|add:ultimo }}"
+            >
+                {{ notificacion.titulo_notificacion }}
+            </button>
+        </h3>
+        <div id="collapse{{ inicio_pagina|add:ultimo }}"
+            class="accordion-collapse collapse"
+            data-bs-parent="#notificaciones"
+        >
+            <div class="accordion-body">
+                {{ notificacion.contenido_notificacion }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endwith %}
+{% else %}
+    <p class="text-center">No hay notificaciones</p>
+{% endif %}

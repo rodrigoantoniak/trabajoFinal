@@ -1,0 +1,33 @@
+{% extends "base_correo.html" %}
+
+{% block titulo %}Activación de cuenta de usuario{% endblock %}
+
+{% block cuerpo %}
+<tr>
+    <td class="text-center">
+        <h2 class="fw-bold">Activación de cuenta de usuario</h2>
+    </td>
+</tr>
+<tr>
+    <td>
+        Alguien ha creado una cuenta de usuario con el nombre
+        {{ nombre_usuario }} para el sistema GesServOrConv. Si
+        ha sido usted, diríjase al enlace debajo para activar
+        la cuenta:
+    </td>
+</tr>
+<tr>
+    <td class="text-center mx-auto">
+        <a href="{{ protocolo }}:{{ url }}" role="button"
+            class="btn btn-link" data-bs-toggle="button"
+        >
+            {{ protocolo }}:{{ url }}
+        </a>
+    </td>
+</tr>
+<tr>
+    <td>
+        Si no ha sido usted, simplemente ignore este mensaje.
+    </td>
+</tr>
+{% endblock %}

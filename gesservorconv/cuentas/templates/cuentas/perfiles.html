@@ -1,0 +1,135 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Perfil{% endblock %}
+
+{% block contenido %}
+<ol class="breadcrumb m-2">
+    <li class="breadcrumb-item" aria-current="page">Perfiles</li>
+</ol>
+<p class="text-center fs-2 fw-bold">
+    {{ usuario.username }}, seleccione el perfil con el que desea ingresar
+</p>
+<div class="container">
+    <div class="row row-cols-1 row-cols-lg-2 justify-content-around gap-2">
+        <div class="col-12 col-lg-5 card p-0">
+            <div class="card-body">
+                <h5 class="card-title text-center">Representante Técnico</h5>
+                <p class="card-text">
+                    Este rol está encargado de dirigir la
+                    Unidad Ejecutora de un servicio.
+                </p>
+                {% if responsable is None %}
+                <a href="{% url 'cuentas:registrar_responsable' %}"
+                    class="btn btn-success w-100"
+                >
+                    Registrarse como Responsable Técnico
+                </a>
+                {% elif responsable is True %}
+                <a href="{% url 'cuentas:responsable_tecnico' %}"
+                    class="btn btn-primary w-100"
+                >
+                    Ingresar como Responsable Técnico
+                </a>
+                {% else %}
+                </div>
+                <div class="card-footer">
+                    Usted no tiene los permisos para ingresar
+                    como Responsable Técnico. En caso de haberse
+                    registrado como tal recientemente, espere
+                    hasta que el Administrador verifique su
+                    identidad y le habilite el ingreso
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-lg-5 card p-0">
+            <div class="card-body">
+                <h5 class="card-title text-center">Comitente</h5>
+                <p class="card-text">
+                    Este rol está encargado de solicitar
+                    servicios a la universidad.
+                </p>
+                {% if comitente is None %}
+                <a href="{% url 'cuentas:registrar_comitente' %}"
+                    class="btn btn-success w-100"
+                >
+                    Registrarse como Comitente
+                </a>
+                {% elif comitente is True %}
+                <a href="{% url 'cuentas:comitente' %}"
+                    class="btn btn-primary w-100"
+                >
+                    Ingresar como Comitente
+                </a>
+                {% else %}
+                </div>
+                <div class="card-footer">
+                    Usted no tiene los permisos para ingresar
+                    como Comitente. En caso de haberse
+                    registrado como tal recientemente, espere
+                    hasta que el Administrador verifique su
+                    identidad y le habilite el ingreso
+                {% endif %}
+            </div>
+        </div>
+        {% if secretario is not None %}
+        <div class="col-12 col-lg-5 card p-0">
+            <div class="card-body">
+                <h5 class="card-title text-center">Secretario</h5>
+                <p class="card-text">
+                    Este rol está encargado de aprobar las
+                    órdenes de servicio y cargar los convenios.
+                </p>
+                {% if secretario is True %}
+                <a href="{% url 'firmas:lista_convenios_secretario' %}"
+                    class="btn btn-primary w-100"
+                >
+                    Ingresar como Secretario
+                </a>
+                {% else %}
+                </div>
+                <div class="card-footer">
+                    Usted ya no tiene permisos para el
+                    perfil de Secretario
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<p class="text-center mt-3 fs-3 fw-medium">
+    <b>O puede realizar las siguientes acciones con su cuenta de usuario:</b>
+</p>
+<div class="container">
+    <div class="row row-cols-1 row-cols-lg-2 justify-content-around gap-2">
+        <div class="col-12 col-lg-5 card p-0">
+            <div class="card-body">
+                <h5 class="card-title text-center">Cambio de Contraseña</h5>
+                <p class="card-text">
+                    Se recomienda que cambie la contraseña cada cierto
+                    intervalo de tiempo, evitando vulnerabilidades.
+                </p>
+                <a href="{% url 'cuentas:cambiar_contrasenia' %}"
+                    class="btn btn-warning w-100"
+                >
+                    Cambiar Contraseña
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-5 card p-0">
+            <div class="card-body">
+                <h5 class="card-title text-center">Cierre sesión</h5>
+                <p class="card-text">
+                    Una vez que no necesita interactuar con el sistema,
+                    es preferible que termine la sesión de una vez.
+                </p>
+                <a href="{% url 'cuentas:cerrar_sesion' %}"
+                    class="btn btn-danger w-100"
+                >
+                    Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}

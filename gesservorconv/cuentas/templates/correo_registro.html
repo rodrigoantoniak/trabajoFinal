@@ -1,0 +1,45 @@
+{% extends "base_correo.html" %}
+
+{% block titulo %}Habilitaciones como {{ perfil }}{% endblock %}
+
+{% block cuerpo %}
+<tr>
+    <td class="text-center">
+        <h2 class="fw-bold">Habilitaciones como {{ perfil }}</h2>
+    </td>
+</tr>
+<tr>
+    <td>
+        Alguien ha solicitado habilitar roles
+        como {{ perfil }} para la cuenta
+        {{ usuario.username }}. Los solicitados son:
+    </td>
+</tr>
+<tr>
+    <td>
+        <ul>
+            {% if cuil is not None %}
+            <li>CUIL: {{ cuil }} (persona física)</li>
+            {% endif %}
+            {% for organizacion in organizaciones %}
+            <li>{{ organizacion }}</li>
+            {% endfor %}
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>
+        Para decidir sobre la habilitación de estos roles,
+        haga clic en el enlace debajo:
+    </td>
+</tr>
+<tr>
+    <td class="text-center mx-auto">
+        <a href="{{ protocolo }}:{{ url }}" role="button"
+            class="btn btn-link" data-bs-toggle="button"
+        >
+            {{ protocolo }}:{{ url }}
+        </a>
+    </td>
+</tr>
+{% endblock %}

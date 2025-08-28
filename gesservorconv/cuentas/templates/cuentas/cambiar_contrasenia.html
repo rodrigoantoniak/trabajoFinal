@@ -1,0 +1,107 @@
+{% extends "base_cuentas.html" %}
+
+{% block titulo %}Cambiar contraseña{% endblock %}
+
+{% block contenido %}
+
+<ol class="breadcrumb m-2">
+    {% if usuario.is_superuser or usuario.is_staff %}
+    <li class="breadcrumb-item active">Usuario</li>
+    {% else %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'cuentas:perfil' %}">
+            Perfiles
+        </a>
+    </li>
+    {% endif %}
+    <li class="breadcrumb-item" aria-current="page">Cambiar contraseña</li>
+</ol>
+<h2 class="text-center">Cambio de Contraseña</h2>
+<form method="post" id="formulario">
+    {% csrf_token %}
+    <table class="container mx-auto d-flex flex-column align-items-start">
+        {% load i18n %}
+        {% language 'es-ar' %}
+        <tr class="row">
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="password"
+                        class="form-control{% if form.old_password.errors %} is-invalid{% endif %}"
+                        id="{{ form.old_password.id_for_label }}"
+                        name="{{ form.old_password.html_name }}"
+                        aria-describedby="errores-old-password"
+                    >
+                    <label for="{{ form.old_password.id_for_label }}">
+                        Contraseña actual:
+                    </label>
+                    <div id="errores-old-password" class="invalid-feedback m-0 p-0">
+                        {% for error in form.old_password.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="password"
+                        class="form-control{% if form.new_password1.errors %} is-invalid{% endif %}"
+                        id="{{ form.new_password1.id_for_label }}"
+                        name="{{ form.new_password1.html_name }}"
+                        aria-describedby="errores-new-password1"
+                    >
+                    <label for="{{ form.new_password1.id_for_label }}">
+                        Nueva contraseña:
+                    </label>
+                    <div id="errores-new-password1" class="invalid-feedback m-0 p-0">
+                        {% for error in form.new_password1.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="col my-1">
+                <div class="form-floating">
+                    <input type="password"
+                        class="form-control{% if form.new_password2.errors %} is-invalid{% endif %}"
+                        id="{{ form.new_password2.id_for_label }}"
+                        name="{{ form.new_password2.html_name }}"
+                        aria-describedby="errores-new-password2"
+                    >
+                    <label for="{{ form.new_password2.id_for_label }}">
+                        Confirmar contraseña:
+                    </label>
+                    <div id="errores-new-password2" class="invalid-feedback m-0 p-0">
+                        {% for error in form.new_password2.errors %}
+                        <p class="m-0 p-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endlanguage %}
+    </table>
+</form>
+<div class="container mt-5">
+    <div class="row justify-content-start gap-2">
+        {% if usuario.is_superuser or usuario.is_staff %}
+        <a href="{% url 'auditoria:index' %}" tabindex="-1"
+            class="btn btn-outline-secondary btn-lg text-wrap col-auto"
+        >Ir a Auditorías</a>
+        {% else %}
+        <a href="{% url 'cuentas:perfil' %}" tabindex="-1"
+            class="btn btn-outline-secondary btn-lg text-wrap col-auto"
+        >Ir a Perfiles</a>
+        {% endif %}
+        <input type="submit" form="formulario"
+            class="btn btn-primary btn-lg col-auto"
+            value="Cambiar contraseña"
+        >
+    </div>
+</div>
+<pre></pre>
+{{ block.super }}
+{% endblock %}
